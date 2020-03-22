@@ -25,8 +25,26 @@ namespace FlightSimulatorApp.controls
             InitializeComponent();
         }
 
-        private void centerKnob_Completed(object sender, RoutedEventArgs e)
-        { 
+        private void centerKnob_Completed(object sender, RoutedEventArgs e){}
+
+        private Point MouseDownLocation;
+
+        private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left) {
+                MouseDownLocation = e.ButtonState;
+            }
+
+        }
+
+        private void Knob_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }
