@@ -25,26 +25,64 @@ namespace FlightSimulatorApp.controls
             InitializeComponent();
         }
 
-        private void centerKnob_Completed(object sender, RoutedEventArgs e){}
-
-        private Point MouseDownLocation;
+        private Point MouseDownLocation = new Point();
 
         private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left) {
-                MouseDownLocation = e.ButtonState;
+                MouseDownLocation.X = e.GetPosition(this).X;
+                MouseDownLocation.Y = e.GetPosition(this).Y;
             }
 
         }
 
         private void Knob_MouseMove(object sender, MouseEventArgs e)
         {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                double black = blackZone.Width / 2;
+                double x = e.GetPosition(this).X - MouseDownLocation.X;
+                double y = e.GetPosition(this).Y - MouseDownLocation.Y;
+                double inLim = Math.Sqrt(x * x + y * y);
 
+                if (inLim < black)
+                {
+                    knobPosition.X = x;
+                    knobPosition.Y = y;
+                }
+                else if (x < black && x > -black)
+                {
+                    knobPosition.X = x;
+                    if (knobPosition.Y >= 0)
+                    {
+                        knobPosition.Y = Math.Sqrt(black * black - x * x);
+                    }
+                    else
+                    {
+                        knobPosition.Y = -Math.Sqrt(black * black - x * x);
+                    }
+                }
+                else if (y < black && y > -black)
+                {
+                    knobPosition.Y = y;
+                    if (knobPosition.X >= 0)
+                    {
+                        knobPosition.X = Math.Sqrt(black * black - y * y);
+                    }
+                    else
+                    {
+                        knobPosition.X = -Math.Sqrt(black * black - y * y);
+                    }
+                }
+            }
         }
 
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
         {
-
+            knobPosition.X = 0;
+            knobPosition.Y = 0;
         }
+
+        private void centerKnob_Completed(object sender, EventArgs e){ }
     }
 }
