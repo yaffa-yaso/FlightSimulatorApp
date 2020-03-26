@@ -23,6 +23,12 @@ namespace FlightSimulatorApp.controls
         public Joystick()
         {
             InitializeComponent();
+
+            this.Loaded += (s, e) =>
+            {
+                Mouse.Capture(Knob);
+            };
+            /// Knob.PreviewMouseDown += Knob_MouseUp;
         }
 
         private Point MouseDownLocation = new Point();
@@ -75,14 +81,22 @@ namespace FlightSimulatorApp.controls
                     }
                 }
             }
+            joystickDirection();
         }
 
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
         {
             knobPosition.X = 0;
             knobPosition.Y = 0;
+
+            joystickDirection();
         }
 
         private void centerKnob_Completed(object sender, EventArgs e){ }
+
+        private void joystickDirection() {
+            rudderVal.Content = knobPosition.X / blackZone.Width * 2;
+            elevatorVal.Content = -knobPosition.Y / blackZone.Width * 2; 
+        }
     }
 }
