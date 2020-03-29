@@ -24,10 +24,10 @@ namespace FlightSimulatorApp.controls
         {
             InitializeComponent();
 
-            ///this.Loaded += (s, e) =>
-            ///{
-            ///    Mouse.Capture(Knob);
-            ///};
+            this.Loaded += (s, e) =>
+            {
+                Mouse.Capture(Knob);
+            };
             /// Knob.PreviewMouseDown += Knob_MouseUp;
         }
 
@@ -56,37 +56,32 @@ namespace FlightSimulatorApp.controls
                     knobPosition.X = x;
                     knobPosition.Y = y;
                 }
-                else
+                else if (x < black && x > -black)
                 {
-                    if (x == 0)
+                    knobPosition.X = x;
+                    if (knobPosition.Y >= 0)
                     {
-                        knobPosition.Y = black;
-                        if (y < 0) 
-                        {
-                            knobPosition.Y *= -1;
-                        }
-                ///        joystickDirection();
-                        return;
-                    }
-
-                    double m = y / x;
-                    double a = m * m + 1;
-                    double b = 2 * m * y - 2 * m * m * x;
-                    double c = m * m * x * x - 2 * m * y * x + y * y - black * black;
-
-                    if (x > 0)
-                    {
-                        knobPosition.X = (-b + Math.Sqrt(b * b - 4 * a * c)) / (2 * a);
+                        knobPosition.Y = Math.Sqrt(black * black - x * x);
                     }
                     else
                     {
-                        knobPosition.X = (-b - Math.Sqrt(b * b - 4 * a * c)) / (2 * a);
+                        knobPosition.Y = -Math.Sqrt(black * black - x * x);
                     }
-
-                    knobPosition.Y = m * (knobPosition.X - x) + y;
                 }
-             ///   joystickDirection();
+                else if (y < black && y > -black)
+                {
+                    knobPosition.Y = y;
+                    if (knobPosition.X >= 0)
+                    {
+                        knobPosition.X = Math.Sqrt(black * black - y * y);
+                    }
+                    else
+                    {
+                        knobPosition.X = -Math.Sqrt(black * black - y * y);
+                    }
+                }
             }
+            joystickDirection();
         }
 
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
@@ -94,14 +89,14 @@ namespace FlightSimulatorApp.controls
             knobPosition.X = 0;
             knobPosition.Y = 0;
 
-          ///  joystickDirection();
+            joystickDirection();
         }
 
         private void centerKnob_Completed(object sender, EventArgs e){ }
 
-       /// private void joystickDirection() {
-       ///     rudderVal.Content = knobPosition.X / blackZone.Width * 2;
-       ///     elevatorVal.Content = -knobPosition.Y / blackZone.Width * 2; 
-       /// }
+        private void joystickDirection() {
+            rudderVal.Content = knobPosition.X / blackZone.Width * 2;
+            elevatorVal.Content = -knobPosition.Y / blackZone.Width * 2; 
+        }
     }
 }
