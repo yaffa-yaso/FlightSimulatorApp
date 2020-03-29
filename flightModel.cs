@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace FlightSimulatorApp
 {
-    interface FlightModel: notifyPropertyChanged
+    interface FlightModel: INotifyPropertyChanged
     {
        double HEADING { set; get; }
        double VERTICAL_SPEED { set; get; }
@@ -16,13 +17,15 @@ namespace FlightSimulatorApp
        double ROLL { set; get; }
        double PITCH { set; get; }
        double ALTIMETER { set; get; }
+       double rudder { set; }
+       double elevator { set; }
 
 
         void connect(string ip, int port);
         void disConnect();
         void start();
 
-        // add properties
+        void move(double rudder, double elevator, double throttle, double aileron);
         
     }
 }

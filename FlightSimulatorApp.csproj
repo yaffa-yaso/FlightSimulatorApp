@@ -66,7 +66,7 @@
     </Compile>
     <Compile Include="FlightViewModel.cs" />
     <Compile Include="MyTelnetClient.cs" />
-    <Compile Include="PropertyChangedEvantArgs.cs" />
+    <Compile Include="propertyChangedEvantArgs.cs" />
     <Compile Include="TelNetClient.cs" />
     <Compile Include="MyFlightModel.cs" />
     <Compile Include="FlightModel.cs" />
