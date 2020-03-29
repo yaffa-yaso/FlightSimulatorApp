@@ -61,6 +61,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="controls\Joystick.xaml.cs">
+      <DependentUpon>Joystick.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FlightViewModel.cs" />
     <Compile Include="MyTelnetClient.cs" />
     <Compile Include="PropertyChangedEvantArgs.cs" />
@@ -74,6 +77,10 @@
     <Compile Include="view\screen.xaml.cs">
       <DependentUpon>screen.xaml</DependentUpon>
     </Compile>
+    <Page Include="controls\Joystick.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -122,7 +129,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="controls\" />
     <Folder Include="dashboard\" />
     <Folder Include="images\" />
   </ItemGroup>
