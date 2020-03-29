@@ -93,7 +93,6 @@ namespace FlightSimulatorApp.controls
         {
             knobPosition.X = 0;
             knobPosition.Y = 0;
-
           ///  joystickDirection();
         }
 
