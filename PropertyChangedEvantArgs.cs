@@ -6,22 +6,16 @@ using System.Threading.Tasks;
 
 namespace FlightSimulatorApp
 {
-    public class PropertyChangedEvantArgs
+    public class propertyChangedEvantArgs
     {
-        private string name;
-        private double newValue;
-        public PropertyChangedEvantArgs(string name)
+        private string propName
         {
-            this.name = name;
+            get { return propName;}
+            set { propName = value;}
         }
-        public string getName()
+        public propertyChangedEvantArgs(string name)
         {
-            return this.name;
+            this.propName = name;
         }
-        public double getNewValue() 
-        {
-            return this.newValue;
-        }
-
     }
 }

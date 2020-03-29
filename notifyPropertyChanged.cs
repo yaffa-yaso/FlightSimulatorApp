@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FlightSimulatorApp
 {
-    public delegate void PropertyChangedEvantHandler(Object sender, PropertyChangedEvantArgs e);
+    public delegate void PropertyChangedEvantHandler(Object sender, propertyChangedEvantArgs e);
     interface notifyPropertyChanged
     {
         event PropertyChangedEvantHandler pChange;
