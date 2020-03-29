@@ -134,19 +134,19 @@
                 </Canvas.Resources>
             </Canvas>
         </Canvas>
-        <Slider HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="340" RenderTransformOrigin="0.5,0.5" Margin="531,312,-35,0">
+        <Slider x:Name="throttleVal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="340" RenderTransformOrigin="0.5,0.5" Margin="531,312,-35,0" Maximum="1" Minimum="0">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="90"/>
+                    <RotateTransform Angle="-90"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
-        <Slider HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="410" Margin="217,550,0,0" RenderTransformOrigin="0.5,0.5"/>
+        <Slider x:Name="aileronVal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="410" Margin="217,550,0,0" RenderTransformOrigin="0.5,0.5" Maximum="1" Minimum="0"/>
         <Label Content="-rudder-" HorizontalAlignment="Left" Margin="342,5,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36"/>
-        <Label x:Name="rudderVal" Content="0" HorizontalAlignment="Left" Margin="393,68,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36" Height="64"/>
+        <Label Content ="{Binding ElementName = knobPosition, Path= X / blackZone.Width * 2}" HorizontalAlignment="Left" Margin="393,68,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36" Height="64"/>
         <Label Content="-elevator-" HorizontalAlignment="Left" Margin="54,288,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
@@ -157,7 +157,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="elevatorVal" Content="0" HorizontalAlignment="Left" Margin="162,285,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36" RenderTransformOrigin="0.5,0.5">
+        <Label x:Name="elevatorVal" Content ="{Binding ElementName = knobPosition, Path= knobPosition.X}" HorizontalAlignment="Left" Margin="162,285,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -167,7 +167,8 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label Content="-aileron" HorizontalAlignment="Left" Margin="342,487,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36"/>
+        <Label Content ="aileron" HorizontalAlignment="Left" Margin="342,487,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36"/>
+        <Label Content ="{Binding ElementName = aileronVal, Path= Value, StringFormat={}{0:#,#.00}}" HorizontalAlignment="Left" Margin="659,526,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36"/>
         <Label Content="throttle" HorizontalAlignment="Left" Margin="561,285,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
@@ -178,5 +179,6 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
+        <Label Content="{Binding ElementName = throttleVal, Path= Value}" HorizontalAlignment="Left" Margin="684,98,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36" RenderTransformOrigin="0.5,0.5"/>
     </Grid>
 </UserControl>
