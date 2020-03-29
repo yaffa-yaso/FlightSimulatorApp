@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White" OpacityMask="Black" Margin="-140,-66,-873,-419">
-        <Canvas  x:Name="Base" Margin="1356,518,117,77" Width="340" Height="340">
-            <Ellipse HorizontalAlignment="Left" Height="340" VerticalAlignment="Top" Width="340">
+    <Grid Margin="-36,-63,0,-111">
+        <Canvas  x:Name="Base" Margin="0" Width="340" Height="340" MouseMove="Knob_MouseMove" MouseDown="Knob_MouseDown" MouseUp="Knob_MouseUp">
+            <Ellipse x:Name="greyZone" HorizontalAlignment="Left" Height="340" VerticalAlignment="Top" Width="340">
                 <Ellipse.Fill>
                     <RadialGradientBrush>
                         <GradientStop Color="#FF2C2A2A" Offset="1" />
@@ -15,7 +15,7 @@
                     </RadialGradientBrush>
                 </Ellipse.Fill>
             </Ellipse>
-            <Ellipse HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="170" Canvas.Left="84" Canvas.Top="84">
+            <Ellipse x:Name="blackZone" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="170" Canvas.Left="84" Canvas.Top="84">
                 <Ellipse.Fill>
                     <RadialGradientBrush>
                         <GradientStop Color="#FF0E0E0E" Offset="1" />
@@ -47,7 +47,7 @@
                 </Path.RenderTransform>
             </Path>
 
-            <Canvas  x:Name="Knob" VerticalAlignment="Top" HorizontalAlignment="Left" Width="0" Height="0" RenderTransformOrigin="0.5,0.5" Canvas.Left="125" Canvas.Top="125" MouseDown="Knob_MouseDown" MouseMove="Knob_MouseMove" MouseUp="Knob_MouseUp">
+            <Canvas  x:Name="Knob" VerticalAlignment="Top" HorizontalAlignment="Left" Width="0" Height="0" RenderTransformOrigin="0.5,0.5" Canvas.Left="125" Canvas.Top="125">
                 <!--<Ellipse x:Name="Shadow" HorizontalAlignment="Left" Height="88" VerticalAlignment="Top" Width="86" Fill="#52131212" Canvas.Left="22" Canvas.Top="18" />-->
                 <Ellipse x:Name="KnobBase" HorizontalAlignment="Left" Height="90" VerticalAlignment="Top" Width="90" RenderTransformOrigin="0.5,0.5" Canvas.Top="1">
                     <Ellipse.Fill>
@@ -134,5 +134,51 @@
                 </Canvas.Resources>
             </Canvas>
         </Canvas>
+        <Slider x:Name="throttleVal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="340" RenderTransformOrigin="0.5,0.5" Margin="531,312,-35,0" Maximum="1" Minimum="0">
+            <Slider.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Slider.RenderTransform>
+        </Slider>
+        <Slider x:Name="aileronVal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="410" Margin="217,550,0,0" RenderTransformOrigin="0.5,0.5" Maximum="1" Minimum="0"/>
+        <Label Content="-rudder-" HorizontalAlignment="Left" Margin="342,5,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36"/>
+        <Label Content ="{Binding ElementName = knobPosition, Path= X / blackZone.Width * 2}" HorizontalAlignment="Left" Margin="393,68,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36" Height="64"/>
+        <Label Content="-elevator-" HorizontalAlignment="Left" Margin="54,288,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label x:Name="elevatorVal" Content ="{Binding ElementName = knobPosition, Path= knobPosition.X}" HorizontalAlignment="Left" Margin="162,285,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label Content ="aileron" HorizontalAlignment="Left" Margin="342,487,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36"/>
+        <Label Content ="{Binding ElementName = aileronVal, Path= Value, StringFormat={}{0:#,#.00}}" HorizontalAlignment="Left" Margin="659,526,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36"/>
+        <Label Content="throttle" HorizontalAlignment="Left" Margin="561,285,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label Content="{Binding ElementName = throttleVal, Path= Value}" HorizontalAlignment="Left" Margin="684,98,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36" RenderTransformOrigin="0.5,0.5"/>
     </Grid>
 </UserControl>
