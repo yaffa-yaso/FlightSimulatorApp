@@ -1,0 +1,34 @@
+﻿<Page x:Class="FlightSimulatorApp.dashboard.board"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FlightSimulatorApp.dashboard"
+      mc:Ignorable="d" 
+      d:DesignHeight="190"
+      Title="board" Width="270.8">
+
+    <Grid Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="78*"/>
+            <RowDefinition Height="113*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="209,10,0,0" VerticalAlignment="Top" Foreground="#FF2CD313"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="209,30,0,0" VerticalAlignment="Top" Foreground="#FF2CD313"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="209,50,0,0" VerticalAlignment="Top" Foreground="#FF2CD313"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="209,70,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.RowSpan="2"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="209,12.4,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="209,32.4,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="209,52.4,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="209,72.4,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="40,30,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="40,50,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="40,70,0,0" VerticalAlignment="Top" Foreground="White" Grid.RowSpan="2"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="40,12.4,0,0" VerticalAlignment="Top" Foreground="White" Grid.Row="1"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="40,32.4,0,0" VerticalAlignment="Top" Foreground="White" Grid.Row="1"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="40,52.4,0,0" VerticalAlignment="Top" Foreground="White" Grid.Row="1"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="40,72.4,0,0" VerticalAlignment="Top" Foreground="White" Grid.Row="1"/>
+
+    </Grid>
+</Page>
