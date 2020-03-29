@@ -27,7 +27,6 @@ namespace FlightSimulatorApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             MyFlightModel x = new MyFlightModel(new MyTelnetClient());
             x.connect("127.0.0.1", 5402);
         }
