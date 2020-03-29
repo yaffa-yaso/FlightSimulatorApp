@@ -13,12 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FlightSimulatorApp.dashboard
+namespace FlightSimulatorApp.view
 {
     /// <summary>
     /// Interaction logic for board.xaml
     /// </summary>
-    public partial class board : Page
+    public partial class board : UserControl
     {
         public board()
         {

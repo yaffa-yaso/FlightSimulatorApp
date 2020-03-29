@@ -50,7 +50,7 @@ namespace FlightSimulatorApp
             {
                 clientSocket.Connect(ip, port);
                 connection = true;
-                // thread loop - stopping when disconnected has been made
+                // thread loop - stopping when disconnection has been made
                 while (connection != false)
                 {
                     ///....

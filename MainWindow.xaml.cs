@@ -33,8 +33,9 @@ namespace FlightSimulatorApp
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MyFlightModel x = new MyFlightModel(new MyTelnetClient());
+             MyFlightModel x = new MyFlightModel(new MyTelnetClient());
             x.disConnect();
+            DataContext = x;
         }
     }
 }
