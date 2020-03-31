@@ -6,26 +6,30 @@
              xmlns:local="clr-namespace:FlightSimulatorApp.view"
              mc:Ignorable="d" 
              d:DesignHeight="190" d:DesignWidth="270.8">
-    <Grid>
+    <Grid Margin="0,-25,0.4,0.4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="32*"/>
+            <ColumnDefinition Width="13*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="78*"/>
             <RowDefinition Height="113*"/>
         </Grid.RowDefinitions>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="209,10,0,0" VerticalAlignment="Top" Foreground="#FF2CD313"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="209,30,0,0" VerticalAlignment="Top" Foreground="#FF2CD313"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="209,50,0,0" VerticalAlignment="Top" Foreground="#FF2CD313"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="209,70,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.RowSpan="2"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="209,12.4,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="209,32.4,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="209,52.4,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="209,72.4,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="40,30,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="40,50,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="40,70,0,0" VerticalAlignment="Top" Foreground="White" Grid.RowSpan="2"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="40,12.4,0,0" VerticalAlignment="Top" Foreground="White" Grid.Row="1"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="40,32.4,0,0" VerticalAlignment="Top" Foreground="White" Grid.Row="1"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="40,52.4,0,0" VerticalAlignment="Top" Foreground="White" Grid.Row="1"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="40,72.4,0,0" VerticalAlignment="Top" Foreground="White" Grid.Row="1"/>
+        <Label Content="heading&#xD;&#xA;" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Column="1" FontWeight="Bold"/>
+        <Label Content="vertical speed" HorizontalAlignment="Left" Margin="187,30,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.ColumnSpan="2" FontWeight="Bold"/>
+        <Label Content="ground speed&#xD;&#xA;" HorizontalAlignment="Left" Margin="187,47,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.ColumnSpan="2" FontWeight="Bold" />
+        <Label Content="air speed" HorizontalAlignment="Left" Margin="17,66,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.RowSpan="2" Grid.Column="1" FontWeight="Bold"/>
+        <Label Content="altitude&#xD;&#xA;" HorizontalAlignment="Left" Margin="17,86,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Column="1" Grid.RowSpan="2" FontWeight="Bold"/>
+        <Label Content="roll" HorizontalAlignment="Left" Margin="22,15,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1" Grid.Column="1" FontWeight="Bold"/>
+        <Label Content="pitch&#xD;&#xA;" HorizontalAlignment="Left" Margin="17,34,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1" Grid.Column="1" FontWeight="Bold"/>
+        <Label Content="altimeter&#xD;&#xA;" HorizontalAlignment="Left" Margin="11,52,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1" Grid.Column="1" FontWeight="Bold"/>
+        <Label Content="0" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Foreground="#FF2CD313"/>
+        <Label Content="0" HorizontalAlignment="Left" Margin="40,30,0,0" VerticalAlignment="Top" Foreground="#FF2CD313"/>
+        <Label Content="0" HorizontalAlignment="Left" Margin="40,50,0,0" VerticalAlignment="Top" Foreground="#FF2CD313"/>
+        <Label Content="0" HorizontalAlignment="Left" Margin="40,68,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.RowSpan="2"/>
+        <Label Content="0" HorizontalAlignment="Left" Margin="40,0,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
+        <Label Content="0" HorizontalAlignment="Left" Margin="40,18,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
+        <Label Content="0" HorizontalAlignment="Left" Margin="40,36,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
+        <Label Content="0" HorizontalAlignment="Left" Margin="40,53,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
     </Grid>
 </UserControl>

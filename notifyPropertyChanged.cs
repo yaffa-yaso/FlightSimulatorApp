@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlightSimulatorApp: 
+namespace FlightSimulatorApp
 {
     public delegate void PropertyChangedEvantHandler(Object sender, propertyChangedEvantArgs e);
     interface notifyPropertyChanged

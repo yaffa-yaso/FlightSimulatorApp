@@ -77,6 +77,27 @@ namespace FlightSimulatorApp
                 NotifyPropertyChangedtify("ALTIMETER"); ; }
         }
 
+        // location update
+        public double longitude_deg
+        {
+            get { return longitude_deg; }
+            set
+            {
+                longitude_deg = value;
+                NotifyPropertyChangedtify("longitude_deg"); ;
+            }
+        }
+
+        public double latitude_deg
+{
+            get { return latitude_deg; }
+            set
+            {
+         latitude_deg = value;
+                NotifyPropertyChangedtify("latitude_deg"); ;
+            }
+        }
+
         public double rudder { set => throw new NotImplementedException(); }
         public double elevator { set => throw new NotImplementedException(); }
 
@@ -139,6 +160,14 @@ namespace FlightSimulatorApp
 
                     cNet.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
                     ALTIMETER = Double.Parse(cNet.read());
+
+                    //location
+                    cNet.write("get /position/longitude-deg\n");
+                    longitude_deg = Double.Parse(cNet.read());
+
+                    cNet.write("get /position/latitude-deg\n");
+                    latitude_deg = Double.Parse(cNet.read());
+
                     Thread.Sleep(250);
                 }
             });

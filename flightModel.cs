@@ -20,6 +20,11 @@ namespace FlightSimulatorApp
        double rudder { set; }
        double elevator { set; }
 
+        // location
+        double latitude_deg { set; get; }
+        double longitude_deg { set; get; }
+
+
 
         void connect(string ip, int port);
         void disConnect();

@@ -10,13 +10,13 @@ namespace FlightSimulatorApp
     class FlightViewModel : INotifyPropertyChanged
     {
         private FlightModel model;
-       
+
 
         public FlightViewModel(FlightModel model)
         {
             this.model = model;
-            model.PropertyChanged += 
-                delegate(Object sender, PropertyChangedEventArgs e){
+            model.PropertyChanged +=
+                delegate (Object sender, PropertyChangedEventArgs e) {
                     NotifyPropertyChanged("VM_" + e.PropertyName);
                 };
         }
@@ -25,7 +25,7 @@ namespace FlightSimulatorApp
 
         public void NotifyPropertyChanged(string propName)
         {
-           
+
         }
 
         public void movePlain(double rudder, double elevator, double throttle, double aileron)
@@ -64,5 +64,27 @@ namespace FlightSimulatorApp
         {
             get { return model.ALTIMETER; }
         }
+
+        // location
+        public double VM_latitude
+        {
+            get { return model.latitude_deg; }
+        }
+        public double VM_longitude
+        {
+            get { return model.longitude_deg; }
+        }
+
+        //return the location 
+        public string  VM_location
+        {
+         
+            get { return model.latitude_deg.ToString() + "," + model.longitude_deg.ToString(); }
+        }
+
+        // simple getter
+        public FlightModel getModel(){
+            return model;
+            }
     }
 }

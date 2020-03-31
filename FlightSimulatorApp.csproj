@@ -65,6 +65,9 @@
       <DependentUpon>Joystick.xaml</DependentUpon>
     </Compile>
     <Compile Include="FlightViewModel.cs" />
+    <Compile Include="view\map.xaml.cs">
+      <DependentUpon>map.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyTelnetClient.cs" />
     <Compile Include="propertyChangedEvantArgs.cs" />
     <Compile Include="TelNetClient.cs" />
@@ -93,6 +96,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="view\map.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\board.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
