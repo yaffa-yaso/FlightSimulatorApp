@@ -65,7 +65,7 @@ namespace FlightSimulatorApp.controls
                         {
                             knobPosition.Y *= -1;
                         }
-                ///        joystickDirection();
+                        joystickDirection();
                         return;
                     }
 
@@ -85,7 +85,7 @@ namespace FlightSimulatorApp.controls
 
                     knobPosition.Y = m * (knobPosition.X - x) + y;
                 }
-             ///   joystickDirection();
+                joystickDirection();
             }
         }
 
@@ -94,14 +94,14 @@ namespace FlightSimulatorApp.controls
             knobPosition.X = 0;
             knobPosition.Y = 0;
 
-          ///  joystickDirection();
+            joystickDirection();
         }
 
         private void centerKnob_Completed(object sender, EventArgs e){ }
 
-       /// private void joystickDirection() {
-       ///     rudderVal.Content = knobPosition.X / blackZone.Width * 2;
-       ///     elevatorVal.Content = -knobPosition.Y / blackZone.Width * 2; 
-       /// }
+        private void joystickDirection() {
+            rudderVal.Content = knobPosition.X / blackZone.Width * 2;
+            elevatorVal.Content = -knobPosition.Y / blackZone.Width * 2; 
+        }
     }
 }
