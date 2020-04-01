@@ -23,6 +23,7 @@ namespace FlightSimulatorApp.view
         public screen()
         {
             InitializeComponent();
+            
         }
     }
 }

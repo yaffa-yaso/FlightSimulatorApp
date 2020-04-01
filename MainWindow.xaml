@@ -15,13 +15,11 @@
             <Controls:Joystick Margin="100,100,100,100" />
         </Viewbox>
 
-        
-
         <Viewbox HorizontalAlignment="Left" Height="586" Margin="-98,-66,0,0" VerticalAlignment="Top" Width="773">
-            <view:screen Margin="100,100,100,100" HorizontalAlignment="Center"/>
+            <view:screen x:Name="screen" Margin="100,100,100,100" HorizontalAlignment="Center"/>
         </Viewbox>
         <Button Content="connect" HorizontalAlignment="Left" Margin="0,43,0,0" VerticalAlignment="Top" Width="86" Click="Button_Click" Height="33" Background="#FFD1D1D1" Foreground="#FF4A70B1" FontWeight="Bold" FontSize="15"/>
         <Button Content="disconnect" HorizontalAlignment="Left" Margin="85,43,0,0" VerticalAlignment="Top" Width="92" Click="Button_Click_1" Height="33" Background="#FFD1D1D1" Foreground="#FF4A70B1" FontSize="14" FontWeight="Bold"/>
-        <view:board  Margin="509,25,394.6,0" VerticalAlignment="Top" Height="190"/>
+        <view:board x:Name="board"  Margin="509,25,394.6,0" VerticalAlignment="Top" Height="190"/>
     </Grid>
 </Window>

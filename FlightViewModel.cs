@@ -33,7 +33,7 @@ namespace FlightSimulatorApp
         {
             model.move(rudder, elevator, throttle, aileron);
         }
-        public double NM_heading
+        public double VM_heading
         {
             get { return model.HEADING; }
         }
@@ -41,7 +41,7 @@ namespace FlightSimulatorApp
         {
             get { return model.VERTICAL_SPEED; }
         }
-        public double VM_groudSpeed
+        public double VM_groundSpeed
         {
             get { return model.GROUND_SPEED; }
         }
@@ -61,7 +61,7 @@ namespace FlightSimulatorApp
         {
             get { return model.PITCH; }
         }
-        public double VM_alitimeter
+        public double VM_altimeter
         {
             get { return model.ALTIMETER; }
         }
@@ -69,11 +69,11 @@ namespace FlightSimulatorApp
         // location
         public double VM_latitude
         {
-            get { return 0; }
+            get { return model.longitude_deg; }
         }
         public double VM_longitude
         {
-            get { return 250; }
+            get {return  model.latitude_deg; }
         }
 
         //return the location 

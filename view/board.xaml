@@ -23,13 +23,13 @@
         <Label Content="roll" HorizontalAlignment="Left" Margin="22,15,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1" Grid.Column="1" FontWeight="Bold"/>
         <Label Content="pitch&#xD;&#xA;" HorizontalAlignment="Left" Margin="17,34,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1" Grid.Column="1" FontWeight="Bold"/>
         <Label Content="altimeter&#xD;&#xA;" HorizontalAlignment="Left" Margin="11,52,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1" Grid.Column="1" FontWeight="Bold"/>
-        <Label Content="0" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Foreground="#FF2CD313"/>
-        <Label Content="0" HorizontalAlignment="Left" Margin="40,30,0,0" VerticalAlignment="Top" Foreground="#FF2CD313"/>
-        <Label Content="0" HorizontalAlignment="Left" Margin="40,50,0,0" VerticalAlignment="Top" Foreground="#FF2CD313"/>
-        <Label Content="0" HorizontalAlignment="Left" Margin="40,68,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.RowSpan="2"/>
-        <Label Content="0" HorizontalAlignment="Left" Margin="40,0,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
-        <Label Content="0" HorizontalAlignment="Left" Margin="40,18,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
-        <Label Content="0" HorizontalAlignment="Left" Margin="40,36,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
-        <Label Content="0" HorizontalAlignment="Left" Margin="40,53,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
+        <Label Content="{Binding VM_heading}" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Foreground="#FF2CD313"/>
+        <Label Content="{Binding VM_verticalSpeed}" HorizontalAlignment="Left" Margin="40,30,0,0" VerticalAlignment="Top" Foreground="#FF2CD313"/>
+        <Label Content="{Binding VM_groundSpeed}" HorizontalAlignment="Left" Margin="40,50,0,0" VerticalAlignment="Top" Foreground="#FF2CD313"/>
+        <Label Content="{Binding VM_airSpeed}" HorizontalAlignment="Left" Margin="40,68,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.RowSpan="2"/>
+        <Label Content="{Binding VM_altitude}" HorizontalAlignment="Left" Margin="40,0,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
+        <Label Content="{Binding VM_roll}" HorizontalAlignment="Left" Margin="40,18,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
+        <Label Content="{Binding VM_pitch}" HorizontalAlignment="Left" Margin="40,36,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
+        <Label Content="{Binding VM_altimeter}" HorizontalAlignment="Left" Margin="40,53,0,0" VerticalAlignment="Top" Foreground="#FF2CD313" Grid.Row="1"/>
     </Grid>
 </UserControl>

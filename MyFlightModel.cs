@@ -20,7 +20,7 @@ namespace FlightSimulatorApp
 
         public double HEADING
         {
-            get { return HEADING; }
+            get { return 0; }
             set { HEADING = value;
                 NotifyPropertyChangedtify("HEADING");
             }
@@ -29,49 +29,49 @@ namespace FlightSimulatorApp
         {
 
 
-            get { return VERTICAL_SPEED; }
+            get { return 1; }
             set {
                 VERTICAL_SPEED = value;
                 NotifyPropertyChangedtify("VERTICAL_SPEED"); ; }
         }
         public double GROUND_SPEED
         {
-            get { return GROUND_SPEED; }
+            get { return 2; }
             set {
                 GROUND_SPEED = value;
                 NotifyPropertyChangedtify("GROUND_SPEED"); ; }
         }
         public double AIR_SPEED
         {
-            get { return AIR_SPEED; }
+            get { return 3; }
             set {
                 AIR_SPEED = value;
                 NotifyPropertyChangedtify("AIR_SPEED"); ; }
         }
         public double ALTITUDE
         {
-            get { return ALTITUDE; }
+            get { return 4; }
             set {
                 ALTITUDE = value;
                 NotifyPropertyChangedtify("ALTITUDE"); ; }
         }
         public double ROLL
         {
-            get { return ROLL; }
+            get { return 5; }
             set {
                 ROLL = value;
                 NotifyPropertyChangedtify("ROLL"); ; }
         }
         public double PITCH
         {
-            get { return PITCH; }
+            get { return 6; }
             set {
                 PITCH = value;
                 NotifyPropertyChangedtify("PITCH"); ; }
         }
         public double ALTIMETER
         {
-            get { return ALTIMETER; }
+            get { return 7; }
             set {
                 ALTIMETER = value;
                 NotifyPropertyChangedtify("ALTIMETER"); ; }
@@ -80,7 +80,7 @@ namespace FlightSimulatorApp
         // location update
         public double longitude_deg
         {
-            get { return longitude_deg; }
+            get { return 0; }
             set
             {
                 longitude_deg = value;
@@ -90,7 +90,7 @@ namespace FlightSimulatorApp
 
         public double latitude_deg
 {
-            get { return latitude_deg; }
+            get { return 250; }
             set
             {
          latitude_deg = value;
