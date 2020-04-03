@@ -26,8 +26,16 @@ namespace FlightSimulatorApp.view
         }
         private void joystickDirection()
         {
-            rudderVal.Content = Joy.X / Joy.Width * 2;
-            elevatorVal.Content = -Joy.Y / Joy.Width * 2;
+            
+        }
+
+        private void Joy_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                rudderVal.Content = Joy.X / 85;
+                elevatorVal.Content = -Joy.Y / 85;
+            }
         }
     }
 }
