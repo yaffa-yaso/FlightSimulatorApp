@@ -18,9 +18,9 @@ namespace FlightSimulatorApp.controls
     /// <summary>
     /// Interaction logic for Joystick.xaml
     /// </summary>
-    public partial class Joystick : UserControl
+    public partial class JoystickT : UserControl
     {
-        public Joystick()
+        public JoystickT()
         {
             InitializeComponent();
 

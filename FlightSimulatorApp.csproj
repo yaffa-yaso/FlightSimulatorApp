@@ -61,8 +61,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="controls\Joystick.xaml.cs">
-      <DependentUpon>Joystick.xaml</DependentUpon>
+    <Compile Include="controls\JoystickT.xaml.cs">
+      <DependentUpon>JoystickT.xaml</DependentUpon>
     </Compile>
     <Compile Include="FlightViewModel.cs" />
     <Compile Include="MyTelnetClient.cs" />
@@ -72,10 +72,16 @@
     <Compile Include="view\board.xaml.cs">
       <DependentUpon>board.xaml</DependentUpon>
     </Compile>
+    <Compile Include="view\Joystick.xaml.cs">
+      <DependentUpon>Joystick.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\MyJoystick.xaml.cs">
+      <DependentUpon>MyJoystick.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\screen.xaml.cs">
       <DependentUpon>screen.xaml</DependentUpon>
     </Compile>
-    <Page Include="controls\Joystick.xaml">
+    <Page Include="controls\JoystickT.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -94,6 +100,14 @@
     <Page Include="view\board.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="view\Joystick.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\MyJoystick.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\screen.xaml">
       <SubType>Designer</SubType>
