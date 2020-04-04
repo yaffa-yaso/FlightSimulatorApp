@@ -48,13 +48,18 @@ namespace FlightSimulatorApp.view
             {
                 MouseDownLocation.X = e.GetPosition(this).X;
                 MouseDownLocation.Y = e.GetPosition(this).Y;
+
+                UIElement el = (UIElement)sender;
+                el.CaptureMouse();
             }
 
         }
 
         private void Knob_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            UIElement el = (UIElement)sender;
+
+            if (e.LeftButton == MouseButtonState.Pressed && el.IsMouseCaptured)
             {
                 double black = blackZone.Width / 2;
                 double x1 = e.GetPosition(this).X - MouseDownLocation.X;
@@ -114,6 +119,9 @@ namespace FlightSimulatorApp.view
 
             X = knobPosition.X;
             Y = knobPosition.Y;
+
+            UIElement el = (UIElement)sender;
+            el.ReleaseMouseCapture();
         }
 
         private void centerKnob_Completed(object sender, EventArgs e)

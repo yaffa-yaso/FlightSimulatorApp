@@ -37,5 +37,11 @@ namespace FlightSimulatorApp.view
                 elevatorVal.Content = -Joy.Y / 85;
             }
         }
+
+        private void Joy_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            rudderVal.Content = Joy.X;
+            elevatorVal.Content = -Joy.Y;
+        }
     }
 }
