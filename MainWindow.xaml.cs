@@ -41,5 +41,10 @@ namespace FlightSimulatorApp
         {
             vm.getModel().disConnect();
         }
+
+        private void MyJoystick_Loaded(object sender, RoutedEventArgs e)
+        {
+            vm.movePlain(myJoystick.Rudder, myJoystick.Elevator);
+        }
     }
 }

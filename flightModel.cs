@@ -20,6 +20,7 @@ namespace FlightSimulatorApp
        double rudder { set; }
        double elevator { set; }
 
+
         // location
         double latitude_deg { set; get; }
         double longitude_deg { set; get; }
@@ -30,7 +31,9 @@ namespace FlightSimulatorApp
         void disConnect();
         void start();
 
-        void move(double rudder, double elevator, double throttle, double aileron);
+        void move(double rudder, double elevator);
+        void changeSpeed(double throttle);
+        void changeAileron(double aileron);
         
     }
 }

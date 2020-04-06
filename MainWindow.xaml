@@ -11,8 +11,8 @@
         Title="MainWindow" Height="450" Width="800" Background="#FFD1D1D1">
     <Grid Margin="0,0,-385,-367">
 
-        <Viewbox HorizontalAlignment="Left" Height="373" Margin="473,176,0,0" VerticalAlignment="Top" Width="365">
-            <view:MyJoystick Margin="100,100,100,100" />
+        <Viewbox HorizontalAlignment="Left" Height="197" Margin="589,235,0,0" VerticalAlignment="Top" Width="238">
+            <view:MyJoystick x:Name="myJoystick" Margin="100,100,100,100" Throttle ="{Binding Path = VM_throttle}" Aileron ="{Binding Path = VM_aileron}" Height="618" Width="819" Loaded="MyJoystick_Loaded"/>
         </Viewbox>
 
         <Viewbox HorizontalAlignment="Left" Height="586" Margin="-98,-66,0,0" VerticalAlignment="Top" Width="773">

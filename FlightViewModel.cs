@@ -26,12 +26,15 @@ namespace FlightSimulatorApp
 
         public void NotifyPropertyChanged(string propName)
         {
-
+            if (this.PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
         }
 
-        public void movePlain(double rudder, double elevator, double throttle, double aileron)
+        public void movePlain(double rudder, double elevator)
         {
-            model.move(rudder, elevator, throttle, aileron);
+            model.move(rudder, elevator);
         }
         public double VM_heading
         {
@@ -80,6 +83,14 @@ namespace FlightSimulatorApp
         public Location VM_location
         {
             get { return new Location(VM_latitude, VM_longitude); }
+        }
+        public double VM_throttle
+        {
+            set { model.changeSpeed(value); }
+        }
+        public double VM_aileron
+        {
+            set { model.changeAileron(value); }
         }
 
         // simple getter

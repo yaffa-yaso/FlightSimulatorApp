@@ -89,7 +89,7 @@ namespace FlightSimulatorApp
         }
 
         public double latitude_deg
-{
+        {
             get { return 250; }
             set
             {
@@ -101,17 +101,23 @@ namespace FlightSimulatorApp
         public double rudder { set => throw new NotImplementedException(); }
         public double elevator { set => throw new NotImplementedException(); }
 
-        void move(double rudder, double elevator, double throttle, double aileron)
+        public void move(double rudder, double elevator)
         {
-            cNet.write("set /controls/flight/rudder " + rudder + "\n");
+            cNet.write("set /controls/flight/rudder" + rudder + "\n");
             cNet.write("get /controls/flight/rudder" + "\n");
             string rudderTest = cNet.read();
             cNet.write("set /controls/flight/elevator " + elevator + "\n");
             cNet.write("get /controls/flight/elevator" + "\n");
             string elevatorTest = cNet.read();
-            cNet.write("set /controls/engines/current-engine/throttle " + throttle + "\n");
+        }
+
+        public void changeSpeed(double throttle) {
+            cNet.write("set /controls/engines/current-engine/throttle" + throttle + "\n");
             cNet.write("get /controls/engines/current-engine/throttle" + "\n");
             string throttleTest = cNet.read();
+        }
+        
+        public void changeAileron(double aileron) {
             cNet.write("set /controls/flight/aileron " + aileron + "\n");
             cNet.write("get /controls/flight/aileron" + "\n");
             string aileronTest = cNet.read();
@@ -178,11 +184,6 @@ namespace FlightSimulatorApp
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
-        }
-
-        void FlightModel.move(double rudder, double elevator, double throttle, double aileron)
-        {
-            throw new NotImplementedException();
         }
     }
 }

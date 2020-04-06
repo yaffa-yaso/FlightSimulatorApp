@@ -20,13 +20,41 @@ namespace FlightSimulatorApp.view
     /// </summary>
     public partial class MyJoystick : UserControl
     {
+        public double Throttle
+        {
+            get { return (double)throttleVal.Content; }
+            set { SetValue(throttleP, value); }
+        }
+
+        public static readonly DependencyProperty throttleP =
+            DependencyProperty.Register("Throttle", typeof(double), typeof(MyJoystick));
+       public double Aileron
+        {
+            get { return (double)aileronVal.Content; }
+            set { SetValue(aileronP, value); }
+        }
+
+        public static readonly DependencyProperty aileronP =
+            DependencyProperty.Register("Aileron", typeof(double), typeof(MyJoystick));
+        public double Rudder
+        {
+            get { return (double)Joy.X; }
+            set { SetValue(rudderP, value); }
+        }
+
+        public static readonly DependencyProperty rudderP =
+            DependencyProperty.Register("Rudder", typeof(string), typeof(MyJoystick));
+         public double Elevator
+        {
+            get { return (double)Joy.Y; }
+            set { SetValue(elevatorP, value); }
+        }
+
+        public static readonly DependencyProperty elevatorP =
+            DependencyProperty.Register("Elevator", typeof(string), typeof(MyJoystick));
         public MyJoystick()
         {
             InitializeComponent();
-        }
-        private void joystickDirection()
-        {
-            
         }
 
         private void Joy_MouseMove(object sender, MouseEventArgs e)
