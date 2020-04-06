@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,7 +25,13 @@ namespace FlightSimulatorApp
         public MainWindow()
         {
             InitializeComponent();
+          
             vm = new FlightViewModel(new MyFlightModel(new MyTelnetClient()));
+
+            vm.getModel().connect("127.0.0.1", 5402);
+            while (vm.getModel().isConnected() == false) { }
+            while(vm.getModel().firstUpdate() == false)
+            vm.getModel().start();
             DataContext = vm;
             this.screen.DataContext = vm;
             this.board.DataContext = vm;

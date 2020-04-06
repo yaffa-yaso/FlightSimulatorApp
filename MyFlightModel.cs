@@ -11,89 +11,106 @@ namespace FlightSimulatorApp
     {
         TelNetClient cNet;
         bool stop;
+        bool isInitialized;
+
         public MyFlightModel(TelNetClient client)
         {
             this.cNet = client;
             stop = false;
+            isInitialized = false;
+           
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
+
+        private double _HEADING = 0;
         public double HEADING
         {
-            get { return 0; }
-            set { HEADING = value;
+            get { return _HEADING; }
+            set {
+                _HEADING = value;
                 NotifyPropertyChangedtify("HEADING");
             }
         }
+        private double _VERTICAL_SPEEDg = 0;
         public double VERTICAL_SPEED
         {
 
 
-            get { return 1; }
+            get { return _VERTICAL_SPEEDg; }
             set {
-                VERTICAL_SPEED = value;
+                _VERTICAL_SPEEDg = value;
                 NotifyPropertyChangedtify("VERTICAL_SPEED"); ; }
         }
+        private double _GROUND_SPEED = 0;
         public double GROUND_SPEED
         {
-            get { return 2; }
+            get { return _GROUND_SPEED; }
             set {
-                GROUND_SPEED = value;
+                _GROUND_SPEED = value;
                 NotifyPropertyChangedtify("GROUND_SPEED"); ; }
         }
+        private double _AIR_SPEED = 0;
         public double AIR_SPEED
         {
-            get { return 3; }
+            get { return _AIR_SPEED; }
             set {
-                AIR_SPEED = value;
+                _AIR_SPEED = value;
                 NotifyPropertyChangedtify("AIR_SPEED"); ; }
         }
+        private double _ALTITUDE = 0;
         public double ALTITUDE
         {
-            get { return 4; }
+            get { return _ALTITUDE; }
             set {
-                ALTITUDE = value;
+                _ALTITUDE = value;
                 NotifyPropertyChangedtify("ALTITUDE"); ; }
         }
+        private double _ROLL = 0;
         public double ROLL
         {
-            get { return 5; }
+            get { return _ROLL; }
             set {
-                ROLL = value;
+                _ROLL = value;
                 NotifyPropertyChangedtify("ROLL"); ; }
         }
+        private double _PITCH = 0;
         public double PITCH
         {
-            get { return 6; }
+            get { return _PITCH; }
             set {
-                PITCH = value;
+                _PITCH = value;
                 NotifyPropertyChangedtify("PITCH"); ; }
         }
+        private double _ALTIMETER = 0;
         public double ALTIMETER
         {
-            get { return 7; }
+            get { return _ALTIMETER; }
             set {
-                ALTIMETER = value;
+                _ALTIMETER = value;
                 NotifyPropertyChangedtify("ALTIMETER"); ; }
         }
 
         // location update
+        private double _longitude_deg = 0;
+
         public double longitude_deg
         {
-            get { return 0; }
+            get { return _longitude_deg; }
             set
             {
-                longitude_deg = value;
+                _longitude_deg = value;
                 NotifyPropertyChangedtify("longitude_deg"); ;
             }
         }
 
+        private double _latitude_deg=250;
         public double latitude_deg
 {
-            get { return 250; }
+            get { return _latitude_deg; }
             set
             {
-         latitude_deg = value;
+                _latitude_deg = value;
                 NotifyPropertyChangedtify("latitude_deg"); ;
             }
         }
@@ -119,6 +136,7 @@ namespace FlightSimulatorApp
         public void connect(string ip , int port)
         {
             cNet.connect(ip, port);
+            
         }
         public void disConnect()
         {
@@ -127,50 +145,133 @@ namespace FlightSimulatorApp
         }
         public  void start()
         {
+            
             new Thread(delegate ()
             {
+                Console.WriteLine(stop);
+
                 while (!stop)
                 {
+
+
+                   
+                    string answer;
                     cNet.write("get /instrumentation/heading-indicator/indicated-heading-de\n");
-                    HEADING = Double.Parse(cNet.read());
+                    answer = cNet.read();
+                    if (IsNumber(answer))
+                    {
+                        HEADING = Double.Parse(answer);
+                        Console.WriteLine(HEADING);
+                    }
+                    else
+                    {
+                        Console.WriteLine(answer);
 
+                    }
                     cNet.write("get /instrumentation/gps/indicated-vertical-speed\n");
-                    VERTICAL_SPEED = Double.Parse(cNet.read());
 
+                    answer = cNet.read();
+                    if (IsNumber(answer))
+                    {
+                        VERTICAL_SPEED = Double.Parse(answer);
+                        Console.WriteLine(VERTICAL_SPEED.ToString());
+                    }
+                    else
+                    {
+                        Console.WriteLine(answer);
+
+                    }
 
                     cNet.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
-                    GROUND_SPEED = Double.Parse(cNet.read());
+                    answer = cNet.read();
+                    if (IsNumber(answer))
+                    {
+                        GROUND_SPEED = Double.Parse(answer);
+                        Console.WriteLine(GROUND_SPEED);
+                    }
+                    else
+                    {
+                        Console.WriteLine(answer);
 
-
+                    }
                     cNet.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
-                    AIR_SPEED = Double.Parse(cNet.read());
+                    answer = cNet.read();
+                    if (IsNumber(answer))
+                    {
+                        AIR_SPEED = Double.Parse(answer);
+                        Console.WriteLine(AIR_SPEED);
+                    }
+                    else
+                    {
+                        Console.WriteLine(answer);
 
+                    }
 
-                    cNet.write("get /instrumentation/gps/indicated-altitude-ft\n");
-                    ALTITUDE = Double.Parse(cNet.read());
+                       cNet.write("get /instrumentation/gps/indicated-altitude-ft\n");
+                    answer = cNet.read();
+                    if (IsNumber(answer))
+                    {
+                        ALTITUDE = Double.Parse(answer);
+                        Console.WriteLine(ALTITUDE);
+                    }
+                    else
+                    {
+                        Console.WriteLine(answer);
 
-
+                    }
                     cNet.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
-                    ROLL = Double.Parse(cNet.read());
+                    answer = cNet.read();
+                    if (IsNumber(answer))
+                    {
+                        ROLL = Double.Parse(answer);
+                        Console.WriteLine(ROLL);
+                    }
+                    else
+                    {
+                        Console.WriteLine(answer);
 
+                    }
+                     cNet.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
+                    answer = cNet.read();
+                    if (IsNumber(answer))
+                    {
+                        PITCH = Double.Parse(answer);
+                        Console.WriteLine(PITCH);
+                    }
+                    else
+                    {
+                        Console.WriteLine(answer);
 
-                    cNet.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
-                    PITCH = Double.Parse(cNet.read());
-
-
+                    }
                     cNet.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
-                    ALTIMETER = Double.Parse(cNet.read());
-
+                    answer = cNet.read();
+                    if (IsNumber(answer))
+                    {
+                        ALTIMETER = Double.Parse(answer);
+                        Console.WriteLine(ALTIMETER);
+                    }
                     //location
+
                     cNet.write("get /position/longitude-deg\n");
-                    longitude_deg = Double.Parse(cNet.read());
-
+                    answer = cNet.read();
+                    if (IsNumber(answer))
+                    {
+                        longitude_deg = Double.Parse(answer);
+                        Console.WriteLine("longitude_deg" + longitude_deg);
+                    }
                     cNet.write("get /position/latitude-deg\n");
-                    latitude_deg = Double.Parse(cNet.read());
+                    answer = cNet.read();
+                    if (IsNumber(answer))
+                    {
+                        latitude_deg = Double.Parse(answer);
+                        Console.WriteLine("latitude_deg" + latitude_deg);
+                    }
+                    isInitialized = true;
+                    Thread.Sleep(500);
 
-                    Thread.Sleep(250);
+
                 }
-            });
+            }).Start();
         }
         public void NotifyPropertyChangedtify(string propName)
         {
@@ -183,6 +284,31 @@ namespace FlightSimulatorApp
         void FlightModel.move(double rudder, double elevator, double throttle, double aileron)
         {
             throw new NotImplementedException();
+        }
+        public bool isConnected()
+        {
+            return this.cNet.isConnected();
+        }
+
+        // check if the answer's string is a number(double)
+        public bool IsNumber(string text)
+        {
+            Double num = 0;
+            bool IsNumber = false;
+
+            // Check for empty string.
+            if (string.IsNullOrEmpty(text))
+            {
+                return false;
+            }
+
+            IsNumber = Double.TryParse(text, out num);
+
+            return IsNumber;
+        }
+        public bool firstUpdate()
+        {
+            return isInitialized;
         }
     }
 }
