@@ -72,11 +72,11 @@ namespace FlightSimulatorApp
         // location
         public double VM_latitude
         {
-            get { return model.longitude_deg; }
+            get { return model.latitude_deg; }
         }
         public double VM_longitude
         {
-            get {return  model.latitude_deg; }
+            get {return model.longitude_deg; }
         }
 
         //return the location 

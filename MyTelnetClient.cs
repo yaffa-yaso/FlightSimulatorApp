@@ -15,13 +15,19 @@ namespace FlightSimulatorApp
         string ip;
         int port;
         bool connection = false;
-            TcpClient clientSocket = new TcpClient();
+        TcpClient clientSocket = new TcpClient();
+        NetworkStream stream;
         public void connect(string ip, int port)
         {
             //saving ip and port as a members class
             this.ip = ip;
             this.port = port;
-                Thread cThread = new Thread(makeConnection);
+            Thread cThread = new Thread(makeConnection);
+            cThread.Start();
+            while(connection == false){}
+            stream = clientSocket.GetStream();
+            
+          
             
         }
 
@@ -32,15 +38,17 @@ namespace FlightSimulatorApp
 
         public string read()
         {
-            StreamReader reader = new StreamReader(clientSocket.GetStream());
-            return reader.ReadLine();
+            Byte[] buffer = new Byte[256];
+            Int32 bytes = stream.Read(buffer, 0, buffer.Length);
+           string responseData = System.Text.Encoding.ASCII.GetString(buffer, 0, bytes);
+            return responseData;
         }
 
         public void write(string command)
         {
-            StreamWriter writer = new StreamWriter(clientSocket.GetStream());
             // send spacific command
-            writer.WriteLine(command);
+            Byte[] data =   System.Text.Encoding.ASCII.GetBytes(command);
+            stream.Write(data, 0, data.Length);
 
         }
         // self functions
@@ -48,19 +56,29 @@ namespace FlightSimulatorApp
             {
             try
             {
+                Console.WriteLine("connecting...");
+
                 clientSocket.Connect(ip, port);
+                Console.WriteLine("connected");
                 connection = true;
                 // thread loop - stopping when disconnection has been made
                 while (connection != false)
                 {
                     ///....
                 }
+                Console.WriteLine("disconnected");
+
             }
 
             catch (Exception e)
             {
+
                 Console.WriteLine("Error.." + e.StackTrace);
             }
+        }
+        public bool isConnected()
+        {
+            return connection;
         }
     }
 }

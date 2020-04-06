@@ -9,7 +9,7 @@ namespace FlightSimulatorApp
 {
     interface FlightModel: INotifyPropertyChanged
     {
-       double HEADING { set; get; }
+        double HEADING { set; get; } 
        double VERTICAL_SPEED { set; get; }
        double GROUND_SPEED { set; get; }
        double AIR_SPEED { set; get; }
@@ -27,9 +27,12 @@ namespace FlightSimulatorApp
 
 
 
+
         void connect(string ip, int port);
         void disConnect();
         void start();
+        bool isConnected();
+        bool firstUpdate();
 
         void move(double rudder, double elevator);
         void changeSpeed(double throttle);
