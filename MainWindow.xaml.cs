@@ -30,7 +30,6 @@ namespace FlightSimulatorApp
 
             vm.getModel().connect("127.0.0.1", 5402);
             while (vm.getModel().isConnected() == false) { }
-            while(vm.getModel().firstUpdate() == false)
             vm.getModel().start();
             DataContext = vm;
             this.screen.DataContext = vm;
