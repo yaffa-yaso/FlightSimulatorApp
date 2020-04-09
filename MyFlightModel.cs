@@ -5,7 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Maps.MapControl.WPF;
 namespace FlightSimulatorApp
+
+
 {
     class MyFlightModel : FlightModel
     {
@@ -107,7 +110,7 @@ namespace FlightSimulatorApp
         }
 
         // location update
-        private double _longitude_deg = 0;
+        private double _longitude_deg;
 
         public double longitude_deg
         {
@@ -119,7 +122,7 @@ namespace FlightSimulatorApp
             }
         }
 
-        private double _latitude_deg = 250;
+        private double _latitude_deg;
         public double latitude_deg
         {
             get { return _latitude_deg; }
@@ -127,9 +130,22 @@ namespace FlightSimulatorApp
             {
                 _latitude_deg = value;
                 NotifyPropertyChangedtify("latitude_deg"); ;
+            
+
+
+        }
+    }
+
+        private Location _location;
+        public Location location
+        {
+            get { return _location; }
+            set
+            {
+                _location = value;
+            NotifyPropertyChangedtify("Location"); ;
             }
         }
-
         public double rudder { set => throw new NotImplementedException(); }
         public double elevator { set => throw new NotImplementedException(); }
 
@@ -291,8 +307,12 @@ namespace FlightSimulatorApp
                         latitude_deg = Double.Parse(answer);
                         Console.WriteLine("latitude_deg" + latitude_deg);
                     }
+                    //update location
+                    location = new Location(latitude_deg, longitude_deg);
+                    
+                
                     isInitialized = true;
-                    Thread.Sleep(500);
+                    Thread.Sleep(250);
 
 
                 }

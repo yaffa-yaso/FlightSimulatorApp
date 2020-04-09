@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using Microsoft.Maps.MapControl.WPF;
+
 
 namespace FlightSimulatorApp
 {
@@ -24,6 +26,7 @@ namespace FlightSimulatorApp
         // location
         double latitude_deg { set; get; }
         double longitude_deg { set; get; }
+        Location location { set; get; }
 
 
 

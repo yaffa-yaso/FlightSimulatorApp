@@ -4,10 +4,10 @@
       xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
     Width="512" Height="384">
 
-   
-        <m:Map CredentialsProvider="AjGPMgxDorywONhs4FXmvwz7LuIZ77q0yzgFF5ucd-dVzjZD5B0m3lTXGmfmCrRc" 
-               Center="47.620574,-122.34942" ZoomLevel="0" RenderTransformOrigin="0.55,0.463">
-        <m:Pushpin Location="{Binding VM_location}" Margin="-471.4,-0.2,470.8,0" RenderTransformOrigin="-4.371,0.217"/>
-        </m:Map>
-    
+
+    <m:Map CredentialsProvider="AjGPMgxDorywONhs4FXmvwz7LuIZ77q0yzgFF5ucd-dVzjZD5B0m3lTXGmfmCrRc" 
+               Center="0,0" ZoomLevel="0" >
+        <m:Pushpin Location="{Binding Path = VM_location, Mode=OneWay}"  />
+    </m:Map>
+
 </UserControl>
