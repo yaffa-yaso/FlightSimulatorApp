@@ -11,15 +11,15 @@
         Title="MainWindow" Height="450" Width="800" Background="#FFD1D1D1">
     <Grid Margin="0,0,-385,-367">
 
-        <Viewbox HorizontalAlignment="Left" Height="227" Margin="529,190,0,0" VerticalAlignment="Top" Width="274">
-            <view:MyJoystick x:Name="myJoystick" Margin="100,100,100,100" Throttle ="{Binding Path = VM_throttle}" Aileron ="{Binding VM_aileron}" Height="618" Width="819" Loaded="MyJoystick_Loaded"/>
+        <Viewbox HorizontalAlignment="Left" Height="289" Margin="481,143,0,0" VerticalAlignment="Top" Width="346">
+            <view:MyJoystick x:Name="myJoystick" Margin="100,100,100,100" Throttle ="{Binding Path = VM_throttle}" Aileron ="{Binding Path = VM_aileron}" Height="618" Width="819" Loaded="MyJoystick_Loaded"/>
         </Viewbox>
 
         <Viewbox HorizontalAlignment="Left" Height="586" Margin="-98,-66,0,0" VerticalAlignment="Top" Width="773">
             <view:screen x:Name="screen" Margin="100,100,100,100" HorizontalAlignment="Center"/>
         </Viewbox>
-        <Button Content="connect" HorizontalAlignment="Left" Margin="0,43,0,0" VerticalAlignment="Top" Width="86" Click="Button_Click" Height="33" Background="#FFD1D1D1" Foreground="#FF4A70B1" FontWeight="Bold" FontSize="15"/>
-        <Button Content="disconnect" HorizontalAlignment="Left" Margin="85,43,0,0" VerticalAlignment="Top" Width="92" Click="Button_Click_1" Height="33" Background="#FFD1D1D1" Foreground="#FF4A70B1" FontSize="14" FontWeight="Bold"/>
+        <Button Content="connect" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Width="86" Click="Button_Click" Height="33" Background="#FFD1D1D1" Foreground="#FF4A70B1" FontWeight="Bold" FontSize="15"/>
+        <Button Content="disconnect" HorizontalAlignment="Left" Margin="85,1,0,0" VerticalAlignment="Top" Width="92" Click="Button_Click_1" Height="33" Background="#FFD1D1D1" Foreground="#FF4A70B1" FontSize="14" FontWeight="Bold"/>
         <view:board x:Name="board"  Margin="509,25,394.6,0" VerticalAlignment="Top" Height="190"/>
     </Grid>
 </Window>

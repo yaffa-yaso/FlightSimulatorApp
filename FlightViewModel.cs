@@ -82,7 +82,7 @@ namespace FlightSimulatorApp
         //return the location 
         public Location VM_location
         {
-            get { return new Location(VM_latitude, VM_longitude); }
+            get { return model.location; }
         }
         public double VM_throttle
         {

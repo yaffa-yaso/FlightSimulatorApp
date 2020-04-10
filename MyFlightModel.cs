@@ -5,7 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Maps.MapControl.WPF;
 namespace FlightSimulatorApp
+
+
 {
     class MyFlightModel : FlightModel
     {
@@ -18,7 +21,7 @@ namespace FlightSimulatorApp
             this.cNet = client;
             stop = false;
             isInitialized = false;
-           
+
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -27,7 +30,8 @@ namespace FlightSimulatorApp
         public double HEADING
         {
             get { return _HEADING; }
-            set {
+            set
+            {
                 _HEADING = value;
                 NotifyPropertyChangedtify("HEADING");
             }
@@ -38,61 +42,75 @@ namespace FlightSimulatorApp
 
 
             get { return _VERTICAL_SPEEDg; }
-            set {
+            set
+            {
                 _VERTICAL_SPEEDg = value;
-                NotifyPropertyChangedtify("VERTICAL_SPEED"); ; }
+                NotifyPropertyChangedtify("VERTICAL_SPEED"); ;
+            }
         }
         private double _GROUND_SPEED = 0;
         public double GROUND_SPEED
         {
             get { return _GROUND_SPEED; }
-            set {
+            set
+            {
                 _GROUND_SPEED = value;
-                NotifyPropertyChangedtify("GROUND_SPEED"); ; }
+                NotifyPropertyChangedtify("GROUND_SPEED"); ;
+            }
         }
         private double _AIR_SPEED = 0;
         public double AIR_SPEED
         {
             get { return _AIR_SPEED; }
-            set {
+            set
+            {
                 _AIR_SPEED = value;
-                NotifyPropertyChangedtify("AIR_SPEED"); ; }
+                NotifyPropertyChangedtify("AIR_SPEED"); ;
+            }
         }
         private double _ALTITUDE = 0;
         public double ALTITUDE
         {
             get { return _ALTITUDE; }
-            set {
+            set
+            {
                 _ALTITUDE = value;
-                NotifyPropertyChangedtify("ALTITUDE"); ; }
+                NotifyPropertyChangedtify("ALTITUDE"); ;
+            }
         }
         private double _ROLL = 0;
         public double ROLL
         {
             get { return _ROLL; }
-            set {
+            set
+            {
                 _ROLL = value;
-                NotifyPropertyChangedtify("ROLL"); ; }
+                NotifyPropertyChangedtify("ROLL"); ;
+            }
         }
         private double _PITCH = 0;
         public double PITCH
         {
             get { return _PITCH; }
-            set {
+            set
+            {
                 _PITCH = value;
-                NotifyPropertyChangedtify("PITCH"); ; }
+                NotifyPropertyChangedtify("PITCH"); ;
+            }
         }
         private double _ALTIMETER = 0;
         public double ALTIMETER
         {
             get { return _ALTIMETER; }
-            set {
+            set
+            {
                 _ALTIMETER = value;
-                NotifyPropertyChangedtify("ALTIMETER"); ; }
+                NotifyPropertyChangedtify("ALTIMETER"); ;
+            }
         }
 
         // location update
-        private double _longitude_deg = 0;
+        private double _longitude_deg;
 
         public double longitude_deg
         {
@@ -104,17 +122,30 @@ namespace FlightSimulatorApp
             }
         }
 
-        private double _latitude_deg=250;
+        private double _latitude_deg;
         public double latitude_deg
-{
+        {
             get { return _latitude_deg; }
             set
             {
                 _latitude_deg = value;
                 NotifyPropertyChangedtify("latitude_deg"); ;
+            
+
+
+        }
+    }
+
+        private Location _location;
+        public Location location
+        {
+            get { return _location; }
+            set
+            {
+                _location = value;
+            NotifyPropertyChangedtify("Location"); ;
             }
         }
-
         public double rudder { set => throw new NotImplementedException(); }
         public double elevator { set => throw new NotImplementedException(); }
 
@@ -128,30 +159,34 @@ namespace FlightSimulatorApp
             string elevatorTest = cNet.read();
         }
 
-        public void changeSpeed(double throttle) {
+        public void changeSpeed(double throttle)
+        {
             cNet.write("set /controls/engines/current-engine/throttle" + throttle + "\n");
             cNet.write("get /controls/engines/current-engine/throttle" + "\n");
             string throttleTest = cNet.read();
         }
-        
-        public void changeAileron(double aileron) {
+
+        public void changeAileron(double aileron)
+        {
             cNet.write("set /controls/flight/aileron " + aileron + "\n");
             cNet.write("get /controls/flight/aileron" + "\n");
             string aileronTest = cNet.read();
         }
-        public void connect(string ip , int port)
+        public void connect(string ip, int port)
         {
             cNet.connect(ip, port);
-            
+
+
         }
         public void disConnect()
         {
             cNet.disconnect();
 
         }
-        public  void start()
+        public void start()
         {
-            
+
+
             new Thread(delegate ()
             {
                 Console.WriteLine(stop);
@@ -160,7 +195,7 @@ namespace FlightSimulatorApp
                 {
 
 
-                   
+
                     string answer;
                     cNet.write("get /instrumentation/heading-indicator/indicated-heading-de\n");
                     answer = cNet.read();
@@ -213,7 +248,7 @@ namespace FlightSimulatorApp
 
                     }
 
-                       cNet.write("get /instrumentation/gps/indicated-altitude-ft\n");
+                    cNet.write("get /instrumentation/gps/indicated-altitude-ft\n");
                     answer = cNet.read();
                     if (IsNumber(answer))
                     {
@@ -237,7 +272,7 @@ namespace FlightSimulatorApp
                         Console.WriteLine(answer);
 
                     }
-                     cNet.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
+                    cNet.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
                     answer = cNet.read();
                     if (IsNumber(answer))
                     {
@@ -272,8 +307,12 @@ namespace FlightSimulatorApp
                         latitude_deg = Double.Parse(answer);
                         Console.WriteLine("latitude_deg" + latitude_deg);
                     }
+                    //update location
+                    location = new Location(latitude_deg, longitude_deg);
+                    
+                
                     isInitialized = true;
-                    Thread.Sleep(500);
+                    Thread.Sleep(250);
 
 
                 }
@@ -281,7 +320,7 @@ namespace FlightSimulatorApp
         }
         public void NotifyPropertyChangedtify(string propName)
         {
-            if(this.PropertyChanged != null)
+            if (this.PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
