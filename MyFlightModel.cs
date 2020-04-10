@@ -15,12 +15,15 @@ namespace FlightSimulatorApp
         TelNetClient cNet;
         bool stop;
         bool isInitialized;
+        bool outOfBorder ;
 
         public MyFlightModel(TelNetClient client)
         {
             this.cNet = client;
             stop = false;
             isInitialized = false;
+            outOfBorder = false;
+            location = new Location(latitude_deg, longitude_deg);
 
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -110,24 +113,32 @@ namespace FlightSimulatorApp
         }
 
         // location update
-        private double _longitude_deg;
+        private double _longitude_deg= 34.8854;
 
         public double longitude_deg
         {
             get { return _longitude_deg; }
             set
             {
+                if(value>90 || value < -90)
+                {
+                    this.outOfBorder = true;
+                }
                 _longitude_deg = value;
                 NotifyPropertyChangedtify("longitude_deg"); ;
             }
         }
 
-        private double _latitude_deg;
+        private double _latitude_deg= 32.0055;
         public double latitude_deg
         {
             get { return _latitude_deg; }
             set
             {
+                if (value > 180 || value < -180)
+                {
+                    this.outOfBorder = true;
+                }
                 _latitude_deg = value;
                 NotifyPropertyChangedtify("latitude_deg"); ;
             

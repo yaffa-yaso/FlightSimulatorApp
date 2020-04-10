@@ -145,5 +145,8 @@
     <Folder Include="dashboard\" />
     <Folder Include="images\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="view\pushpin.jpeg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
