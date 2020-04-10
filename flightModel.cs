@@ -11,7 +11,7 @@ namespace FlightSimulatorApp
 {
     interface FlightModel: INotifyPropertyChanged
     {
-        double HEADING { set; get; } 
+       double HEADING { set; get; }
        double VERTICAL_SPEED { set; get; }
        double GROUND_SPEED { set; get; }
        double AIR_SPEED { set; get; }
