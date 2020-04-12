@@ -162,25 +162,25 @@ namespace FlightSimulatorApp
 
         public void move(double rudder, double elevator)
         {
-            cNet.write("set /controls/flight/rudder" + rudder + "\n");
-            cNet.write("get /controls/flight/rudder" + "\n");
+            cNet.write("set /controls/flight/rudder " + rudder + "\n");
+            cNet.write("get /controls/flight/rudder " + "\n");
             string rudderTest = cNet.read();
             cNet.write("set /controls/flight/elevator " + elevator + "\n");
-            cNet.write("get /controls/flight/elevator" + "\n");
+            cNet.write("get /controls/flight/elevator " + "\n");
             string elevatorTest = cNet.read();
         }
 
         public void changeSpeed(double throttle)
         {
-            cNet.write("set /controls/engines/current-engine/throttle" + throttle + "\n");
-            cNet.write("get /controls/engines/current-engine/throttle" + "\n");
+            cNet.write("set /controls/engines/current-engine/throttle " + throttle + "\n");
+            cNet.write("get /controls/engines/current-engine/throttle " + "\n");
             string throttleTest = cNet.read();
         }
 
         public void changeAileron(double aileron)
         {
             cNet.write("set /controls/flight/aileron " + aileron + "\n");
-            cNet.write("get /controls/flight/aileron" + "\n");
+            cNet.write("get /controls/flight/aileron " + "\n");
             string aileronTest = cNet.read();
         }
         public void connect(string ip, int port)
