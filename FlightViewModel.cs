@@ -40,7 +40,7 @@ namespace FlightSimulatorApp
         {
             get { return model.HEADING; }
         }
-        public double VM_verticalSpeed
+        public double VM_verticalSpeed 
         {
             get { return model.VERTICAL_SPEED; }
         }
@@ -93,6 +93,20 @@ namespace FlightSimulatorApp
             set { model.changeAileron(value); }
         }
 
+
+        public bool VM_Connection
+        {
+            get { return model.Connection; }
+
+        }
+
+        public bool VM_outOfBorder
+        {
+            get { return model.outOfBorder; }
+
+        }
+
+        
         // simple getter
         public FlightModel getModel(){
             return model;

@@ -15,14 +15,13 @@ namespace FlightSimulatorApp
         TelNetClient cNet;
         bool stop;
         bool isInitialized;
-        bool outOfBorder ;
+        
 
         public MyFlightModel(TelNetClient client)
         {
             this.cNet = client;
             stop = false;
             isInitialized = false;
-            outOfBorder = false;
             location = new Location(latitude_deg, longitude_deg);
 
         }
@@ -39,15 +38,15 @@ namespace FlightSimulatorApp
                 NotifyPropertyChangedtify("HEADING");
             }
         }
-        private double _VERTICAL_SPEEDg = 0;
+        private double _VERTICAL_SPEED = 0;
         public double VERTICAL_SPEED
         {
 
 
-            get { return _VERTICAL_SPEEDg; }
+            get { return _VERTICAL_SPEED; }
             set
             {
-                _VERTICAL_SPEEDg = value;
+                _VERTICAL_SPEED = value;
                 NotifyPropertyChangedtify("VERTICAL_SPEED"); ;
             }
         }
@@ -112,6 +111,25 @@ namespace FlightSimulatorApp
             }
         }
 
+
+        // outOfborder error
+
+        private bool _outOfBorder;
+
+        public bool outOfBorder
+        {
+            get { return _outOfBorder; }
+            set
+            {
+
+                _outOfBorder = value;
+                NotifyPropertyChangedtify("outOfBorder"); ;
+            }
+        }
+
+
+        
+
         // location update
         private double _longitude_deg= 34.8854;
 
@@ -122,7 +140,7 @@ namespace FlightSimulatorApp
             {
                 if(value>90 || value < -90)
                 {
-                    this.outOfBorder = true;
+                    outOfBorder = true;
                 }
                 _longitude_deg = value;
                 NotifyPropertyChangedtify("longitude_deg"); ;
@@ -157,6 +175,19 @@ namespace FlightSimulatorApp
             NotifyPropertyChangedtify("Location"); ;
             }
         }
+
+        private bool _Connection;
+        public bool Connection
+        {
+            get { return _Connection; }
+            set
+            {
+                _Connection = value;
+                NotifyPropertyChangedtify("Connection"); ;
+            }
+        }
+
+
         public double rudder { set => throw new NotImplementedException(); }
         public double elevator { set => throw new NotImplementedException(); }
 
@@ -186,12 +217,15 @@ namespace FlightSimulatorApp
         public void connect(string ip, int port)
         {
             cNet.connect(ip, port);
+            Connection = true;
 
 
         }
         public void disConnect()
         {
             cNet.disconnect();
+            stop = true;
+            Connection = false;
 
         }
         public void start()
@@ -208,12 +242,12 @@ namespace FlightSimulatorApp
 
 
                     string answer;
-                    cNet.write("get /instrumentation/heading-indicator/indicated-heading-de\n");
+                    cNet.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
                     answer = cNet.read();
                     if (IsNumber(answer))
                     {
                         HEADING = Double.Parse(answer);
-                        Console.WriteLine(HEADING);
+                        Console.WriteLine("HEADING" + HEADING);
                     }
                     else
                     {
@@ -226,7 +260,7 @@ namespace FlightSimulatorApp
                     if (IsNumber(answer))
                     {
                         VERTICAL_SPEED = Double.Parse(answer);
-                        Console.WriteLine(VERTICAL_SPEED.ToString());
+                        Console.WriteLine("VERTICAL_SPEED" + VERTICAL_SPEED);
                     }
                     else
                     {
@@ -239,7 +273,7 @@ namespace FlightSimulatorApp
                     if (IsNumber(answer))
                     {
                         GROUND_SPEED = Double.Parse(answer);
-                        Console.WriteLine(GROUND_SPEED);
+                        Console.WriteLine("GROUND_SPEED" + GROUND_SPEED);
                     }
                     else
                     {
@@ -251,7 +285,7 @@ namespace FlightSimulatorApp
                     if (IsNumber(answer))
                     {
                         AIR_SPEED = Double.Parse(answer);
-                        Console.WriteLine(AIR_SPEED);
+                        Console.WriteLine("AIR_SPEED" + AIR_SPEED);
                     }
                     else
                     {
@@ -264,7 +298,7 @@ namespace FlightSimulatorApp
                     if (IsNumber(answer))
                     {
                         ALTITUDE = Double.Parse(answer);
-                        Console.WriteLine(ALTITUDE);
+                        Console.WriteLine("ALTITUDE" + ALTITUDE);
                     }
                     else
                     {
@@ -276,7 +310,7 @@ namespace FlightSimulatorApp
                     if (IsNumber(answer))
                     {
                         ROLL = Double.Parse(answer);
-                        Console.WriteLine(ROLL);
+                        Console.WriteLine("ROLL" + ROLL);
                     }
                     else
                     {
@@ -288,7 +322,7 @@ namespace FlightSimulatorApp
                     if (IsNumber(answer))
                     {
                         PITCH = Double.Parse(answer);
-                        Console.WriteLine(PITCH);
+                        Console.WriteLine("PITCH" + PITCH);
                     }
                     else
                     {
@@ -300,7 +334,7 @@ namespace FlightSimulatorApp
                     if (IsNumber(answer))
                     {
                         ALTIMETER = Double.Parse(answer);
-                        Console.WriteLine(ALTIMETER);
+                        Console.WriteLine("ALTIMETER" + ALTIMETER);
                     }
                     //location
 
