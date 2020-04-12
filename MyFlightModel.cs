@@ -183,6 +183,7 @@ namespace FlightSimulatorApp
             cNet.write("get /controls/flight/aileron " + "\n");
             string aileronTest = cNet.read();
         }
+
         public void connect(string ip, int port)
         {
             cNet.connect(ip, port);
