@@ -33,6 +33,7 @@ namespace FlightSimulatorApp
 
         }
 
+
         public void disconnect()
         {
             connection = false;

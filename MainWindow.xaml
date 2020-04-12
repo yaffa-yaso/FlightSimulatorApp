@@ -9,6 +9,50 @@
         xmlns:view="clr-namespace:FlightSimulatorApp.view"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Background="#FFD1D1D1">
+    <Window.Resources>
+        <Style TargetType="Image" x:Key="disconnected">
+            <Setter Property="Source" Value="images/grey.png"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding VM_Connection, Mode=OneWay}" Value="true">
+                    <Setter Property="Source" Value="images/green.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Image" x:Key="errorTrigger">
+            <Setter Property="Source" Value="images/grey.png"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding VM_outOfBorder, Mode=OneWay}" Value="true">
+                    <Setter Property="Source" Value="images/red.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="errorText">
+            <Setter Property="Text" Value="Error: none"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding VM_outOfBorder, Mode=OneWay}" Value="true">
+                    <Setter Property="Text" Value="Error : out of border!"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style TargetType="TextBlock" x:Key="serverText">
+            <Setter Property="Text" Value="disconnected"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding VM_Connection, Mode=OneWay}" Value="true">
+                    <Setter Property="Text" Value="connected!"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Image" x:Key="connected">
+            <Setter Property="Source" Value="images/green.png"></Setter>
+        </Style>
+
+        <Style TargetType="Image" x:Key="error">
+            <Setter Property="Source" Value="images/red.png"></Setter>
+        </Style>
+    </Window.Resources>
     <Grid Margin="0,0,-385,-367">
 
         <Viewbox HorizontalAlignment="Left" Height="289" Margin="481,143,0,0" VerticalAlignment="Top" Width="346">
@@ -21,5 +65,11 @@
         <Button Content="connect" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Width="86" Click="Button_Click" Height="33" Background="#FFD1D1D1" Foreground="#FF4A70B1" FontWeight="Bold" FontSize="15"/>
         <Button Content="disconnect" HorizontalAlignment="Left" Margin="85,1,0,0" VerticalAlignment="Top" Width="92" Click="Button_Click_1" Height="33" Background="#FFD1D1D1" Foreground="#FF4A70B1" FontSize="14" FontWeight="Bold"/>
         <view:board x:Name="board"  Margin="509,25,394.6,0" VerticalAlignment="Top" Height="190"/>
+        <Image Style="{StaticResource disconnected}" HorizontalAlignment="Left" Height="22" Margin="191,10,0,0" VerticalAlignment="Top" Width="18" />
+        <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
+        <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
+        <Image Style="{StaticResource errorTrigger}" HorizontalAlignment="Left" Height="22" Margin="312,10,0,0" VerticalAlignment="Top" Width="18"/>
+        <TextBlock Style ="{StaticResource errorText}" HorizontalAlignment="Left" Height="18" Margin="342,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="161"/>
+        <TextBlock Style="{StaticResource serverText}" HorizontalAlignment="Left" Height="39" Margin="215,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="84"/>
     </Grid>
 </Window>

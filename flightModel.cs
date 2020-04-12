@@ -21,12 +21,16 @@ namespace FlightSimulatorApp
        double ALTIMETER { set; get; }
        double rudder { set; }
        double elevator { set; }
+        bool Connection { set; get; }
+        bool outOfBorder { set; get; }
 
 
+        
         // location
         double latitude_deg { set; get; }
         double longitude_deg { set; get; }
         Location location { set; get; }
+
 
 
 
