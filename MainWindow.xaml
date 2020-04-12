@@ -56,7 +56,7 @@
     <Grid Margin="0,0,-385,-367">
 
         <Viewbox HorizontalAlignment="Left" Height="289" Margin="481,143,0,0" VerticalAlignment="Top" Width="346">
-            <view:MyJoystick x:Name="myJoystick" Margin="100,100,100,100" Throttle ="{Binding Path = VM_throttle}" Aileron ="{Binding Path = VM_aileron}" Height="618" Width="819" MouseMove="myJoystick_MouseMove"/>
+            <view:MyJoystick x:Name="myJoystick" Margin="100,100,100,100" Throttle ="{Binding VM_throttle}" Aileron ="{Binding VM_aileron}" Height="618" Width="819" MouseMove="myJoystick_MouseMove"/>
         </Viewbox>
 
         <Viewbox HorizontalAlignment="Left" Height="586" Margin="-98,-66,0,0" VerticalAlignment="Top" Width="773">
