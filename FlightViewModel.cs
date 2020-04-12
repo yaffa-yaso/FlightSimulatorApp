@@ -36,45 +36,45 @@ namespace FlightSimulatorApp
         {
             model.move(rudder, elevator);
         }
-        public double VM_heading
+        public double VM_HEADING
         {
             get { return model.HEADING; }
         }
-        public double VM_verticalSpeed 
+        public double VM_VERTICAL_SPEED
         {
             get { return model.VERTICAL_SPEED; }
         }
-        public double VM_groundSpeed
+        public double VM_GROUND_SPEED
         {
             get { return model.GROUND_SPEED; }
         }
-        public double VM_airSpeed
+        public double VM_AIR_SPEED
         {
             get { return model.AIR_SPEED; }
         }
-        public double VM_altitude
+        public double VM_ALTITUDE
         {
             get { return model.ALTITUDE; }
         }
-        public double VM_roll
+        public double VM_ROLL
         {
             get { return model.ROLL; }
         }
-        public double VM_pitch
+        public double VM_PITCH
         {
             get { return model.PITCH; }
         }
-        public double VM_altimeter
+        public double VM_ALTIMETER
         {
             get { return model.ALTIMETER; }
         }
 
         // location
-        public double VM_latitude
+        public double VM_latitude_deg
         {
             get { return model.latitude_deg; }
         }
-        public double VM_longitude
+        public double VM_longitude_deg
         {
             get {return model.longitude_deg; }
         }
