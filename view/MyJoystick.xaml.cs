@@ -38,7 +38,7 @@ namespace FlightSimulatorApp.view
             DependencyProperty.Register("Aileron", typeof(double), typeof(MyJoystick));
         public double Rudder
         {
-            get { return (double)Joy.X; }
+            get { return (double)Joy.X / 85; }
             set { SetValue(rudderP, value); }
         }
 
@@ -46,7 +46,7 @@ namespace FlightSimulatorApp.view
             DependencyProperty.Register("Rudder", typeof(string), typeof(MyJoystick));
          public double Elevator
         {
-            get { return (double)Joy.Y; }
+            get { return (double)Joy.Y / 85; }
             set { SetValue(elevatorP, value); }
         }
 
