@@ -28,9 +28,7 @@ namespace FlightSimulatorApp
           
             vm = new FlightViewModel(new MyFlightModel(new MyTelnetClient()));
 
-            vm.getModel().connect("127.0.0.1", 5402);
-            while (vm.getModel().isConnected() == false) { }
-            vm.getModel().start();
+            
             DataContext = vm;
             this.screen.DataContext = vm;
             this.board.DataContext = vm;
@@ -41,6 +39,8 @@ namespace FlightSimulatorApp
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             vm.getModel().connect("127.0.0.1", 5402);
+            while (vm.getModel().isConnected() == false) { }
+            vm.getModel().start();
         }
         
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -48,9 +48,13 @@ namespace FlightSimulatorApp
             vm.getModel().disConnect();
         }
 
-        private void MyJoystick_Loaded(object sender, RoutedEventArgs e)
+
+        private void myJoystick_MouseMove(object sender, MouseEventArgs e)
         {
-            vm.movePlain(myJoystick.Rudder, myJoystick.Elevator);
+            if (vm.getModel().isConnected() == true)
+            {
+                vm.movePlain(myJoystick.Rudder, myJoystick.Elevator);
+            }
         }
     }
 }
