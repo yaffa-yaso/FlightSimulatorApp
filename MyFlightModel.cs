@@ -247,6 +247,7 @@ namespace FlightSimulatorApp
                     answer = cNet.read();
                     if (IsNumber(answer))
                     {
+                        
                         HEADING = Double.Parse(answer);
                         Console.WriteLine("HEADING" + HEADING);
                     }
@@ -358,7 +359,7 @@ namespace FlightSimulatorApp
                     
                 
                     isInitialized = true;
-                    Thread.Sleep(250);
+                    Thread.Sleep(350);
 
 
                 }
