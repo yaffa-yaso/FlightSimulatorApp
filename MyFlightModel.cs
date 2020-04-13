@@ -217,6 +217,7 @@ namespace FlightSimulatorApp
 
         public void connect(string ip, int port)
         {
+            stop = false;
             cNet.connect(ip, port);
             Connection = true;
 
@@ -224,8 +225,8 @@ namespace FlightSimulatorApp
         }
         public void disConnect()
         {
-            cNet.disconnect();
             stop = true;
+            cNet.disconnect();
             Connection = false;
 
         }

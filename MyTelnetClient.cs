@@ -15,11 +15,12 @@ namespace FlightSimulatorApp
         string ip;
         int port;
         bool connection = false;
-        TcpClient clientSocket = new TcpClient();
+        TcpClient clientSocket;
         NetworkStream stream;
         Mutex m;
         public void connect(string ip, int port)
         {
+            clientSocket = new TcpClient();
             //saving ip and port as a members class
             this.ip = ip;
             this.port = port;
@@ -37,6 +38,13 @@ namespace FlightSimulatorApp
         public void disconnect()
         {
             connection = false;
+            stream.Close();
+            clientSocket.Close();
+            
+            //m.Close();
+
+
+            //connection = false;
         }
 
         public string read()
