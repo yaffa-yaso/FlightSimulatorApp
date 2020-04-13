@@ -11,8 +11,6 @@ namespace FlightSimulatorApp
     class FlightViewModel : INotifyPropertyChanged
     {
         private FlightModel model;
-        private int flag = 0;
-
 
         public FlightViewModel(FlightModel model)
         {
@@ -108,6 +106,11 @@ namespace FlightSimulatorApp
         public bool VM_outOfBorder
         {
             get { return model.outOfBorder; }
+
+        }
+        public bool VM_SlowReaction
+        {
+            get { return model.SlowReaction; }
 
         }
 
