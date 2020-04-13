@@ -11,7 +11,7 @@
         Title="MainWindow" Height="450" Width="800" Background="#FFD1D1D1">
     <Window.Resources>
         <Style TargetType="Image" x:Key="disconnected">
-            <Setter Property="Source" Value="images/grey.png"></Setter>
+            <Setter Property="Source" Value="images/red.png"></Setter>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding VM_Connection, Mode=OneWay}" Value="true">
                     <Setter Property="Source" Value="images/green.png"/>
@@ -24,7 +24,7 @@
                 <DataTrigger Binding="{Binding VM_outOfBorder, Mode=OneWay}" Value="true">
                     <Setter Property="Foreground" Value="Red"/>
                     <Setter Property="FontWeight" Value="Bold"/>
-                    
+
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -75,7 +75,7 @@
         <Button Style="{StaticResource server}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click" Height="33" Background="#FFD1D1D1" Foreground="#FF4A70B1" FontWeight="Bold" FontSize="15"/>
         <Button Content="disconnect" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click_1" Height="33" Background="#FFD1D1D1" Foreground="#FF4A70B1" FontSize="15" FontWeight="Bold"/>
         <view:board x:Name="board"  Margin="580,1,356,0" VerticalAlignment="Top" Height="186"/>
-        <Image Style="{StaticResource disconnected}" HorizontalAlignment="Left" Height="22" Margin="178,6,0,0" VerticalAlignment="Top" Width="18" RenderTransformOrigin="-1.167,0.227" />
+        <Image Style="{StaticResource disconnected}" HorizontalAlignment="Left" Height="27" Margin="10,38,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="-1.167,0.227" />
         <Label Content="Error:" HorizontalAlignment="Left" Height="24" Margin="261,6,0,0" VerticalAlignment="Top" Width="38"/>
         <Label Style ="{StaticResource SlowReactionErr}" Content="SlowReaction" HorizontalAlignment="Left" Height="24" Margin="299,6,0,0" VerticalAlignment="Top" Width="82"/>
         <Label Style ="{StaticResource outOfBorderErr}" Content="OutOfBorder" HorizontalAlignment="Left" Height="24" Margin="381,6,0,0" VerticalAlignment="Top" Width="82"/>
