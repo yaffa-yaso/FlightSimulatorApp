@@ -80,19 +80,14 @@ namespace FlightSimulatorApp
             get { return model.longitude_deg; }
         }
 
-        public double VM_Throttle
+        public double VM_THROTTLE
         {
             set {
-                if (flag == 1)
-                {
-                    flag = 1;
-                }
                 model.changeSpeed(value);
-                flag = 1;
             }
         }
 
-        public double VM_Aileron
+        public double VM_AILERON
         {
             set { model.changeAileron(value); }
         }
