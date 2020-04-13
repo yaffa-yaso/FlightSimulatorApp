@@ -51,9 +51,10 @@ namespace FlightSimulatorApp
 
         private void myJoystick_MouseMove(object sender, MouseEventArgs e)
         {
-            if (vm.getModel().isConnected() == true)
+            if (myJoystick.KnobChanged)
             {
                 vm.movePlain(myJoystick.Rudder, myJoystick.Elevator);
+                myJoystick.KnobChanged = false;
             }
         }
     }

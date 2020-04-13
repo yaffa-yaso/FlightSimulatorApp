@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Maps.MapControl.WPF;
+using System.Diagnostics;
 namespace FlightSimulatorApp
 
 
@@ -15,7 +16,7 @@ namespace FlightSimulatorApp
         TelNetClient cNet;
         bool stop;
         bool isInitialized;
-        
+        private Stopwatch stopWatch = new Stopwatch();
 
         public MyFlightModel(TelNetClient client)
         {
@@ -127,8 +128,18 @@ namespace FlightSimulatorApp
             }
         }
 
+        // slowReaction error
+        bool slowReaction = false;
+        public bool SlowReaction
+        {
+            get { return slowReaction; }
+            set
+            {
+                slowReaction = value;
+                NotifyPropertyChangedtify("SlowReaction");
+            }
+        }
 
-        
 
         // location update
         private double _longitude_deg= 34.8854;
@@ -193,26 +204,35 @@ namespace FlightSimulatorApp
 
         public void move(double rudder, double elevator)
         {
-            cNet.write("set /controls/flight/rudder " + rudder + "\n");
-            cNet.write("get /controls/flight/rudder " + "\n");
-            string rudderTest = cNet.read();
-            cNet.write("set /controls/flight/elevator " + elevator + "\n");
-            cNet.write("get /controls/flight/elevator " + "\n");
-            string elevatorTest = cNet.read();
+            if (_Connection)
+            {
+                cNet.write("set /controls/flight/rudder " + rudder + "\n");
+                cNet.write("get /controls/flight/rudder " + "\n");
+                string rudderTest = cNet.read();
+                cNet.write("set /controls/flight/elevator " + elevator + "\n");
+                cNet.write("get /controls/flight/elevator " + "\n");
+                string elevatorTest = cNet.read();
+            }
         }
 
         public void changeSpeed(double throttle)
         {
-            cNet.write("set /controls/engines/current-engine/throttle " + throttle + "\n");
-            cNet.write("get /controls/engines/current-engine/throttle " + "\n");
-            string throttleTest = cNet.read();
+            if (_Connection)
+            {
+                cNet.write("set /controls/engines/current-engine/throttle " + throttle + "\n");
+                cNet.write("get /controls/engines/current-engine/throttle " + "\n");
+                string throttleTest = cNet.read();
+            }
         }
 
         public void changeAileron(double aileron)
         {
-            cNet.write("set /controls/flight/aileron " + aileron + "\n");
-            cNet.write("get /controls/flight/aileron " + "\n");
-            string aileronTest = cNet.read();
+            if (_Connection)
+            {
+                cNet.write("set /controls/flight/aileron " + aileron + "\n");
+                cNet.write("get /controls/flight/aileron " + "\n");
+                string aileronTest = cNet.read();
+            }
         }
 
         public void connect(string ip, int port)
@@ -245,10 +265,18 @@ namespace FlightSimulatorApp
 
                     string answer;
                     cNet.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
+
+                    stopWatch.Start();
                     answer = cNet.read();
-                    if (IsNumber(answer))
+                    stopWatch.Stop();
+                    if (stopWatch.Elapsed.Seconds > 10.0)
                     {
-                        
+                        slowReaction = true;
+                    }
+                    stopWatch.Reset();
+
+                    if (IsNumber(answer))
+                    {   
                         HEADING = Double.Parse(answer);
                         Console.WriteLine("HEADING" + HEADING);
                     }
@@ -259,7 +287,15 @@ namespace FlightSimulatorApp
                     }
                     cNet.write("get /instrumentation/gps/indicated-vertical-speed\n");
 
+                    stopWatch.Start();
                     answer = cNet.read();
+                    stopWatch.Stop();
+                    if (stopWatch.Elapsed.Seconds > 10.0)
+                    {
+                        slowReaction = true;
+                    }
+                    stopWatch.Reset();
+
                     if (IsNumber(answer))
                     {
                         VERTICAL_SPEED = Double.Parse(answer);
@@ -272,7 +308,16 @@ namespace FlightSimulatorApp
                     }
 
                     cNet.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
+
+                    stopWatch.Start();
                     answer = cNet.read();
+                    stopWatch.Stop();
+                    if (stopWatch.Elapsed.Seconds > 10.0)
+                    {
+                        slowReaction = true;
+                    }
+                    stopWatch.Reset();
+
                     if (IsNumber(answer))
                     {
                         GROUND_SPEED = Double.Parse(answer);
@@ -284,7 +329,16 @@ namespace FlightSimulatorApp
 
                     }
                     cNet.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
+
+                    stopWatch.Start();
                     answer = cNet.read();
+                    stopWatch.Stop();
+                    if (stopWatch.Elapsed.Seconds > 10.0)
+                    {
+                        slowReaction = true;
+                    }
+                    stopWatch.Reset();
+
                     if (IsNumber(answer))
                     {
                         AIR_SPEED = Double.Parse(answer);
@@ -297,7 +351,16 @@ namespace FlightSimulatorApp
                     }
 
                     cNet.write("get /instrumentation/gps/indicated-altitude-ft\n");
+
+                    stopWatch.Start();
                     answer = cNet.read();
+                    stopWatch.Stop();
+                    if (stopWatch.Elapsed.Seconds > 10.0)
+                    {
+                        slowReaction = true;
+                    }
+                    stopWatch.Reset();
+
                     if (IsNumber(answer))
                     {
                         ALTITUDE = Double.Parse(answer);
@@ -309,7 +372,16 @@ namespace FlightSimulatorApp
 
                     }
                     cNet.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
+
+                    stopWatch.Start();
                     answer = cNet.read();
+                    stopWatch.Stop();
+                    if (stopWatch.Elapsed.Seconds > 10.0)
+                    {
+                        slowReaction = true;
+                    }
+                    stopWatch.Reset();
+
                     if (IsNumber(answer))
                     {
                         ROLL = Double.Parse(answer);
@@ -321,7 +393,16 @@ namespace FlightSimulatorApp
 
                     }
                     cNet.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
+
+                    stopWatch.Start();
                     answer = cNet.read();
+                    stopWatch.Stop();
+                    if (stopWatch.Elapsed.Seconds > 10.0)
+                    {
+                        slowReaction = true;
+                    }
+                    stopWatch.Reset();
+
                     if (IsNumber(answer))
                     {
                         PITCH = Double.Parse(answer);
@@ -333,7 +414,16 @@ namespace FlightSimulatorApp
 
                     }
                     cNet.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
+
+                    stopWatch.Start();
                     answer = cNet.read();
+                    stopWatch.Stop();
+                    if (stopWatch.Elapsed.Seconds > 10.0)
+                    {
+                        slowReaction = true;
+                    }
+                    stopWatch.Reset();
+
                     if (IsNumber(answer))
                     {
                         ALTIMETER = Double.Parse(answer);
@@ -342,14 +432,32 @@ namespace FlightSimulatorApp
                     //location
 
                     cNet.write("get /position/longitude-deg\n");
+
+                    stopWatch.Start();
                     answer = cNet.read();
+                    stopWatch.Stop();
+                    if (stopWatch.Elapsed.Seconds > 10.0)
+                    {
+                        slowReaction = true;
+                    }
+                    stopWatch.Reset();
+
                     if (IsNumber(answer))
                     {
                         longitude_deg = Double.Parse(answer);
                         Console.WriteLine("longitude_deg" + longitude_deg);
                     }
                     cNet.write("get /position/latitude-deg\n");
+
+                    stopWatch.Start();
                     answer = cNet.read();
+                    stopWatch.Stop();
+                    if (stopWatch.Elapsed.Seconds > 10.0)
+                    {
+                        slowReaction = true;
+                    }
+                    stopWatch.Reset();
+
                     if (IsNumber(answer))
                     {
                         latitude_deg = Double.Parse(answer);

@@ -23,9 +23,8 @@ namespace FlightSimulatorApp
        double elevator { set; }
         bool Connection { set; get; }
         bool outOfBorder { set; get; }
+        bool SlowReaction { set; get; }
 
-
-        
         // location
         double latitude_deg { set; get; }
         double longitude_deg { set; get; }

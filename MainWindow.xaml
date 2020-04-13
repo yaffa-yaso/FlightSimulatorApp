@@ -18,24 +18,27 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <Style TargetType="Image" x:Key="errorTrigger">
-            <Setter Property="Source" Value="images/grey.png"></Setter>
+        <Style TargetType="Label" x:Key="outOfBorderErr">
+            <Setter Property="Foreground" Value="Gray"></Setter>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding VM_outOfBorder, Mode=OneWay}" Value="true">
-                    <Setter Property="Source" Value="images/red.png"/>
+                    <Setter Property="Foreground" Value="Red"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    
                 </DataTrigger>
             </Style.Triggers>
         </Style>
 
-        <Style TargetType="TextBlock" x:Key="errorText">
-            <Setter Property="Text" Value="Error: none"></Setter>
+        <Style TargetType="Label" x:Key="SlowReactionErr">
+            <Setter Property="Foreground" Value="Gray"></Setter>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding VM_outOfBorder, Mode=OneWay}" Value="true">
-                    <Setter Property="Text" Value="Error : out of border!"/>
+                <DataTrigger Binding="{Binding VM_SlowReaction, Mode=OneWay}" Value="true">
+                    <Setter Property="Foreground" Value="Red"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        
+
         <Style TargetType="TextBlock" x:Key="serverText">
             <Setter Property="Text" Value="disconnected"></Setter>
             <Style.Triggers>
@@ -45,31 +48,36 @@
             </Style.Triggers>
         </Style>
 
+        <Style TargetType="Button" x:Key="server">
+            <Setter Property="Content" Value="connect"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding VM_Connection, Mode=OneWay}" Value="true">
+                    <Setter Property="Content" Value="connected"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+
         <Style TargetType="Image" x:Key="connected">
             <Setter Property="Source" Value="images/green.png"></Setter>
         </Style>
 
-        <Style TargetType="Image" x:Key="error">
-            <Setter Property="Source" Value="images/red.png"></Setter>
-        </Style>
     </Window.Resources>
     <Grid Margin="0,0,-385,-367">
 
-        <Viewbox HorizontalAlignment="Left" Height="289" Margin="481,143,0,0" VerticalAlignment="Top" Width="346">
-            <view:MyJoystick x:Name="myJoystick" Margin="100,100,100,100" Throttle ="{Binding VM_throttle}" Aileron ="{Binding VM_aileron}" Height="618" Width="819" MouseMove="myJoystick_MouseMove"/>
+        <Viewbox HorizontalAlignment="Left" Height="289" Margin="503,159,0,0" VerticalAlignment="Top" Width="346">
+            <view:MyJoystick x:Name="myJoystick" Margin="100,100,100,100" Height="618" Width="819" MouseMove="myJoystick_MouseMove"/>
         </Viewbox>
 
-        <Viewbox HorizontalAlignment="Left" Height="586" Margin="-98,-66,0,0" VerticalAlignment="Top" Width="773">
+        <Viewbox HorizontalAlignment="Left" Height="632" Margin="-106,-106,0,0" VerticalAlignment="Top" Width="781">
             <view:screen x:Name="screen" Margin="100,100,100,100" HorizontalAlignment="Center"/>
         </Viewbox>
-        <Button Content="connect" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Width="86" Click="Button_Click" Height="33" Background="#FFD1D1D1" Foreground="#FF4A70B1" FontWeight="Bold" FontSize="15"/>
-        <Button Content="disconnect" HorizontalAlignment="Left" Margin="85,1,0,0" VerticalAlignment="Top" Width="92" Click="Button_Click_1" Height="33" Background="#FFD1D1D1" Foreground="#FF4A70B1" FontSize="14" FontWeight="Bold"/>
-        <view:board x:Name="board"  Margin="509,25,394.6,0" VerticalAlignment="Top" Height="190"/>
-        <Image Style="{StaticResource disconnected}" HorizontalAlignment="Left" Height="22" Margin="191,10,0,0" VerticalAlignment="Top" Width="18" />
-        <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
-        <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
-        <Image Style="{StaticResource errorTrigger}" HorizontalAlignment="Left" Height="22" Margin="312,10,0,0" VerticalAlignment="Top" Width="18"/>
-        <TextBlock Style ="{StaticResource errorText}" HorizontalAlignment="Left" Height="18" Margin="342,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="161"/>
-        <TextBlock Style="{StaticResource serverText}" HorizontalAlignment="Left" Height="39" Margin="215,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="84"/>
+        <Button Style="{StaticResource server}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click" Height="33" Background="#FFD1D1D1" Foreground="#FF4A70B1" FontWeight="Bold" FontSize="15"/>
+        <Button Content="disconnect" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click_1" Height="33" Background="#FFD1D1D1" Foreground="#FF4A70B1" FontSize="15" FontWeight="Bold"/>
+        <view:board x:Name="board"  Margin="580,1,356,0" VerticalAlignment="Top" Height="186"/>
+        <Image Style="{StaticResource disconnected}" HorizontalAlignment="Left" Height="22" Margin="178,6,0,0" VerticalAlignment="Top" Width="18" RenderTransformOrigin="-1.167,0.227" />
+        <Label Content="Error:" HorizontalAlignment="Left" Height="24" Margin="261,6,0,0" VerticalAlignment="Top" Width="38"/>
+        <Label Style ="{StaticResource SlowReactionErr}" Content="SlowReaction" HorizontalAlignment="Left" Height="24" Margin="299,6,0,0" VerticalAlignment="Top" Width="82"/>
+        <Label Style ="{StaticResource outOfBorderErr}" Content="OutOfBorder" HorizontalAlignment="Left" Height="24" Margin="381,6,0,0" VerticalAlignment="Top" Width="82"/>
     </Grid>
 </Window>

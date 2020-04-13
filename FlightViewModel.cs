@@ -11,8 +11,6 @@ namespace FlightSimulatorApp
     class FlightViewModel : INotifyPropertyChanged
     {
         private FlightModel model;
-        private int flag = 0;
-
 
         public FlightViewModel(FlightModel model)
         {
@@ -80,19 +78,14 @@ namespace FlightSimulatorApp
             get { return model.longitude_deg; }
         }
 
-        public double VM_Throttle
+        public double VM_THROTTLE
         {
             set {
-                if (flag == 1)
-                {
-                    flag = 1;
-                }
                 model.changeSpeed(value);
-                flag = 1;
             }
         }
 
-        public double VM_Aileron
+        public double VM_AILERON
         {
             set { model.changeAileron(value); }
         }
@@ -113,6 +106,11 @@ namespace FlightSimulatorApp
         public bool VM_outOfBorder
         {
             get { return model.outOfBorder; }
+
+        }
+        public bool VM_SlowReaction
+        {
+            get { return model.SlowReaction; }
 
         }
 
