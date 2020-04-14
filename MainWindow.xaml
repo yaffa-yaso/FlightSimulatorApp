@@ -8,9 +8,9 @@
         xmlns:Controls="clr-namespace:FlightSimulatorApp.controls"
         xmlns:view="clr-namespace:FlightSimulatorApp.view"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="#FFD1D1D1">
+        Title="MainWindow" Height="502.5" Width="995" Background="{x:Null}">
     <Window.Resources>
-        <Style TargetType="Image" x:Key="disconnected">
+        <Style TargetType="Image" x:Key="connetion">
             <Setter Property="Source" Value="images/red.png"></Setter>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding VM_Connection, Mode=OneWay}" Value="true">
@@ -18,12 +18,14 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+
         <Style TargetType="Label" x:Key="outOfBorderErr">
             <Setter Property="Foreground" Value="Gray"></Setter>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding VM_outOfBorder, Mode=OneWay}" Value="true">
                     <Setter Property="Foreground" Value="Red"/>
                     <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="FontSize" Value="13"/>
 
                 </DataTrigger>
             </Style.Triggers>
@@ -35,15 +37,18 @@
                 <DataTrigger Binding="{Binding VM_SlowReaction, Mode=OneWay}" Value="true">
                     <Setter Property="Foreground" Value="Red"/>
                     <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="FontSize" Value="13"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
 
-        <Style TargetType="TextBlock" x:Key="serverText">
-            <Setter Property="Text" Value="disconnected"></Setter>
+        <Style TargetType="Label" x:Key="BoardErr">
+            <Setter Property="Foreground" Value="Gray"></Setter>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding VM_Connection, Mode=OneWay}" Value="true">
-                    <Setter Property="Text" Value="connected!"/>
+                <DataTrigger Binding="{Binding VM_BoardErr, Mode=OneWay}" Value="true">
+                    <Setter Property="Foreground" Value="Red"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="FontSize" Value="13"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -73,23 +78,27 @@
         </Style>
 
     </Window.Resources>
-    <Grid Margin="0,0,-385,-367">
+    <Grid Margin="0,0,-385,-367" Background="#FF1B1919">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="124*"/>
+            <ColumnDefinition Width="1249*"/>
+        </Grid.ColumnDefinitions>
 
-        <Viewbox HorizontalAlignment="Left" Height="289" Margin="503,159,0,0" VerticalAlignment="Top" Width="346">
+        <Viewbox HorizontalAlignment="Left" Height="288" Margin="505.5,198,0,0" VerticalAlignment="Top" Width="346" Grid.Column="1">
             <view:MyJoystick x:Name="myJoystick" Margin="100,100,100,100" Height="618" Width="819" MouseMove="myJoystick_MouseMove"/>
         </Viewbox>
 
-        <Viewbox HorizontalAlignment="Left" Height="632" Margin="-106,-106,0,0" VerticalAlignment="Top" Width="781">
-            <view:screen x:Name="screen" Margin="100,100,100,100" HorizontalAlignment="Center"/>
+        <Viewbox HorizontalAlignment="Left" Height="628" Margin="-87,-68,0,0" VerticalAlignment="Top" Width="831" Grid.ColumnSpan="2">
+            <view:screen x:Name="screen" Margin="100,100,100,100" HorizontalAlignment="Center" Foreground="{x:Null}" Height="370" Width="564"/>
         </Viewbox>
-        <Button Style="{StaticResource server}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click" Height="33" Background="#FFD1D1D1" Foreground="#FF4A70B1" FontWeight="Bold" FontSize="15"/>
-        <Button Content="disconnect" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click_1" Height="33" Background="#FFD1D1D1" Foreground="#FF4A70B1" FontSize="15" FontWeight="Bold"/>
-        <view:board x:Name="board"  Margin="580,1,356,0" VerticalAlignment="Top" Height="186"/>
-        <Image Style="{StaticResource disconnected}" HorizontalAlignment="Left" Height="27" Margin="10,38,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="-1.167,0.227" />
-        <Label Content="Error:" HorizontalAlignment="Left" Height="24" Margin="261,6,0,0" VerticalAlignment="Top" Width="38"/>
-        <Label Style ="{StaticResource SlowReactionErr}" Content="SlowReaction" HorizontalAlignment="Left" Height="24" Margin="299,6,0,0" VerticalAlignment="Top" Width="82"/>
-        <Label Style ="{StaticResource outOfBorderErr}" Content="OutOfBorder" HorizontalAlignment="Left" Height="24" Margin="381,6,0,0" VerticalAlignment="Top" Width="82"/>
-        <TextBox x:Name="addressBox" Text="{Binding VM_Address, Mode=TwoWay}" HorizontalAlignment="Left" Height="30" Margin="11,309,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="139" TextChanged="addressBox_TextChanged"/>
+        <Button Style="{StaticResource server}" Margin="0,0,44,0" VerticalAlignment="Top" Click="Button_Click" Height="33" Background="#FFC0C1C1" Foreground="#FF4A70B1" FontWeight="Bold" FontSize="15"/>
+        <Button Content="disconnect" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click_1" Height="33" Background="#FFC0C1C1" Foreground="#FF4A70B1" FontSize="15" FontWeight="Bold" Grid.ColumnSpan="2"/>
+        <view:board x:Name="board"  Margin="536.5,6,397,0" VerticalAlignment="Top" Height="192" Foreground="{x:Null}" Grid.Column="1"/>
+        <Image Style="{StaticResource connetion}" HorizontalAlignment="Left" Height="27" Margin="35,51,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="-1.167,0.227" />
+        <Label Style="{StaticResource SlowReactionErr}" Content="SlowReaction" HorizontalAlignment="Left" Height="24" Margin="38.5,51,0,0" VerticalAlignment="Top" Width="82" Grid.Column="1"/>
+        <Label Style="{StaticResource outOfBorderErr}" Content="OutOfBorder" HorizontalAlignment="Left" Height="24" Margin="120.5,51,0,0" VerticalAlignment="Top" Width="82" Grid.Column="1"/>
+        <Label Style="{StaticResource BoardErr}" Content="BoardError" HorizontalAlignment="Left" Height="24" Margin="202.5,51,0,0" VerticalAlignment="Top" Width="82" Grid.Column="1"/>
+         <TextBox x:Name="addressBox" Text="{Binding VM_Address, Mode=TwoWay}" HorizontalAlignment="Left" Height="30" Margin="11,309,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="139" TextChanged="addressBox_TextChanged"/>
         <TextBox x:Name="ipBox" Text="{Binding VM_Port, Mode=TwoWay}" HorizontalAlignment="Left" Height="22" Margin="19,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111" KeyDown="TextBox_KeyDown"/>
     </Grid>
 </Window>

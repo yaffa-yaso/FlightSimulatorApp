@@ -120,6 +120,11 @@ namespace FlightSimulatorApp
             set { model.Port = value; }
 
         }
+        public bool VM_BoardErr 
+        {
+            get { return model.BoardErr; }
+
+        }
 
         public string VM_Address
         {

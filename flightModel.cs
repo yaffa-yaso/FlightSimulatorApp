@@ -24,6 +24,7 @@ namespace FlightSimulatorApp
         bool Connection { set; get; }
         bool outOfBorder { set; get; }
         bool SlowReaction { set; get; }
+        bool BoardErr { set; get; }
         int Port { set; get; }
         string Address { set; get; }
 
