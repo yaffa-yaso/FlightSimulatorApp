@@ -98,7 +98,9 @@
         <Label Style="{StaticResource SlowReactionErr}" Content="SlowReaction" HorizontalAlignment="Left" Height="24" Margin="38.5,51,0,0" VerticalAlignment="Top" Width="82" Grid.Column="1"/>
         <Label Style="{StaticResource outOfBorderErr}" Content="OutOfBorder" HorizontalAlignment="Left" Height="24" Margin="120.5,51,0,0" VerticalAlignment="Top" Width="82" Grid.Column="1"/>
         <Label Style="{StaticResource BoardErr}" Content="BoardError" HorizontalAlignment="Left" Height="24" Margin="202.5,51,0,0" VerticalAlignment="Top" Width="82" Grid.Column="1"/>
-         <TextBox x:Name="addressBox" Text="{Binding VM_Address, Mode=TwoWay}" HorizontalAlignment="Left" Height="30" Margin="11,309,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="139" TextChanged="addressBox_TextChanged"/>
-        <TextBox x:Name="ipBox" Text="{Binding VM_Port, Mode=TwoWay}" HorizontalAlignment="Left" Height="22" Margin="19,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111" KeyDown="TextBox_KeyDown"/>
+        <TextBox x:Name="addressBox" Text="{Binding VM_Address, Mode=TwoWay}" HorizontalAlignment="Left" Height="22" Margin="445,12,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="59" TextChanged="addressBox_TextChanged" Grid.Column="1"/>
+        <TextBox x:Name="ipBox" Text="{Binding VM_Port, Mode=TwoWay}" HorizontalAlignment="Left" Height="22" Margin="360,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" KeyDown="TextBox_KeyDown" Grid.Column="1"/>
+        <Label Content="IP:" Grid.Column="1" HorizontalAlignment="Left" Margin="422,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF4A70B1"/>
+        <Label Content="Port:" Grid.Column="1" HorizontalAlignment="Left" Margin="322,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF4A70B1"/>
     </Grid>
 </Window>
