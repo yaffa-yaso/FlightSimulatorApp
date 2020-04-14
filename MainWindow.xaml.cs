@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace FlightSimulatorApp
 {
     /// <summary>
@@ -22,11 +23,14 @@ namespace FlightSimulatorApp
     public partial class MainWindow : Window
     {
         FlightViewModel vm;
+        string address = "127.0.0.1";
+        int PORT = 5402;
+        
         public MainWindow()
         {
             InitializeComponent();
-          
             vm = new FlightViewModel(new MyFlightModel(new MyTelnetClient()));
+
 
             
             this.DataContext = vm;
@@ -35,10 +39,11 @@ namespace FlightSimulatorApp
             
 
         }
+        
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            vm.getModel().connect("127.0.0.1", 5402);
+            vm.getModel().connect(vm.getModel().Address, vm.getModel().Port);
             while (vm.getModel().isConnected() == false) { }
             vm.getModel().start();
         }
@@ -56,6 +61,18 @@ namespace FlightSimulatorApp
                 vm.movePlain(myJoystick.Rudder, myJoystick.Elevator);
                 myJoystick.KnobChanged = false;
             }
+        }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            address = addressBox.Text;
+            PORT = Int32.Parse(ipBox.Text);              
+            
+        }
+
+        private void addressBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

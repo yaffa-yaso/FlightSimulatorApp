@@ -113,8 +113,21 @@ namespace FlightSimulatorApp
             get { return model.SlowReaction; }
 
         }
+        public int VM_Port
+        {
+            get { return model.Port; }
 
-        
+            set { model.Port = value; }
+
+        }
+
+        public string VM_Address
+        {
+            get { return model.Address; }
+            set { model.Address = value; }
+
+        }
+
         // simple getter
         public FlightModel getModel(){
             return model;

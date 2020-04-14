@@ -140,6 +140,28 @@ namespace FlightSimulatorApp
             }
         }
 
+        int _Port = 5402;
+        public int Port
+        {
+            get { return _Port; }
+            set
+            {
+                _Port = value;
+                NotifyPropertyChangedtify("Port");
+            }
+        }
+
+        string _Address = "127.0.0.1";
+        public string Address
+        {
+            get { return _Address; }
+            set
+            {
+                _Address = value;
+                NotifyPropertyChangedtify("Address");
+            }
+        }
+
 
         // location update
         private double _longitude_deg= 34.8854;

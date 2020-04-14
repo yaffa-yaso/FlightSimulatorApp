@@ -57,6 +57,16 @@
             </Style.Triggers>
         </Style>
 
+        <Style TargetType="TextBox" x:Key="address">
+            <Setter Property="Text" Value="disconnected"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding VM_Connection, Mode=OneWay}" Value="true">
+                    <Setter Property="Text" Value="connected!"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+
 
         <Style TargetType="Image" x:Key="connected">
             <Setter Property="Source" Value="images/green.png"></Setter>
@@ -79,5 +89,7 @@
         <Label Content="Error:" HorizontalAlignment="Left" Height="24" Margin="261,6,0,0" VerticalAlignment="Top" Width="38"/>
         <Label Style ="{StaticResource SlowReactionErr}" Content="SlowReaction" HorizontalAlignment="Left" Height="24" Margin="299,6,0,0" VerticalAlignment="Top" Width="82"/>
         <Label Style ="{StaticResource outOfBorderErr}" Content="OutOfBorder" HorizontalAlignment="Left" Height="24" Margin="381,6,0,0" VerticalAlignment="Top" Width="82"/>
+        <TextBox x:Name="addressBox" Text="{Binding VM_Address, Mode=TwoWay}" HorizontalAlignment="Left" Height="30" Margin="11,309,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="139" TextChanged="addressBox_TextChanged"/>
+        <TextBox x:Name="ipBox" Text="{Binding VM_Port, Mode=TwoWay}" HorizontalAlignment="Left" Height="22" Margin="19,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111" KeyDown="TextBox_KeyDown"/>
     </Grid>
 </Window>

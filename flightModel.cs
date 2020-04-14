@@ -24,6 +24,9 @@ namespace FlightSimulatorApp
         bool Connection { set; get; }
         bool outOfBorder { set; get; }
         bool SlowReaction { set; get; }
+        int Port { set; get; }
+        string Address { set; get; }
+
 
         // location
         double latitude_deg { set; get; }
