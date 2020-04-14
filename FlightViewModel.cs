@@ -113,6 +113,11 @@ namespace FlightSimulatorApp
             get { return model.SlowReaction; }
 
         }
+        public bool VM_BoardErr 
+        {
+            get { return model.BoardErr; }
+
+        }
 
         
         // simple getter

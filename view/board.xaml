@@ -5,37 +5,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlightSimulatorApp.view"
              mc:Ignorable="d" 
-             d:DesignHeight="190" d:DesignWidth="270.8">
-    <Grid Margin="0,0,-17,0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="160*"/>
-            <ColumnDefinition Width="121*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Label Content="heading" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Grid.Row="0" Grid.Column="0"/>
-        <Label Content="vertical speed" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Grid.Row="1" Grid.Column="0"/>
-        <Label Content="ground speed" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Grid.Row="2" Grid.Column="0"/>
-        <Label Content="air speed" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Height="25" Grid.Row="3" Grid.Column="0"/>
-        <Label Content="altitude" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Grid.Row="4" Grid.Column="0"/>
-        <Label Content="roll" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Grid.Row="5" Grid.Column="0"/>
-        <Label Content="pitch" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Grid.Row="6" Grid.Column="0"/>
-        <Label Content="altimeter" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Grid.Row="7" Grid.Column="0"/>
-        <Label Content="{Binding VM_HEADING, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="0.2,0.1" Grid.Row="0" Grid.Column="1"/>
-        <Label Content="{Binding VM_VERTICAL_SPEED, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="0,1.9" Grid.Row="1" Grid.Column="1"/>
-        <Label Content="{Binding VM_GROUND_SPEED, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="0,1.5" Grid.Row="2" Grid.Column="1"/>
-        <Label Content="{Binding VM_AIR_SPEED, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" Grid.Row="3" Grid.Column="1"/>
-        <Label Content="{Binding VM_ALTITUDE, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="13.9,0.6" Grid.Row="4" Grid.Column="1"/>
-        <Label Content="{Binding VM_ROLL, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" Grid.Row="5" Grid.Column="1"/>
-        <Label Content="{Binding VM_PITCH, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="5.7,0.6" Grid.Row="6" Grid.Column="1"/>
-        <Label Content="{Binding VM_ALTIMETER, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="7.4,0.1" Grid.Row="7" Grid.Column="1"/>
-    </Grid>
+             d:DesignHeight="190" d:DesignWidth="270.8" Foreground="{x:Null}">
+    <Border CornerRadius="20" BorderThickness="2" BorderBrush="Black" Background="#FFDEDDDD" Margin="-18,0,0,-21">
+        <Grid Margin="22,-2,-17,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="150*"/>
+                <ColumnDefinition Width="115*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Content="heading" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <Label Content="vertical speed" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <Label Content="ground speed" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <Label Content="air speed" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Height="25" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+            <Label Content="altitude" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <Label Content="roll" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <Label Content="pitch" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <Label Content="altimeter" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <Label Content="{Binding VM_HEADING, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="0.2,0.1" Grid.Row="0" Grid.Column="2"/>
+            <Label Content="{Binding VM_VERTICAL_SPEED, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="0,1.9" Grid.Row="1" Grid.Column="2"/>
+            <Label Content="{Binding VM_GROUND_SPEED, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="0,1.5" Grid.Row="2" Grid.Column="2"/>
+            <Label Content="{Binding VM_AIR_SPEED, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" Grid.Row="3" Grid.Column="2"/>
+            <Label Content="{Binding VM_ALTITUDE, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="13.9,0.6" Grid.Row="4" Grid.Column="2"/>
+            <Label Content="{Binding VM_ROLL, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" Grid.Row="5" Grid.Column="2"/>
+            <Label Content="{Binding VM_PITCH, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="5.7,0.6" Grid.Row="6" Grid.Column="2"/>
+            <Label Content="{Binding VM_ALTIMETER, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="7.4,0.1" Grid.Row="7" Grid.Column="2"/>
+        </Grid>
+    </Border>
 </UserControl>
