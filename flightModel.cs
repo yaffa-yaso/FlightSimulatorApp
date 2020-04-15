@@ -9,7 +9,7 @@ using Microsoft.Maps.MapControl.WPF;
 
 namespace FlightSimulatorApp
 {
-    interface FlightModel: INotifyPropertyChanged
+    public interface FlightModel: INotifyPropertyChanged
     {
        double HEADING { set; get; }
        double VERTICAL_SPEED { set; get; }

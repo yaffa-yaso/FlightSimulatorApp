@@ -32,10 +32,12 @@ namespace FlightSimulatorApp
         public MainWindow()
         {
             InitializeComponent();
-            vm = new FlightViewModel(new MyFlightModel(new MyTelnetClient()));
+            this.vm = (Application.Current as App).FlightViewModel;
 
 
-        M= new Mutex(false, "mutex");
+
+
+        M = new Mutex(false, "mutex");
 
             this.DataContext = vm;
             this.screen.DataContext = vm;
