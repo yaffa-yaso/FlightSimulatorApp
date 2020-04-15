@@ -215,7 +215,7 @@ namespace FlightSimulatorApp
             set
             {
                 _location = value;
-            NotifyPropertyChangedtify("Location"); ;
+            NotifyPropertyChangedtify("location"); ;
             }
         }
 
@@ -239,11 +239,13 @@ namespace FlightSimulatorApp
             if (_Connection)
             {
                 cNet.write("set /controls/flight/rudder " + rudder + "\n");
-                cNet.write("get /controls/flight/rudder " + "\n");
                 string rudderTest = cNet.read();
+                cNet.write("get /controls/flight/rudder " + "\n");
+                 rudderTest = cNet.read();
                 cNet.write("set /controls/flight/elevator " + elevator + "\n");
-                cNet.write("get /controls/flight/elevator " + "\n");
                 string elevatorTest = cNet.read();
+                cNet.write("get /controls/flight/elevator " + "\n");
+                 elevatorTest = cNet.read();
             }
         }
 
@@ -252,8 +254,10 @@ namespace FlightSimulatorApp
             if (_Connection)
             {
                 cNet.write("set /controls/engines/current-engine/throttle " + throttle + "\n");
-                cNet.write("get /controls/engines/current-engine/throttle " + "\n");
                 string throttleTest = cNet.read();
+
+                cNet.write("get /controls/engines/current-engine/throttle " + "\n");
+                 throttleTest = cNet.read();
             }
         }
 
@@ -262,8 +266,9 @@ namespace FlightSimulatorApp
             if (_Connection)
             {
                 cNet.write("set /controls/flight/aileron " + aileron + "\n");
-                cNet.write("get /controls/flight/aileron " + "\n");
                 string aileronTest = cNet.read();
+                cNet.write("get /controls/flight/aileron " + "\n");
+                 aileronTest = cNet.read();
             }
         }
 
@@ -513,7 +518,7 @@ namespace FlightSimulatorApp
                     
                 
                     isInitialized = true;
-                    Thread.Sleep(350);
+                    Thread.Sleep(150);
 
 
                 }

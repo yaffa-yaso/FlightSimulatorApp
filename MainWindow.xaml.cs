@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net.Sockets;
+
 
 
 namespace FlightSimulatorApp
@@ -25,14 +27,16 @@ namespace FlightSimulatorApp
         FlightViewModel vm;
         string address = "127.0.0.1";
         int PORT = 5402;
-        
+        Mutex M;
+
         public MainWindow()
         {
             InitializeComponent();
             vm = new FlightViewModel(new MyFlightModel(new MyTelnetClient()));
 
 
-            
+        M= new Mutex(false, "mutex");
+
             this.DataContext = vm;
             this.screen.DataContext = vm;
             this.board.DataContext = vm;
@@ -43,6 +47,7 @@ namespace FlightSimulatorApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             vm.getModel().connect(vm.getModel().Address, vm.getModel().Port);
             while (vm.getModel().isConnected() == false) { }
             vm.getModel().start();
