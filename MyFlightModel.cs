@@ -174,14 +174,14 @@ namespace FlightSimulatorApp
         }
 
         // location update
-        private double _longitude_deg= 34.8854;
+        private double _longitude_deg = 34.8854;
 
         public double longitude_deg
         {
             get { return _longitude_deg; }
             set
             {
-                if(value>90 || value < -90)
+                if (value > 90 || value < -90)
                 {
                     outOfBorder = true;
                 }
@@ -190,7 +190,7 @@ namespace FlightSimulatorApp
             }
         }
 
-        private double _latitude_deg= 32.0055;
+        private double _latitude_deg = 32.0055;
         public double latitude_deg
         {
             get { return _latitude_deg; }
@@ -202,11 +202,11 @@ namespace FlightSimulatorApp
                 }
                 _latitude_deg = value;
                 NotifyPropertyChangedtify("latitude_deg"); ;
-            
 
 
+
+            }
         }
-    }
 
         private Location _location;
         public Location location
@@ -215,7 +215,7 @@ namespace FlightSimulatorApp
             set
             {
                 _location = value;
-            NotifyPropertyChangedtify("location"); ;
+                NotifyPropertyChangedtify("Location"); ;
             }
         }
 
@@ -255,7 +255,6 @@ namespace FlightSimulatorApp
             {
                 cNet.write("set /controls/engines/current-engine/throttle " + throttle + "\n");
                 string throttleTest = cNet.read();
-
                 cNet.write("get /controls/engines/current-engine/throttle " + "\n");
                  throttleTest = cNet.read();
             }
@@ -313,7 +312,7 @@ namespace FlightSimulatorApp
                     stopWatch.Reset();
 
                     if (IsNumber(answer))
-                    {   
+                    {
                         HEADING = Double.Parse(answer);
                         Console.WriteLine("HEADING" + HEADING);
                     }
@@ -515,10 +514,10 @@ namespace FlightSimulatorApp
                     }
                     //update location
                     location = new Location(latitude_deg, longitude_deg);
-                    
-                
+
+
                     isInitialized = true;
-                    Thread.Sleep(150);
+                    Thread.Sleep(350);
 
 
                 }

@@ -71,7 +71,7 @@ namespace FlightSimulatorApp
             try
             {
                 Console.WriteLine("connecting...");
-
+                clientSocket.ReceiveTimeout = 10000;
                 clientSocket.Connect(ip, port);
                 Console.WriteLine("connected");
                 Thread.Sleep(150);

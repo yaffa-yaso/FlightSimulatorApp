@@ -37,15 +37,15 @@ namespace FlightSimulatorApp
 
 
 
-        M = new Mutex(false, "mutex");
+            M = new Mutex(false, "mutex");
 
             this.DataContext = vm;
             this.screen.DataContext = vm;
             this.board.DataContext = vm;
-            
+
 
         }
-        
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -54,7 +54,7 @@ namespace FlightSimulatorApp
             while (vm.getModel().isConnected() == false) { }
             vm.getModel().start();
         }
-        
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             vm.getModel().disConnect();
@@ -73,8 +73,8 @@ namespace FlightSimulatorApp
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             address = addressBox.Text;
-            PORT = Int32.Parse(ipBox.Text);              
-            
+            PORT = Int32.Parse(ipBox.Text);
+
         }
 
         private void addressBox_TextChanged(object sender, TextChangedEventArgs e)

@@ -17,9 +17,9 @@ namespace FlightSimulatorApp
     {
 
         public FlightViewModel FlightViewModel { get; internal set; }
-       
 
-        
+
+
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
@@ -28,7 +28,7 @@ namespace FlightSimulatorApp
             mainWindow.Show();
         }
     }
-    
+
 
 }
 
