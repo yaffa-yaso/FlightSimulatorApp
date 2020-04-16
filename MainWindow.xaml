@@ -25,7 +25,7 @@
                 <DataTrigger Binding="{Binding VM_outOfBorder, Mode=OneWay}" Value="true">
                     <Setter Property="Foreground" Value="Red"/>
                     <Setter Property="FontWeight" Value="Bold"/>
-                    <Setter Property="FontSize" Value="13"/>
+                    <Setter Property="FontSize" Value="15"/>
 
                 </DataTrigger>
             </Style.Triggers>
@@ -37,7 +37,7 @@
                 <DataTrigger Binding="{Binding VM_SlowReaction, Mode=OneWay}" Value="true">
                     <Setter Property="Foreground" Value="Red"/>
                     <Setter Property="FontWeight" Value="Bold"/>
-                    <Setter Property="FontSize" Value="13"/>
+                    <Setter Property="FontSize" Value="15"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -48,7 +48,7 @@
                 <DataTrigger Binding="{Binding VM_BoardErr, Mode=OneWay}" Value="true">
                     <Setter Property="Foreground" Value="Red"/>
                     <Setter Property="FontWeight" Value="Bold"/>
-                    <Setter Property="FontSize" Value="13"/>
+                    <Setter Property="FontSize" Value="15"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -70,8 +70,6 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-
-
 
         <Style TargetType="Image" x:Key="connected">
             <Setter Property="Source" Value="images/green.png"></Setter>
@@ -95,9 +93,9 @@
         <Button Content="disconnect" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click_1" Height="33" Background="#FFC0C1C1" Foreground="#FF4A70B1" FontSize="15" FontWeight="Bold" Grid.ColumnSpan="2"/>
         <view:board x:Name="board"  Margin="536.5,6,397,0" VerticalAlignment="Top" Height="192" Foreground="{x:Null}" Grid.Column="1"/>
         <Image Style="{StaticResource connetion}" HorizontalAlignment="Left" Height="27" Margin="35,51,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="-1.167,0.227" />
-        <Label Style="{StaticResource SlowReactionErr}" Content="SlowReaction" HorizontalAlignment="Left" Height="24" Margin="38.5,51,0,0" VerticalAlignment="Top" Width="82" Grid.Column="1"/>
-        <Label Style="{StaticResource outOfBorderErr}" Content="OutOfBorder" HorizontalAlignment="Left" Height="24" Margin="120.5,51,0,0" VerticalAlignment="Top" Width="82" Grid.Column="1"/>
-        <Label Style="{StaticResource BoardErr}" Content="BoardError" HorizontalAlignment="Left" Height="24" Margin="202.5,51,0,0" VerticalAlignment="Top" Width="82" Grid.Column="1"/>
+        <Label Style="{StaticResource SlowReactionErr}" Content="SlowReaction" HorizontalAlignment="Left" Height="30" Margin="50,51,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1"/>
+        <Label Style="{StaticResource outOfBorderErr}" Content="OutOfBorder" HorizontalAlignment="Left" Height="30" Margin="160,51,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1"/>
+        <Label Style="{StaticResource BoardErr}" Content="BoardError" HorizontalAlignment="Left" Height="30" Margin="270,51,0,0" VerticalAlignment="Top" Width="89" Grid.Column="1"/>
         <TextBox x:Name="addressBox" Text="{Binding VM_Address, Mode=TwoWay}" HorizontalAlignment="Left" Height="22" Margin="445,12,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="59" TextChanged="addressBox_TextChanged" Grid.Column="1"/>
         <TextBox x:Name="ipBox" Text="{Binding VM_Port, Mode=TwoWay}" HorizontalAlignment="Left" Height="22" Margin="360,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" KeyDown="TextBox_KeyDown" Grid.Column="1"/>
         <Label Content="IP:" Grid.Column="1" HorizontalAlignment="Left" Margin="422,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF4A70B1"/>

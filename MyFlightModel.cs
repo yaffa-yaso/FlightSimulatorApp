@@ -275,8 +275,15 @@ namespace FlightSimulatorApp
         public void connect(string ip, int port)
         {
             stop = false;
+            stopWatch.Start();
             cNet.connect(ip, port);
+            stopWatch.Stop();
             Connection = true;
+            if (stopWatch.Elapsed.Seconds > 10.0)
+            {
+                slowReaction = true;
+            }
+            stopWatch.Reset();
 
 
         }
@@ -320,7 +327,7 @@ namespace FlightSimulatorApp
                     else
                     {
                         HEADING = Double.NaN;
-                        boardErr = true;
+                        BoardErr = true;
                         Console.WriteLine(answer);
                     }
                     cNet.write("get /instrumentation/gps/indicated-vertical-speed\n");
@@ -342,7 +349,7 @@ namespace FlightSimulatorApp
                     else
                     {
                         VERTICAL_SPEED = Double.NaN;
-                        boardErr = true;
+                        BoardErr = true;
                         Console.WriteLine(answer);
                     }
 
@@ -365,7 +372,7 @@ namespace FlightSimulatorApp
                     else
                     {
                         GROUND_SPEED = Double.NaN;
-                        boardErr = true;
+                        BoardErr = true;
                         Console.WriteLine(answer);
                     }
                     cNet.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
@@ -387,7 +394,7 @@ namespace FlightSimulatorApp
                     else
                     {
                         AIR_SPEED = Double.NaN;
-                        boardErr = true;
+                        BoardErr = true;
                         Console.WriteLine(answer);
                     }
 
@@ -410,7 +417,7 @@ namespace FlightSimulatorApp
                     else
                     {
                         ALTITUDE = Double.NaN;
-                        boardErr = true;
+                        BoardErr = true;
                         Console.WriteLine(answer);
                     }
                     cNet.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
@@ -432,7 +439,7 @@ namespace FlightSimulatorApp
                     else
                     {
                         ROLL = Double.NaN;
-                        boardErr = true;
+                        BoardErr = true;
                         Console.WriteLine(answer);
                     }
                     cNet.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
@@ -454,7 +461,7 @@ namespace FlightSimulatorApp
                     else
                     {
                         PITCH = Double.NaN;
-                        boardErr = true;
+                        BoardErr = true;
                         Console.WriteLine(answer);
                     }
                     cNet.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
@@ -476,7 +483,7 @@ namespace FlightSimulatorApp
                     else
                     {
                         ALTIMETER = Double.NaN;
-                        boardErr = true;
+                        BoardErr = true;
                         Console.WriteLine(answer);
                     }
                     //location
