@@ -26,11 +26,13 @@ namespace FlightSimulatorApp
             this.port = port;
             Thread cThread = new Thread(makeConnection);
             cThread.Start();
-            while(connection == false){}
+            Thread.Sleep(10000);
+            if(connection == false)
+            {
+                return;
+            }
             stream = clientSocket.GetStream();
             m = new Mutex(false, "mutex");
-
-
 
         }
 
