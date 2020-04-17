@@ -49,7 +49,6 @@ namespace FlightSimulatorApp
 
         private  async void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.ligth.Source = images / red.png;
             await Task.Run(() =>
             {
                 vm.getModel().connect(vm.getModel().Address, vm.getModel().Port);
