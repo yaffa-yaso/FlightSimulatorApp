@@ -302,6 +302,10 @@ namespace FlightSimulatorApp
             SlowReaction = false;
             stop = false;
             cNet.connect(this.Address, this.Port);
+            if (isConnected() != true)
+            {
+                ServerErr = true;
+            }
         }
         public void disConnect()
         {

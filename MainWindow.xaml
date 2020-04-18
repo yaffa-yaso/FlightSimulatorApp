@@ -123,6 +123,5 @@
         <TextBox x:Name="ipBox" Style="{StaticResource address}" Text="{Binding VM_Port, Mode=TwoWay}" HorizontalAlignment="Left" Height="22" Margin="360,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" KeyDown="TextBox_KeyDown" Grid.Column="1"/>
         <Label Content="IP:" Grid.Column="1" HorizontalAlignment="Left" Margin="422,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF4A70B1"/>
         <Label Content="Port:" Grid.Column="1" HorizontalAlignment="Left" Margin="322,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF4A70B1"/>
-        <Label Style="{StaticResource serverError}"  HorizontalAlignment="Left" Height="30" Margin="112,7,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1"/>
     </Grid>
 </Window>
