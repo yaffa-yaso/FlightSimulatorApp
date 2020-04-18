@@ -298,17 +298,7 @@ namespace FlightSimulatorApp
             ServerErr = false;
             SlowReaction = false;
             stop = false;
-            stopWatch.Start();
             cNet.connect(this.Address, this.Port);
-            stopWatch.Stop();
-            
-            if (stopWatch.Elapsed.Seconds > 10.0)
-            {
-                slowReaction = true;
-            }
-            stopWatch.Reset();
-            
-
         }
         public void disConnect()
         {
@@ -337,9 +327,9 @@ namespace FlightSimulatorApp
                         stopWatch.Start();
                         answer = cNet.read();
                         stopWatch.Stop();
-                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
                         {
-                            slowReaction = true;
+                            SlowReaction = true;
                         }
                         stopWatch.Reset();
 
@@ -359,9 +349,9 @@ namespace FlightSimulatorApp
                         stopWatch.Start();
                         answer = cNet.read();
                         stopWatch.Stop();
-                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
                         {
-                            slowReaction = true;
+                            SlowReaction = true;
                         }
                         stopWatch.Reset();
 
@@ -382,9 +372,9 @@ namespace FlightSimulatorApp
                         stopWatch.Start();
                         answer = cNet.read();
                         stopWatch.Stop();
-                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
                         {
-                            slowReaction = true;
+                            SlowReaction = true;
                         }
                         stopWatch.Reset();
 
@@ -404,9 +394,9 @@ namespace FlightSimulatorApp
                         stopWatch.Start();
                         answer = cNet.read();
                         stopWatch.Stop();
-                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
                         {
-                            slowReaction = true;
+                            SlowReaction = true;
                         }
                         stopWatch.Reset();
 
@@ -427,9 +417,9 @@ namespace FlightSimulatorApp
                         stopWatch.Start();
                         answer = cNet.read();
                         stopWatch.Stop();
-                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
                         {
-                            slowReaction = true;
+                            SlowReaction = true;
                         }
                         stopWatch.Reset();
 
@@ -449,9 +439,9 @@ namespace FlightSimulatorApp
                         stopWatch.Start();
                         answer = cNet.read();
                         stopWatch.Stop();
-                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
                         {
-                            slowReaction = true;
+                            SlowReaction = true;
                         }
                         stopWatch.Reset();
 
@@ -471,9 +461,9 @@ namespace FlightSimulatorApp
                         stopWatch.Start();
                         answer = cNet.read();
                         stopWatch.Stop();
-                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
                         {
-                            slowReaction = true;
+                            SlowReaction = true;
                         }
                         stopWatch.Reset();
 
@@ -493,9 +483,9 @@ namespace FlightSimulatorApp
                         stopWatch.Start();
                         answer = cNet.read();
                         stopWatch.Stop();
-                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
                         {
-                            slowReaction = true;
+                            SlowReaction = true;
                         }
                         stopWatch.Reset();
 
@@ -517,9 +507,9 @@ namespace FlightSimulatorApp
                         stopWatch.Start();
                         answer = cNet.read();
                         stopWatch.Stop();
-                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
                         {
-                            slowReaction = true;
+                            SlowReaction = true;
                         }
                         stopWatch.Reset();
 
@@ -533,9 +523,9 @@ namespace FlightSimulatorApp
                         stopWatch.Start();
                         answer = cNet.read();
                         stopWatch.Stop();
-                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
                         {
-                            slowReaction = true;
+                            SlowReaction = true;
                         }
                         stopWatch.Reset();
 
