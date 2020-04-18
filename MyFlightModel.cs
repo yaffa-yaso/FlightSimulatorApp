@@ -173,17 +173,6 @@ namespace FlightSimulatorApp
             }
         }
 
-        bool reconnecting;
-        public bool Reconnecting
-        {
-            get { return reconnecting; }
-            set
-            {
-                reconnecting = value;
-                NotifyPropertyChangedtify("Reconnecting");
-            }
-        }
-
         // location update
         private double _longitude_deg = 34.8854;
 
@@ -293,23 +282,34 @@ namespace FlightSimulatorApp
             }
         }
 
-        public void connect(string ip, int port)
+        public void connect()
         {
             ServerErr = false;
             SlowReaction = false;
             stop = false;
-            cNet.connect(ip, port);
-            Connection = isConnected();
-            reconnecting = !(Connection);
+            stopWatch.Start();
+            cNet.connect(this.Address, this.Port);
+            stopWatch.Stop();
+            
+            if (stopWatch.Elapsed.Seconds > 10.0)
+            {
+                slowReaction = true;
+            }
+            stopWatch.Reset();
+            
+
         }
         public void disConnect()
         {
             stop = true;
             cNet.disconnect();
             Connection = false;
+
         }
         public void start()
         {
+
+
             new Thread(delegate ()
             {
                 Console.WriteLine(stop);
@@ -583,6 +583,10 @@ namespace FlightSimulatorApp
         public bool firstUpdate()
         {
             return isInitialized;
+        }
+        public void makeConnect()
+        {
+            Connection = true ;
         }
     }
 }

@@ -9,28 +9,27 @@ using Microsoft.Maps.MapControl.WPF;
 
 namespace FlightSimulatorApp
 {
-    public interface FlightModel: INotifyPropertyChanged
+    public interface FlightModel : INotifyPropertyChanged
     {
-       double HEADING { set; get; }
-       double VERTICAL_SPEED { set; get; }
-       double GROUND_SPEED { set; get; }
-       double AIR_SPEED { set; get; }
-       double ALTITUDE { set; get; }
-       double ROLL { set; get; }
-       double PITCH { set; get; }
-       double ALTIMETER { set; get; }
-       double rudder { set; }
-       double elevator { set; }
+        double HEADING { set; get; }
+        double VERTICAL_SPEED { set; get; }
+        double GROUND_SPEED { set; get; }
+        double AIR_SPEED { set; get; }
+        double ALTITUDE { set; get; }
+        double ROLL { set; get; }
+        double PITCH { set; get; }
+        double ALTIMETER { set; get; }
+        double rudder { set; }
+        double elevator { set; }
         bool Connection { set; get; }
         bool outOfBorder { set; get; }
         bool SlowReaction { set; get; }
         bool BoardErr { set; get; }
         bool ServerErr { set; get; }
 
-        bool Reconnecting { set; get; }
         int Port { set; get; }
         string Address { set; get; }
-        
+
 
 
 
@@ -43,7 +42,7 @@ namespace FlightSimulatorApp
 
 
 
-        void connect(string ip, int port);
+        void connect();
         void disConnect();
         void start();
         bool isConnected();
@@ -52,6 +51,8 @@ namespace FlightSimulatorApp
         void move(double rudder, double elevator);
         void changeSpeed(double throttle);
         void changeAileron(double aileron);
-        
+         void makeConnect();
+
+
     }
 }

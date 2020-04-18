@@ -80,7 +80,8 @@ namespace FlightSimulatorApp
 
         public double VM_THROTTLE
         {
-            set {
+            set
+            {
                 model.changeSpeed(value);
             }
         }
@@ -120,7 +121,7 @@ namespace FlightSimulatorApp
             set { model.Port = value; }
 
         }
-        public bool VM_BoardErr 
+        public bool VM_BoardErr
         {
             get { return model.BoardErr; }
 
@@ -139,8 +140,19 @@ namespace FlightSimulatorApp
         }
 
         // simple getter
-        public FlightModel getModel(){
+        public FlightModel getModel()
+        {
             return model;
-            }
+        }
+
+        public void connect()
+        {
+            this.model.connect();
+        }
+        public void makeConnect()
+        {
+            this.model.makeConnect();
+        }
+
     }
 }

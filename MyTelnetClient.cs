@@ -32,7 +32,7 @@ namespace FlightSimulatorApp
                 makeConnection();
 
             });
-           
+
 
 
 
@@ -45,7 +45,7 @@ namespace FlightSimulatorApp
             stream.Close();
             clientSocket.Close();
 
-            
+
             //m.Close();
 
 
@@ -57,7 +57,7 @@ namespace FlightSimulatorApp
             m.WaitOne();
             Byte[] buffer = new Byte[256];
             Int32 bytes = stream.Read(buffer, 0, buffer.Length);
-           string responseData = System.Text.Encoding.ASCII.GetString(buffer, 0, bytes);
+            string responseData = System.Text.Encoding.ASCII.GetString(buffer, 0, bytes);
             m.ReleaseMutex();
             return responseData;
         }
@@ -66,13 +66,13 @@ namespace FlightSimulatorApp
         {
             m.WaitOne();
             // send spacific command
-            Byte[] data =   System.Text.Encoding.ASCII.GetBytes(command);
+            Byte[] data = System.Text.Encoding.ASCII.GetBytes(command);
             stream.Write(data, 0, data.Length);
             m.ReleaseMutex();
         }
         // self functions
         public void makeConnection()
-            {
+        {
             try
             {
                 Console.WriteLine("connecting...");
@@ -81,9 +81,9 @@ namespace FlightSimulatorApp
                 Console.WriteLine("connected");
                 stream = clientSocket.GetStream();
                 connection = true;
-                Thread.Sleep(150);
-                
-                
+                Thread.Sleep(350);
+
+
 
             }
 
