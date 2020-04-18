@@ -192,12 +192,15 @@ namespace FlightSimulatorApp
             get { return _longitude_deg; }
             set
             {
-                if (value > 90 || value < -90)
+                if (value > 180 || value < -180)
                 {
                     outOfBorder = true;
                 }
-                _longitude_deg = value;
-                NotifyPropertyChangedtify("longitude_deg"); ;
+                else
+                {
+                    _longitude_deg = value;
+                    NotifyPropertyChangedtify("longitude_deg"); ;
+                }
             }
         }
 
@@ -207,7 +210,7 @@ namespace FlightSimulatorApp
             get { return _latitude_deg; }
             set
             {
-                if (value > 180 || value < -180)
+                if (value > 77.5 || value < 77.5)
                 {
                     this.outOfBorder = true;
                 }
@@ -226,7 +229,7 @@ namespace FlightSimulatorApp
             set
             {
                 _location = value;
-                NotifyPropertyChangedtify("Location"); ;
+                NotifyPropertyChangedtify("location"); ;
             }
         }
 

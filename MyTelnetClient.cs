@@ -81,7 +81,7 @@ namespace FlightSimulatorApp
                 Console.WriteLine("connected");
                 stream = clientSocket.GetStream();
                 connection = true;
-                Thread.Sleep(350);
+                Thread.Sleep(150);
 
 
 
