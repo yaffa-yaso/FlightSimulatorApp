@@ -173,6 +173,17 @@ namespace FlightSimulatorApp
             }
         }
 
+        bool reconnecting;
+        public bool Reconnecting
+        {
+            get { return reconnecting; }
+            set
+            {
+                reconnecting = value;
+                NotifyPropertyChangedtify("Reconnecting");
+            }
+        }
+
         // location update
         private double _longitude_deg = 34.8854;
 
@@ -287,29 +298,18 @@ namespace FlightSimulatorApp
             ServerErr = false;
             SlowReaction = false;
             stop = false;
-            stopWatch.Start();
             cNet.connect(ip, port);
-            stopWatch.Stop();
-            
-            if (stopWatch.Elapsed.Seconds > 10.0)
-            {
-                slowReaction = true;
-            }
-            stopWatch.Reset();
-            
-
+            Connection = isConnected();
+            reconnecting = !(Connection);
         }
         public void disConnect()
         {
             stop = true;
             cNet.disconnect();
             Connection = false;
-
         }
         public void start()
         {
-
-
             new Thread(delegate ()
             {
                 Console.WriteLine(stop);

@@ -42,7 +42,6 @@ namespace FlightSimulatorApp
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-
             await Task.Run(() =>
             {
                 vm.getModel().connect(vm.getModel().Address, vm.getModel().Port);

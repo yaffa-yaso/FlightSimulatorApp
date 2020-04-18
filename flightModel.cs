@@ -27,6 +27,7 @@ namespace FlightSimulatorApp
         bool BoardErr { set; get; }
         bool ServerErr { set; get; }
 
+        bool Reconnecting { set; get; }
         int Port { set; get; }
         string Address { set; get; }
         
