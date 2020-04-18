@@ -153,6 +153,10 @@ namespace FlightSimulatorApp
         {
             this.model.makeConnect();
         }
+        public void start()
+        {
+            this.model.start();
+        }
 
     }
 }
