@@ -16,7 +16,7 @@ namespace FlightSimulatorApp
         int port;
         bool connection = false;
         TcpClient clientSocket;
-        NetworkStream stream;
+        NetworkStream stream=null;
         Mutex m;
         public async void connect(string ip, int port)
         {
@@ -42,7 +42,11 @@ namespace FlightSimulatorApp
         public void disconnect()
         {
             connection = false;
-            stream.Close();
+            if (stream!= null)
+            {
+                stream.Close();
+                stream = null;
+            }
             clientSocket.Close();
 
 
