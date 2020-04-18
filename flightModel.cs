@@ -25,8 +25,12 @@ namespace FlightSimulatorApp
         bool outOfBorder { set; get; }
         bool SlowReaction { set; get; }
         bool BoardErr { set; get; }
+        bool ServerErr { set; get; }
+
         int Port { set; get; }
         string Address { set; get; }
+        
+
 
 
         // location

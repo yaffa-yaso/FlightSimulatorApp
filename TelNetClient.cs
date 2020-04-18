@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+
 
 namespace FlightSimulatorApp
 {
@@ -13,6 +15,7 @@ namespace FlightSimulatorApp
         string read();
         void disconnect();
         bool isConnected();
+        Mutex getMutex();
 
 
     }

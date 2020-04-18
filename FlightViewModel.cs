@@ -125,6 +125,11 @@ namespace FlightSimulatorApp
             get { return model.BoardErr; }
 
         }
+        public bool VM_ServerErr
+        {
+            get { return model.ServerErr; }
+
+        }
 
         public string VM_Address
         {

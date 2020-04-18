@@ -25,7 +25,7 @@
                 <DataTrigger Binding="{Binding VM_outOfBorder, Mode=OneWay}" Value="true">
                     <Setter Property="Foreground" Value="Red"/>
                     <Setter Property="FontWeight" Value="Bold"/>
-                    <Setter Property="FontSize" Value="15"/>
+                    <!--<Setter Property="FontSize" Value="15"/>-->
 
                 </DataTrigger>
             </Style.Triggers>
@@ -49,6 +49,19 @@
                     <Setter Property="Foreground" Value="Red"/>
                     <Setter Property="FontWeight" Value="Bold"/>
                     <Setter Property="FontSize" Value="15"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Label" x:Key="serverError">
+            <Setter Property="Foreground" Value="Gray"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding VM_ServerErr, Mode=OneWay}" Value="true">
+                    <Setter Property="Foreground" Value="Red"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Content" Value="ServerError"/>
+
+
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -100,5 +113,6 @@
         <TextBox x:Name="ipBox" Text="{Binding VM_Port, Mode=TwoWay}" HorizontalAlignment="Left" Height="22" Margin="360,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" KeyDown="TextBox_KeyDown" Grid.Column="1"/>
         <Label Content="IP:" Grid.Column="1" HorizontalAlignment="Left" Margin="422,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF4A70B1"/>
         <Label Content="Port:" Grid.Column="1" HorizontalAlignment="Left" Margin="322,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF4A70B1"/>
+        <Label Style="{StaticResource serverError}"  HorizontalAlignment="Left" Height="30" Margin="112,7,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1"/>
     </Grid>
 </Window>

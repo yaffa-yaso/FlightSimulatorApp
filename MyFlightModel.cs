@@ -229,6 +229,17 @@ namespace FlightSimulatorApp
                 NotifyPropertyChangedtify("Connection"); ;
             }
         }
+        public bool _ServerErr;
+
+        public bool ServerErr
+        {
+            get { return _ServerErr; }
+            set
+            {
+                _ServerErr = value;
+                NotifyPropertyChangedtify("ServerErr"); ;
+            }
+        }
 
 
         public double rudder { set => throw new NotImplementedException(); }
@@ -273,17 +284,19 @@ namespace FlightSimulatorApp
 
         public void connect(string ip, int port)
         {
+            ServerErr = false;
+            SlowReaction = false;
             stop = false;
             stopWatch.Start();
             cNet.connect(ip, port);
             stopWatch.Stop();
-            Connection = true;
+            
             if (stopWatch.Elapsed.Seconds > 10.0)
             {
                 slowReaction = true;
             }
             stopWatch.Reset();
-
+            
 
         }
         public void disConnect()
@@ -304,227 +317,236 @@ namespace FlightSimulatorApp
                 while (!stop)
                 {
 
+                    try
+                    {
+
+                        string answer;
+                        cNet.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
+
+                        stopWatch.Start();
+                        answer = cNet.read();
+                        stopWatch.Stop();
+                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        {
+                            slowReaction = true;
+                        }
+                        stopWatch.Reset();
+
+                        if (IsNumber(answer))
+                        {
+                            HEADING = Double.Parse(answer);
+                            Console.WriteLine("HEADING" + HEADING);
+                        }
+                        else
+                        {
+                            HEADING = Double.NaN;
+                            BoardErr = true;
+                            Console.WriteLine(answer);
+                        }
+                        cNet.write("get /instrumentation/gps/indicated-vertical-speed\n");
+
+                        stopWatch.Start();
+                        answer = cNet.read();
+                        stopWatch.Stop();
+                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        {
+                            slowReaction = true;
+                        }
+                        stopWatch.Reset();
+
+                        if (IsNumber(answer))
+                        {
+                            VERTICAL_SPEED = Double.Parse(answer);
+                            Console.WriteLine("VERTICAL_SPEED" + VERTICAL_SPEED);
+                        }
+                        else
+                        {
+                            VERTICAL_SPEED = Double.NaN;
+                            BoardErr = true;
+                            Console.WriteLine(answer);
+                        }
+
+                        cNet.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
+
+                        stopWatch.Start();
+                        answer = cNet.read();
+                        stopWatch.Stop();
+                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        {
+                            slowReaction = true;
+                        }
+                        stopWatch.Reset();
+
+                        if (IsNumber(answer))
+                        {
+                            GROUND_SPEED = Double.Parse(answer);
+                            Console.WriteLine("GROUND_SPEED" + GROUND_SPEED);
+                        }
+                        else
+                        {
+                            GROUND_SPEED = Double.NaN;
+                            BoardErr = true;
+                            Console.WriteLine(answer);
+                        }
+                        cNet.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
+
+                        stopWatch.Start();
+                        answer = cNet.read();
+                        stopWatch.Stop();
+                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        {
+                            slowReaction = true;
+                        }
+                        stopWatch.Reset();
+
+                        if (IsNumber(answer))
+                        {
+                            AIR_SPEED = Double.Parse(answer);
+                            Console.WriteLine("AIR_SPEED" + AIR_SPEED);
+                        }
+                        else
+                        {
+                            AIR_SPEED = Double.NaN;
+                            BoardErr = true;
+                            Console.WriteLine(answer);
+                        }
+
+                        cNet.write("get /instrumentation/gps/indicated-altitude-ft\n");
+
+                        stopWatch.Start();
+                        answer = cNet.read();
+                        stopWatch.Stop();
+                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        {
+                            slowReaction = true;
+                        }
+                        stopWatch.Reset();
+
+                        if (IsNumber(answer))
+                        {
+                            ALTITUDE = Double.Parse(answer);
+                            Console.WriteLine("ALTITUDE" + ALTITUDE);
+                        }
+                        else
+                        {
+                            ALTITUDE = Double.NaN;
+                            BoardErr = true;
+                            Console.WriteLine(answer);
+                        }
+                        cNet.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
+
+                        stopWatch.Start();
+                        answer = cNet.read();
+                        stopWatch.Stop();
+                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        {
+                            slowReaction = true;
+                        }
+                        stopWatch.Reset();
+
+                        if (IsNumber(answer))
+                        {
+                            ROLL = Double.Parse(answer);
+                            Console.WriteLine("ROLL" + ROLL);
+                        }
+                        else
+                        {
+                            ROLL = Double.NaN;
+                            BoardErr = true;
+                            Console.WriteLine(answer);
+                        }
+                        cNet.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
+
+                        stopWatch.Start();
+                        answer = cNet.read();
+                        stopWatch.Stop();
+                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        {
+                            slowReaction = true;
+                        }
+                        stopWatch.Reset();
+
+                        if (IsNumber(answer))
+                        {
+                            PITCH = Double.Parse(answer);
+                            Console.WriteLine("PITCH" + PITCH);
+                        }
+                        else
+                        {
+                            PITCH = Double.NaN;
+                            BoardErr = true;
+                            Console.WriteLine(answer);
+                        }
+                        cNet.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
+
+                        stopWatch.Start();
+                        answer = cNet.read();
+                        stopWatch.Stop();
+                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        {
+                            slowReaction = true;
+                        }
+                        stopWatch.Reset();
+
+                        if (IsNumber(answer))
+                        {
+                            ALTIMETER = Double.Parse(answer);
+                            Console.WriteLine("ALTIMETER" + ALTIMETER);
+                        }
+                        else
+                        {
+                            ALTIMETER = Double.NaN;
+                            BoardErr = true;
+                            Console.WriteLine(answer);
+                        }
+                        //location
+
+                        cNet.write("get /position/longitude-deg\n");
+
+                        stopWatch.Start();
+                        answer = cNet.read();
+                        stopWatch.Stop();
+                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        {
+                            slowReaction = true;
+                        }
+                        stopWatch.Reset();
+
+                        if (IsNumber(answer))
+                        {
+                            longitude_deg = Double.Parse(answer);
+                            Console.WriteLine("longitude_deg" + longitude_deg);
+                        }
+                        cNet.write("get /position/latitude-deg\n");
+
+                        stopWatch.Start();
+                        answer = cNet.read();
+                        stopWatch.Stop();
+                        if (stopWatch.Elapsed.Seconds > 10.0)
+                        {
+                            slowReaction = true;
+                        }
+                        stopWatch.Reset();
+
+                        if (IsNumber(answer))
+                        {
+                            latitude_deg = Double.Parse(answer);
+                            Console.WriteLine("latitude_deg" + latitude_deg);
+                        }
+                        //update location
+                        location = new Location(latitude_deg, longitude_deg);
 
 
-                    string answer;
-                    cNet.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
-
-                    stopWatch.Start();
-                    answer = cNet.read();
-                    stopWatch.Stop();
-                    if (stopWatch.Elapsed.Seconds > 10.0)
-                    {
-                        slowReaction = true;
+                        isInitialized = true;
+                        Thread.Sleep(350);
                     }
-                    stopWatch.Reset();
-
-                    if (IsNumber(answer))
+                    catch(Exception E)
                     {
-                        HEADING = Double.Parse(answer);
-                        Console.WriteLine("HEADING" + HEADING);
+                        ServerErr = true;
+                        Console.WriteLine("server error");
+                        disConnect();
+                        this.cNet.getMutex().ReleaseMutex();
                     }
-                    else
-                    {
-                        HEADING = Double.NaN;
-                        BoardErr = true;
-                        Console.WriteLine(answer);
-                    }
-                    cNet.write("get /instrumentation/gps/indicated-vertical-speed\n");
-
-                    stopWatch.Start();
-                    answer = cNet.read();
-                    stopWatch.Stop();
-                    if (stopWatch.Elapsed.Seconds > 10.0)
-                    {
-                        slowReaction = true;
-                    }
-                    stopWatch.Reset();
-
-                    if (IsNumber(answer))
-                    {
-                        VERTICAL_SPEED = Double.Parse(answer);
-                        Console.WriteLine("VERTICAL_SPEED" + VERTICAL_SPEED);
-                    }
-                    else
-                    {
-                        VERTICAL_SPEED = Double.NaN;
-                        BoardErr = true;
-                        Console.WriteLine(answer);
-                    }
-
-                    cNet.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
-
-                    stopWatch.Start();
-                    answer = cNet.read();
-                    stopWatch.Stop();
-                    if (stopWatch.Elapsed.Seconds > 10.0)
-                    {
-                        slowReaction = true;
-                    }
-                    stopWatch.Reset();
-
-                    if (IsNumber(answer))
-                    {
-                        GROUND_SPEED = Double.Parse(answer);
-                        Console.WriteLine("GROUND_SPEED" + GROUND_SPEED);
-                    }
-                    else
-                    {
-                        GROUND_SPEED = Double.NaN;
-                        BoardErr = true;
-                        Console.WriteLine(answer);
-                    }
-                    cNet.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
-
-                    stopWatch.Start();
-                    answer = cNet.read();
-                    stopWatch.Stop();
-                    if (stopWatch.Elapsed.Seconds > 10.0)
-                    {
-                        slowReaction = true;
-                    }
-                    stopWatch.Reset();
-
-                    if (IsNumber(answer))
-                    {
-                        AIR_SPEED = Double.Parse(answer);
-                        Console.WriteLine("AIR_SPEED" + AIR_SPEED);
-                    }
-                    else
-                    {
-                        AIR_SPEED = Double.NaN;
-                        BoardErr = true;
-                        Console.WriteLine(answer);
-                    }
-
-                    cNet.write("get /instrumentation/gps/indicated-altitude-ft\n");
-
-                    stopWatch.Start();
-                    answer = cNet.read();
-                    stopWatch.Stop();
-                    if (stopWatch.Elapsed.Seconds > 10.0)
-                    {
-                        slowReaction = true;
-                    }
-                    stopWatch.Reset();
-
-                    if (IsNumber(answer))
-                    {
-                        ALTITUDE = Double.Parse(answer);
-                        Console.WriteLine("ALTITUDE" + ALTITUDE);
-                    }
-                    else
-                    {
-                        ALTITUDE = Double.NaN;
-                        BoardErr = true;
-                        Console.WriteLine(answer);
-                    }
-                    cNet.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
-
-                    stopWatch.Start();
-                    answer = cNet.read();
-                    stopWatch.Stop();
-                    if (stopWatch.Elapsed.Seconds > 10.0)
-                    {
-                        slowReaction = true;
-                    }
-                    stopWatch.Reset();
-
-                    if (IsNumber(answer))
-                    {
-                        ROLL = Double.Parse(answer);
-                        Console.WriteLine("ROLL" + ROLL);
-                    }
-                    else
-                    {
-                        ROLL = Double.NaN;
-                        BoardErr = true;
-                        Console.WriteLine(answer);
-                    }
-                    cNet.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
-
-                    stopWatch.Start();
-                    answer = cNet.read();
-                    stopWatch.Stop();
-                    if (stopWatch.Elapsed.Seconds > 10.0)
-                    {
-                        slowReaction = true;
-                    }
-                    stopWatch.Reset();
-
-                    if (IsNumber(answer))
-                    {
-                        PITCH = Double.Parse(answer);
-                        Console.WriteLine("PITCH" + PITCH);
-                    }
-                    else
-                    {
-                        PITCH = Double.NaN;
-                        BoardErr = true;
-                        Console.WriteLine(answer);
-                    }
-                    cNet.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
-
-                    stopWatch.Start();
-                    answer = cNet.read();
-                    stopWatch.Stop();
-                    if (stopWatch.Elapsed.Seconds > 10.0)
-                    {
-                        slowReaction = true;
-                    }
-                    stopWatch.Reset();
-
-                    if (IsNumber(answer))
-                    {
-                        ALTIMETER = Double.Parse(answer);
-                        Console.WriteLine("ALTIMETER" + ALTIMETER);
-                    }
-                    else
-                    {
-                        ALTIMETER = Double.NaN;
-                        BoardErr = true;
-                        Console.WriteLine(answer);
-                    }
-                    //location
-
-                    cNet.write("get /position/longitude-deg\n");
-
-                    stopWatch.Start();
-                    answer = cNet.read();
-                    stopWatch.Stop();
-                    if (stopWatch.Elapsed.Seconds > 10.0)
-                    {
-                        slowReaction = true;
-                    }
-                    stopWatch.Reset();
-
-                    if (IsNumber(answer))
-                    {
-                        longitude_deg = Double.Parse(answer);
-                        Console.WriteLine("longitude_deg" + longitude_deg);
-                    }
-                    cNet.write("get /position/latitude-deg\n");
-
-                    stopWatch.Start();
-                    answer = cNet.read();
-                    stopWatch.Stop();
-                    if (stopWatch.Elapsed.Seconds > 10.0)
-                    {
-                        slowReaction = true;
-                    }
-                    stopWatch.Reset();
-
-                    if (IsNumber(answer))
-                    {
-                        latitude_deg = Double.Parse(answer);
-                        Console.WriteLine("latitude_deg" + latitude_deg);
-                    }
-                    //update location
-                    location = new Location(latitude_deg, longitude_deg);
-
-
-                    isInitialized = true;
-                    Thread.Sleep(350);
 
 
                 }

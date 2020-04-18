@@ -18,17 +18,21 @@ namespace FlightSimulatorApp
         TcpClient clientSocket;
         NetworkStream stream;
         Mutex m;
-        public void connect(string ip, int port)
+        public async void connect(string ip, int port)
         {
+            connection = false;
             clientSocket = new TcpClient();
             //saving ip and port as a members class
             this.ip = ip;
             this.port = port;
-            Thread cThread = new Thread(makeConnection);
-            cThread.Start();
-            while(connection == false){}
-            stream = clientSocket.GetStream();
             m = new Mutex(false, "mutex");
+
+            await Task.Run(() =>
+            {
+                makeConnection();
+
+            });
+           
 
 
 
@@ -40,6 +44,7 @@ namespace FlightSimulatorApp
             connection = false;
             stream.Close();
             clientSocket.Close();
+
             
             //m.Close();
 
@@ -74,27 +79,28 @@ namespace FlightSimulatorApp
 
                 clientSocket.Connect(ip, port);
                 Console.WriteLine("connected");
-                Thread.Sleep(150);
+                stream = clientSocket.GetStream();
                 connection = true;
+                Thread.Sleep(150);
                 
-                // thread loop - stopping when disconnection has been made
-                while (connection != false)
-                {
-                    ///....
-                }
-                Console.WriteLine("disconnected");
+                
 
             }
 
             catch (Exception e)
             {
-
+                connection = false;
                 Console.WriteLine("Error.." + e.StackTrace);
+                disconnect();
             }
         }
         public bool isConnected()
         {
             return connection;
+        }
+        public Mutex getMutex()
+        {
+            return this.m;
         }
     }
 }
