@@ -23,7 +23,7 @@
             <Setter Property="Foreground" Value="Gray"></Setter>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding VM_outOfBorder, Mode=OneWay}" Value="true">
-                    <Setter Property="Foreground" Value="Red"/>
+                    <Setter Property="Foreground" Value="#FFCF1E1E"/>
                     <Setter Property="FontWeight" Value="Bold"/>
                     <!--<Setter Property="FontSize" Value="15"/>-->
 
@@ -35,7 +35,7 @@
             <Setter Property="Foreground" Value="Gray"></Setter>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding VM_SlowReaction, Mode=OneWay}" Value="true">
-                    <Setter Property="Foreground" Value="Red"/>
+                    <Setter Property="Foreground" Value="#FFCF1E1E"/>
                     <Setter Property="FontWeight" Value="Bold"/>
                     <Setter Property="FontSize" Value="15"/>
                 </DataTrigger>
@@ -46,9 +46,18 @@
             <Setter Property="Foreground" Value="Gray"></Setter>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding VM_BoardErr, Mode=OneWay}" Value="true">
-                    <Setter Property="Foreground" Value="Red"/>
+                    <Setter Property="Foreground" Value="#FFCF1E1E"/>
                     <Setter Property="FontWeight" Value="Bold"/>
                     <Setter Property="FontSize" Value="15"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Label" x:Key="Reconnecting">
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding VM_BoardErr, Mode=OneWay}" Value="true">
+                    <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -57,7 +66,7 @@
             <Setter Property="Foreground" Value="Gray"></Setter>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding VM_ServerErr, Mode=OneWay}" Value="true">
-                    <Setter Property="Foreground" Value="Red"/>
+                    <Setter Property="Foreground" Value="#FFCF1E1E"/>
                     <Setter Property="FontWeight" Value="Bold"/>
                     <Setter Property="Content" Value="ServerError"/>
 
@@ -76,10 +85,10 @@
         </Style>
 
         <Style TargetType="TextBox" x:Key="address">
-            <Setter Property="Text" Value="disconnected"></Setter>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding VM_Connection, Mode=OneWay}" Value="true">
-                    <Setter Property="Text" Value="connected!"/>
+                    <Setter Property="IsReadOnly" Value="True"/>
+                    <Setter Property="Background" Value="DarkKhaki"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -109,8 +118,9 @@
         <Label Style="{StaticResource SlowReactionErr}" Content="SlowReaction" HorizontalAlignment="Left" Height="30" Margin="50,51,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1"/>
         <Label Style="{StaticResource outOfBorderErr}" Content="OutOfBorder" HorizontalAlignment="Left" Height="30" Margin="160,51,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1"/>
         <Label Style="{StaticResource BoardErr}" Content="BoardError" HorizontalAlignment="Left" Height="30" Margin="270,51,0,0" VerticalAlignment="Top" Width="89" Grid.Column="1"/>
-        <TextBox x:Name="addressBox" Text="{Binding VM_Address, Mode=TwoWay}" HorizontalAlignment="Left" Height="22" Margin="445,12,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="59" TextChanged="addressBox_TextChanged" Grid.Column="1"/>
-        <TextBox x:Name="ipBox" Text="{Binding VM_Port, Mode=TwoWay}" HorizontalAlignment="Left" Height="22" Margin="360,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" KeyDown="TextBox_KeyDown" Grid.Column="1"/>
+        <Label Style="{StaticResource Reconnecting}" Content="connection problem, please wait while reconnecting." Margin="80,86,802,704" Grid.ColumnSpan="2" FontSize="20" Foreground="#FFCF1E1E" />
+        <TextBox x:Name="addressBox" Style="{StaticResource address}" Text="{Binding VM_Address, Mode=TwoWay}" HorizontalAlignment="Left" Height="22" Margin="445,12,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="59" TextChanged="addressBox_TextChanged" Grid.Column="1"/>
+        <TextBox x:Name="ipBox" Style="{StaticResource address}" Text="{Binding VM_Port, Mode=TwoWay}" HorizontalAlignment="Left" Height="22" Margin="360,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" KeyDown="TextBox_KeyDown" Grid.Column="1"/>
         <Label Content="IP:" Grid.Column="1" HorizontalAlignment="Left" Margin="422,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF4A70B1"/>
         <Label Content="Port:" Grid.Column="1" HorizontalAlignment="Left" Margin="322,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF4A70B1"/>
         <Label Style="{StaticResource serverError}"  HorizontalAlignment="Left" Height="30" Margin="112,7,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1"/>

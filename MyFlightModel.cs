@@ -173,6 +173,17 @@ namespace FlightSimulatorApp
             }
         }
 
+        bool reconnecting;
+        public bool Reconnecting
+        {
+            get { return reconnecting; }
+            set
+            {
+                reconnecting = value;
+                NotifyPropertyChangedtify("Reconnecting");
+            }
+        }
+
         // location update
         private double _longitude_deg = 34.8854;
 
