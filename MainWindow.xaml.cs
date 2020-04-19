@@ -40,14 +40,13 @@ namespace FlightSimulatorApp
         }
 
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private  void Button_Click(object sender, RoutedEventArgs e)
         {
             if (vm.getModel().isConnected() != true)
             {
-                await Task.Run(() =>
-                {
+                
                     vm.connect();
-                });
+                
                 Thread.Sleep(1000);
                 if (vm.getModel().isConnected() == true)
                 {
@@ -66,7 +65,7 @@ namespace FlightSimulatorApp
         }
 
 
-        private  void myJoystick_MouseMove(object sender, MouseEventArgs e)
+        private void myJoystick_MouseMove(object sender, MouseEventArgs e)
         {
             if (myJoystick.KnobChanged)
             {

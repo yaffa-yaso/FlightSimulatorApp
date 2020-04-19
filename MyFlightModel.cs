@@ -7,7 +7,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Maps.MapControl.WPF;
 using System.Diagnostics;
+using System.Collections;
 namespace FlightSimulatorApp
+
 
 
 {
@@ -21,6 +23,8 @@ namespace FlightSimulatorApp
         string throttleTest;
         string aileronTest;
         string elevatorTest;
+        Queue<string> my_queue = new Queue<string>();
+
 
         public MyFlightModel(TelNetClient client)
         {
@@ -196,7 +200,7 @@ namespace FlightSimulatorApp
             get { return _longitude_deg; }
             set
             {
-                if (value > 180 || value < -180)
+                if (value > 210 || value < -210)
                 {
                     outOfBorder = true;
                 }
@@ -214,7 +218,7 @@ namespace FlightSimulatorApp
             get { return _latitude_deg; }
             set
             {
-                if (value > 77.5 || value < 77.5)
+                if (value > 77.5 || value < -77.5)
                 {
                     this.outOfBorder = true;
                 }
@@ -267,26 +271,14 @@ namespace FlightSimulatorApp
         {
             if (Connection)
             {
-                bool lockWasTaken = false;
-                try
-                {
-                    Monitor.Enter(cNet, ref lockWasTaken);
-                    cNet.write("set /controls/flight/rudder " + rudder + "\n");
-                    string rudderTest = cNet.read();
-                    cNet.write("get /controls/flight/rudder " + "\n");
-                    rudderTest = cNet.read();
-                    cNet.write("set /controls/flight/elevator " + elevator + "\n");
-                    string elevatorTest = cNet.read();
-                    cNet.write("get /controls/flight/elevator " + "\n");
-                    elevatorTest = cNet.read();
-                }
-                finally
-                {
-                    if (lockWasTaken)
-                    {
-                        Monitor.Exit(cNet);
-                    }
-                }
+              
+                   
+                    my_queue.Enqueue("set /controls/flight/rudder " + rudder + "\n");
+                    my_queue.Enqueue("get /controls/flight/rudder " + "\n");
+                    my_queue.Enqueue("set /controls/flight/elevator " + elevator + "\n");
+                    my_queue.Enqueue("get /controls/flight/elevator " + "\n");
+                
+               
             }
         }
 
@@ -295,22 +287,10 @@ namespace FlightSimulatorApp
             if (Connection)
             {
 
-                bool lockWasTaken = false;
-                try
-                {
-                    Monitor.Enter(cNet, ref lockWasTaken);
-                    cNet.write("set /controls/engines/current-engine/throttle " + throttle + "\n");
-                    string throttleTest = cNet.read();
-                    cNet.write("get /controls/engines/current-engine/throttle " + "\n");
-                    throttleTest = cNet.read();
-                }
-                finally
-                {
-                    if (lockWasTaken)
-                    {
-                        Monitor.Exit(cNet);
-                    }
-                }
+                
+                    my_queue.Enqueue("set /controls/engines/current-engine/throttle " + throttle + "\n");
+                    my_queue.Enqueue("get /controls/engines/current-engine/throttle " + "\n");
+                
             }
         }
 
@@ -318,22 +298,13 @@ namespace FlightSimulatorApp
         {
             if (Connection)
             {
-                bool lockWasTaken = false;
-                try
-                {
-                    Monitor.Enter(cNet, ref lockWasTaken);
-                    cNet.write("set /controls/flight/aileron " + aileron + "\n");
-                    string aileronTest = cNet.read();
-                    cNet.write("get /controls/flight/aileron " + "\n");
-                    aileronTest = cNet.read();
-                }
-                finally
-                {
-                    if (lockWasTaken)
-                    {
-                        Monitor.Exit(cNet);
-                    }
-                }
+              
+                    my_queue.Enqueue("set /controls/flight/aileron " + aileron + "\n");
+                    my_queue.Enqueue("get /controls/flight/aileron " + "\n");
+                
+               
+                    
+                
             }
         }
 
@@ -343,8 +314,10 @@ namespace FlightSimulatorApp
             SlowReaction = false;
             stop = false;
             cNet.connect(this.Address, this.Port);
-            Thread.Sleep(1000);
-            Connection = isConnected();
+            if (isConnected() != true)
+            {
+                ServerErr = true;
+            }
         }
         public void disConnect()
         {
@@ -587,12 +560,12 @@ namespace FlightSimulatorApp
                         isInitialized = true;
                         Thread.Sleep(350);
                     }
-                    catch(Exception E)
+                    catch (Exception E)
                     {
                         ServerErr = true;
                         Console.WriteLine("server error");
                         disConnect();
-                        this.cNet.getMutex().ReleaseMutex();
+                        
                     }
 
 
@@ -633,7 +606,37 @@ namespace FlightSimulatorApp
         }
         public void makeConnect()
         {
-            Connection = true ;
+            Connection = true;
+            Thread jThread = new Thread(joyStart);
+            jThread.Start();
+        }
+
+        public void joyStart()
+        {
+            {
+                try
+                {
+
+                    // thread loop - stopping when disconnection has been made
+                    while (Connection != false)
+                    {
+                        if (my_queue.Count != 0)
+                        {
+                            cNet.write(my_queue.Dequeue());
+                            throttleTest = cNet.read();
+                        }
+                    }
+
+
+                }
+
+                catch (Exception e)
+                {
+
+                    Console.WriteLine("Error.." + e.StackTrace);
+                }
+            }
+
         }
     }
 }
