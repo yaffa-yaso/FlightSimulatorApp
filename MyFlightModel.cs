@@ -267,14 +267,26 @@ namespace FlightSimulatorApp
         {
             if (Connection)
             {
-                cNet.write("set /controls/flight/rudder " + rudder + "\n");
-                 rudderTest = cNet.read();
-                cNet.write("get /controls/flight/rudder " + "\n");
-                 rudderTest = cNet.read();
-                cNet.write("set /controls/flight/elevator " + elevator + "\n");
-                 elevatorTest = cNet.read();
-                cNet.write("get /controls/flight/elevator " + "\n");
-                 elevatorTest = cNet.read();
+                bool lockWasTaken = false;
+                try
+                {
+                    Monitor.Enter(cNet, ref lockWasTaken);
+                    cNet.write("set /controls/flight/rudder " + rudder + "\n");
+                    string rudderTest = cNet.read();
+                    cNet.write("get /controls/flight/rudder " + "\n");
+                    rudderTest = cNet.read();
+                    cNet.write("set /controls/flight/elevator " + elevator + "\n");
+                    string elevatorTest = cNet.read();
+                    cNet.write("get /controls/flight/elevator " + "\n");
+                    elevatorTest = cNet.read();
+                }
+                finally
+                {
+                    if (lockWasTaken)
+                    {
+                        Monitor.Exit(cNet);
+                    }
+                }
             }
         }
 
@@ -282,10 +294,23 @@ namespace FlightSimulatorApp
         {
             if (Connection)
             {
-                cNet.write("set /controls/engines/current-engine/throttle " + throttle + "\n");
-                 throttleTest = cNet.read();
-                cNet.write("get /controls/engines/current-engine/throttle " + "\n");
-                 throttleTest = cNet.read();
+
+                bool lockWasTaken = false;
+                try
+                {
+                    Monitor.Enter(cNet, ref lockWasTaken);
+                    cNet.write("set /controls/engines/current-engine/throttle " + throttle + "\n");
+                    string throttleTest = cNet.read();
+                    cNet.write("get /controls/engines/current-engine/throttle " + "\n");
+                    throttleTest = cNet.read();
+                }
+                finally
+                {
+                    if (lockWasTaken)
+                    {
+                        Monitor.Exit(cNet);
+                    }
+                }
             }
         }
 
@@ -293,10 +318,22 @@ namespace FlightSimulatorApp
         {
             if (Connection)
             {
-                cNet.write("set /controls/flight/aileron " + aileron + "\n");
-                string aileronTest = cNet.read();
-                cNet.write("get /controls/flight/aileron " + "\n");
-                 aileronTest = cNet.read();
+                bool lockWasTaken = false;
+                try
+                {
+                    Monitor.Enter(cNet, ref lockWasTaken);
+                    cNet.write("set /controls/flight/aileron " + aileron + "\n");
+                    string aileronTest = cNet.read();
+                    cNet.write("get /controls/flight/aileron " + "\n");
+                    aileronTest = cNet.read();
+                }
+                finally
+                {
+                    if (lockWasTaken)
+                    {
+                        Monitor.Exit(cNet);
+                    }
+                }
             }
         }
 
@@ -306,10 +343,8 @@ namespace FlightSimulatorApp
             SlowReaction = false;
             stop = false;
             cNet.connect(this.Address, this.Port);
-            //if (isConnected() != true)
-            //{
-            //    ServerErr = true;
-            //}
+            Thread.Sleep(1000);
+            Connection = isConnected();
         }
         public void disConnect()
         {

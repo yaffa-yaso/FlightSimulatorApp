@@ -104,7 +104,7 @@
         <Image Style="{StaticResource connetion}" HorizontalAlignment="Left" Height="27" Margin="35,51,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="-1.167,0.227" />
         <Label Style="{StaticResource SlowReactionErr}" Content="SlowReaction" HorizontalAlignment="Left" Height="30" Margin="43,51,0,0" VerticalAlignment="Top" Width="112" Grid.Column="1"/>
         <Label Style="{StaticResource outOfBorderErr}" Content="OutOfBorder" HorizontalAlignment="Left" Height="30" Margin="160,51,0,0" VerticalAlignment="Top" Width="105" Grid.Column="1"/>
-        <Label Style="{StaticResource BoardErr}" Content="BoardError" HorizontalAlignment="Left" Height="30" Margin="277,51,0,0" VerticalAlignment="Top" Width="89" Grid.Column="1"/>
+        <Label Style="{StaticResource BoardErr}" Content="DashBoardError" HorizontalAlignment="Left" Height="30" Margin="277,51,0,0" VerticalAlignment="Top" Width="89" Grid.Column="1"/>
         <Label Style="{StaticResource serverError}" Content="connection problem, please try to reconnect." Margin="80,86,802,704" Grid.ColumnSpan="2" FontSize="20" Foreground="#FFCF1E1E" />
         <TextBox x:Name="addressBox" Style="{StaticResource address}" Text="{Binding VM_Address, Mode=TwoWay}" HorizontalAlignment="Left" Height="22" Margin="445,12,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="59" TextChanged="addressBox_TextChanged" Grid.Column="1"/>
         <TextBox x:Name="ipBox" Style="{StaticResource address}" Text="{Binding VM_Port, Mode=TwoWay}" HorizontalAlignment="Left" Height="22" Margin="360,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" KeyDown="TextBox_KeyDown" Grid.Column="1"/>
