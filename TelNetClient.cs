@@ -15,7 +15,7 @@ namespace FlightSimulatorApp
         string Read();
         void Disconnect();
         bool IsConnected();
-        Mutex GetMutex();
+        Mutex getMutex();
 
 
     }

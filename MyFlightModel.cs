@@ -23,7 +23,7 @@ namespace FlightSimulatorApp
             CNet = client;
             Stop = false;
             IsInitialized = false;
-            Location = new Location(LatitudeDeg, LongitudeDeg);
+            MyLocation = new Location(LatitudeDeg, LongitudeDeg);
 
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -184,7 +184,7 @@ namespace FlightSimulatorApp
             }
         }
 
-        // Location update
+        // MyLocation update
         private double longitudeDeg = 34.8854;
 
         public double LongitudeDeg
@@ -220,13 +220,13 @@ namespace FlightSimulatorApp
         }
 
         private Location location;
-        public Location Location
+        public Location MyLocation
         {
             get { return location; }
             set
             {
                 location = value;
-                NotifyPropertyChangedtify("Location"); ;
+                NotifyPropertyChangedtify("MyLocation"); ;
             }
         }
 
@@ -539,7 +539,7 @@ namespace FlightSimulatorApp
                             BoardErr = true;
                             Console.WriteLine(answer);
                         }
-                        //Location
+                        //MyLocation
 
                         CNet.Write("get /position/longitude-deg\n");
 
@@ -573,8 +573,8 @@ namespace FlightSimulatorApp
                             LatitudeDeg = Double.Parse(answer);
                             Console.WriteLine("latitude_deg" + LatitudeDeg);
                         }
-                        //update Location
-                        Location = new Location(LatitudeDeg, LongitudeDeg);
+                        //update MyLocation
+                        MyLocation = new Location(LatitudeDeg, LongitudeDeg);
 
 
                         IsInitialized = true;

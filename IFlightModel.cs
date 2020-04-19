@@ -33,10 +33,10 @@ namespace FlightSimulatorApp
 
 
 
-        // Location
+        // MyLocation
         double LatitudeDeg { set; get; }
         double LongitudeDeg { set; get; }
-        Location Location { set; get; }
+        Location MyLocation { set; get; }
 
 
 

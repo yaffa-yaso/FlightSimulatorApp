@@ -102,7 +102,7 @@ namespace FlightSimulatorApp
         {
             return Connection;
         }
-        public Mutex GetMutex()
+        public Mutex getMutex()
         {
             return this.Mut;
         }

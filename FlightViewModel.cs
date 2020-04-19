@@ -68,7 +68,7 @@ namespace FlightSimulatorApp
             get { return model.Altimeter; }
         }
 
-        // Location
+        // MyLocation
         public double VM_LatitudeDeg
         {
             get { return model.LatitudeDeg; }
@@ -91,10 +91,10 @@ namespace FlightSimulatorApp
             set { model.ChangeAileron(value); }
         }
 
-        //return the Location 
-        public Location VM_Location
+        //return the MyLocation 
+        public Location VM_MyLocation
         {
-            get { return model.Location; }
+            get { return model.MyLocation; }
         }
 
 
