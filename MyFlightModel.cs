@@ -11,120 +11,120 @@ namespace FlightSimulatorApp
 
 
 {
-    class MyFlightModel : FlightModel
+    class MyFlightModel : IFlightModel
     {
-        TelNetClient cNet;
-        bool stop;
-        bool isInitialized;
-        private Stopwatch stopWatch = new Stopwatch();
+        static TelNetClient CNet;
+        bool Stop;
+        bool IsInitialized;
+        private Stopwatch StopWatch = new Stopwatch();
 
         public MyFlightModel(TelNetClient client)
         {
-            this.cNet = client;
-            stop = false;
-            isInitialized = false;
-            location = new Location(latitude_deg, longitude_deg);
+            CNet = client;
+            Stop = false;
+            IsInitialized = false;
+            Location = new Location(LatitudeDeg, LongitudeDeg);
 
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
 
-        private double _HEADING = 0;
-        public double HEADING
+        private double heading = 0;
+        public double Heading
         {
-            get { return _HEADING; }
+            get { return heading; }
             set
             {
-                _HEADING = value;
-                NotifyPropertyChangedtify("HEADING");
+                heading = value;
+                NotifyPropertyChangedtify("Heading");
             }
         }
-        private double _VERTICAL_SPEED = 0;
-        public double VERTICAL_SPEED
+        private double verticalSpeed = 0;
+        public double VerticalSpeed
         {
 
 
-            get { return _VERTICAL_SPEED; }
+            get { return verticalSpeed; }
             set
             {
-                _VERTICAL_SPEED = value;
-                NotifyPropertyChangedtify("VERTICAL_SPEED"); ;
+                verticalSpeed = value;
+                NotifyPropertyChangedtify("VerticalSpeed"); ;
             }
         }
-        private double _GROUND_SPEED = 0;
-        public double GROUND_SPEED
+        private double groundSpeed = 0;
+        public double GroundSpeed
         {
-            get { return _GROUND_SPEED; }
+            get { return groundSpeed; }
             set
             {
-                _GROUND_SPEED = value;
-                NotifyPropertyChangedtify("GROUND_SPEED"); ;
+                groundSpeed = value;
+                NotifyPropertyChangedtify("GroundSpeed"); ;
             }
         }
-        private double _AIR_SPEED = 0;
-        public double AIR_SPEED
+        private double airSpeed = 0;
+        public double AirSpeed
         {
-            get { return _AIR_SPEED; }
+            get { return airSpeed; }
             set
             {
-                _AIR_SPEED = value;
-                NotifyPropertyChangedtify("AIR_SPEED"); ;
+                airSpeed = value;
+                NotifyPropertyChangedtify("AirSpeed"); ;
             }
         }
-        private double _ALTITUDE = 0;
-        public double ALTITUDE
+        private double altitude = 0;
+        public double Altitude
         {
-            get { return _ALTITUDE; }
+            get { return altitude; }
             set
             {
-                _ALTITUDE = value;
-                NotifyPropertyChangedtify("ALTITUDE"); ;
+                altitude = value;
+                NotifyPropertyChangedtify("Altitude"); ;
             }
         }
-        private double _ROLL = 0;
-        public double ROLL
+        private double roll = 0;
+        public double Roll
         {
-            get { return _ROLL; }
+            get { return roll; }
             set
             {
-                _ROLL = value;
-                NotifyPropertyChangedtify("ROLL"); ;
+                roll = value;
+                NotifyPropertyChangedtify("Roll"); ;
             }
         }
-        private double _PITCH = 0;
-        public double PITCH
+        private double pitch = 0;
+        public double Pitch
         {
-            get { return _PITCH; }
+            get { return pitch; }
             set
             {
-                _PITCH = value;
-                NotifyPropertyChangedtify("PITCH"); ;
+                pitch = value;
+                NotifyPropertyChangedtify("Pitch"); ;
             }
         }
-        private double _ALTIMETER = 0;
-        public double ALTIMETER
+        private double altimeter = 0;
+        public double Altimeter
         {
-            get { return _ALTIMETER; }
+            get { return altimeter; }
             set
             {
-                _ALTIMETER = value;
-                NotifyPropertyChangedtify("ALTIMETER"); ;
+                altimeter = value;
+                NotifyPropertyChangedtify("Altimeter"); ;
             }
         }
 
 
         // outOfborder error
 
-        private bool _outOfBorder;
+        private bool outOfBorder;
 
-        public bool outOfBorder
+        public bool OutOfBorder
         {
-            get { return _outOfBorder; }
+            get { return outOfBorder; }
             set
             {
 
-                _outOfBorder = value;
-                NotifyPropertyChangedtify("outOfBorder"); ;
+                outOfBorder = value;
+                NotifyPropertyChangedtify("OutOfBorder"); ;
             }
         }
 
@@ -140,24 +140,24 @@ namespace FlightSimulatorApp
             }
         }
 
-        int _Port = 5402;
+        int port = 5402;
         public int Port
         {
-            get { return _Port; }
+            get { return port; }
             set
             {
-                _Port = value;
+                port = value;
                 NotifyPropertyChangedtify("Port");
             }
         }
 
-        string _Address = "127.0.0.1";
+        string address = "127.0.0.1";
         public string Address
         {
-            get { return _Address; }
+            get { return address; }
             set
             {
-                _Address = value;
+                address = value;
                 NotifyPropertyChangedtify("Address");
             }
         }
@@ -184,411 +184,407 @@ namespace FlightSimulatorApp
             }
         }
 
-        // location update
-        private double _longitude_deg = 34.8854;
+        // Location update
+        private double longitudeDeg = 34.8854;
 
-        public double longitude_deg
+        public double LongitudeDeg
         {
-            get { return _longitude_deg; }
+            get { return longitudeDeg; }
             set
             {
                 if (value > 180 || value < -180)
                 {
-                    outOfBorder = true;
+                    OutOfBorder = true;
                 }
                 else
                 {
-                    _longitude_deg = value;
-                    NotifyPropertyChangedtify("longitude_deg"); ;
+                    longitudeDeg = value;
+                    NotifyPropertyChangedtify("Longitude_deg"); ;
                 }
             }
         }
 
-        private double _latitude_deg = 32.0055;
-        public double latitude_deg
+        private double latitudeDeg = 32.0055;
+        public double LatitudeDeg
         {
-            get { return _latitude_deg; }
+            get { return latitudeDeg; }
             set
             {
-                if (value > 77.5 || value < 77.5)
+                if (value > 77.5 || value < -77.5)
                 {
-                    this.outOfBorder = true;
+                    this.OutOfBorder = true;
                 }
-                _latitude_deg = value;
-                NotifyPropertyChangedtify("latitude_deg"); ;
-
-
-
+                latitudeDeg = value;
+                NotifyPropertyChangedtify("Latitude_deg"); ;
             }
         }
 
-        private Location _location;
-        public Location location
+        private Location location;
+        public Location Location
         {
-            get { return _location; }
+            get { return location; }
             set
             {
-                _location = value;
-                NotifyPropertyChangedtify("location"); ;
+                location = value;
+                NotifyPropertyChangedtify("Location"); ;
             }
         }
 
-        private bool _Connection;
+        private bool connection;
         public bool Connection
         {
-            get { return _Connection; }
+            get { return connection; }
             set
             {
-                _Connection = value;
+                connection = value;
                 NotifyPropertyChangedtify("Connection"); ;
             }
         }
-        public bool _ServerErr;
+        public bool serverErr;
 
         public bool ServerErr
         {
-            get { return _ServerErr; }
+            get { return serverErr; }
             set
             {
-                _ServerErr = value;
+                serverErr = value;
                 NotifyPropertyChangedtify("ServerErr"); ;
             }
         }
 
 
-        public double rudder { set => throw new NotImplementedException(); }
-        public double elevator { set => throw new NotImplementedException(); }
+        public double Rudder { set => throw new NotImplementedException(); }
+        public double Elevator { set => throw new NotImplementedException(); }
 
-        public void move(double rudder, double elevator)
+        public void Move(double rudder, double elevator)
         {
-            if (_Connection)
+            if (Connection)
             {
                 bool lockWasTaken = false;
                 try
                 {
-                    Monitor.Enter(cNet, ref lockWasTaken);
-                    cNet.write("set /controls/flight/rudder " + rudder + "\n");
-                    string rudderTest = cNet.read();
-                    cNet.write("get /controls/flight/rudder " + "\n");
-                    rudderTest = cNet.read();
-                    cNet.write("set /controls/flight/elevator " + elevator + "\n");
-                    string elevatorTest = cNet.read();
-                    cNet.write("get /controls/flight/elevator " + "\n");
-                    elevatorTest = cNet.read();
+                    Monitor.Enter(CNet, ref lockWasTaken);
+                    CNet.Write("set /controls/flight/rudder " + rudder + "\n");
+                    string rudderTest = CNet.Read();
+                    CNet.Write("get /controls/flight/rudder " + "\n");
+                    rudderTest = CNet.Read();
+                    CNet.Write("set /controls/flight/elevator " + elevator + "\n");
+                    string elevatorTest = CNet.Read();
+                    CNet.Write("get /controls/flight/elevator " + "\n");
+                    elevatorTest = CNet.Read();
                 }
                 finally
                 {
                     if (lockWasTaken)
                     {
-                        Monitor.Exit(cNet);
+                        Monitor.Exit(CNet);
                     }
                 }
             }
         }
 
-        public void changeSpeed(double throttle)
+        public void ChangeSpeed(double throttle)
         {
-            if (_Connection)
+            if (Connection)
             {
 
-                bool lockWasTaken = false;
+                bool LockWasTaken = false;
                 try
                 {
-                    Monitor.Enter(cNet, ref lockWasTaken);
-                    cNet.write("set /controls/engines/current-engine/throttle " + throttle + "\n");
-                    string throttleTest = cNet.read();
-                    cNet.write("get /controls/engines/current-engine/throttle " + "\n");
-                    throttleTest = cNet.read();
+                    Monitor.Enter(CNet, ref LockWasTaken);
+                    CNet.Write("set /controls/engines/current-engine/throttle " + throttle + "\n");
+                    string throttleTest = CNet.Read();
+                    CNet.Write("get /controls/engines/current-engine/throttle " + "\n");
+                    throttleTest = CNet.Read();
                 }
                 finally
                 {
-                    if (lockWasTaken)
+                    if (LockWasTaken)
                     {
-                        Monitor.Exit(cNet);
+                        Monitor.Exit(CNet);
                     }
                 }
             }
         }
 
-        public void changeAileron(double aileron)
+        public void ChangeAileron(double aileron)
         {
-            if (_Connection)
+            if (Connection)
             {
-                bool lockWasTaken = false;
+                bool LockWasTaken = false;
                 try
                 {
-                    Monitor.Enter(cNet, ref lockWasTaken);
-                    cNet.write("set /controls/flight/aileron " + aileron + "\n");
-                    string aileronTest = cNet.read();
-                    cNet.write("get /controls/flight/aileron " + "\n");
-                    aileronTest = cNet.read();
+                    Monitor.Enter(CNet, ref LockWasTaken);
+                    CNet.Write("set /controls/flight/aileron " + aileron + "\n");
+                    string aileronTest = CNet.Read();
+                    CNet.Write("get /controls/flight/aileron " + "\n");
+                    aileronTest = CNet.Read();
                 }
                 finally
                 {
-                    if (lockWasTaken)
+                    if (LockWasTaken)
                     {
-                        Monitor.Exit(cNet);
+                        Monitor.Exit(CNet);
                     }
                 }
             }
         }
 
-        public void connect()
+        public void Connect()
         {
             ServerErr = false;
             SlowReaction = false;
-            stop = false;
-            cNet.connect(this.Address, this.Port);
+            Stop = false;
+            CNet.Connect(this.Address, this.Port);
             Thread.Sleep(1000);
-            Connection = isConnected();
+            Connection = IsConnected();
         }
-        public void disConnect()
+        public void DisConnect()
         {
-            stop = true;
-            cNet.disconnect();
+            Stop = true;
+            CNet.Disconnect();
             Connection = false;
 
         }
-        public void start()
+        public void Start()
         {
 
 
             new Thread(delegate ()
             {
-                Console.WriteLine(stop);
+                Console.WriteLine(Stop);
 
-                while (!stop)
+                while (!Stop)
                 {
 
                     try
                     {
 
                         string answer;
-                        cNet.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
+                        CNet.Write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
 
-                        stopWatch.Start();
-                        answer = cNet.read();
-                        stopWatch.Stop();
-                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
+                        StopWatch.Start();
+                        answer = CNet.Read();
+                        StopWatch.Stop();
+                        if (StopWatch.Elapsed.TotalSeconds > 10.0)
                         {
                             SlowReaction = true;
                         }
-                        stopWatch.Reset();
+                        StopWatch.Reset();
 
                         if (IsNumber(answer))
                         {
-                            HEADING = Double.Parse(answer);
-                            Console.WriteLine("HEADING" + HEADING);
+                            Heading = Double.Parse(answer);
+                            Console.WriteLine("HEADING" + Heading);
                         }
                         else
                         {
-                            HEADING = Double.NaN;
+                            Heading = Double.NaN;
                             BoardErr = true;
                             Console.WriteLine(answer);
                         }
-                        cNet.write("get /instrumentation/gps/indicated-vertical-speed\n");
+                        CNet.Write("get /instrumentation/gps/indicated-vertical-speed\n");
 
-                        stopWatch.Start();
-                        answer = cNet.read();
-                        stopWatch.Stop();
-                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
+                        StopWatch.Start();
+                        answer = CNet.Read();
+                        StopWatch.Stop();
+                        if (StopWatch.Elapsed.TotalSeconds > 10.0)
                         {
                             SlowReaction = true;
                         }
-                        stopWatch.Reset();
+                        StopWatch.Reset();
 
                         if (IsNumber(answer))
                         {
-                            VERTICAL_SPEED = Double.Parse(answer);
-                            Console.WriteLine("VERTICAL_SPEED" + VERTICAL_SPEED);
+                            VerticalSpeed = Double.Parse(answer);
+                            Console.WriteLine("VERTICAL_SPEED" + VerticalSpeed);
                         }
                         else
                         {
-                            VERTICAL_SPEED = Double.NaN;
-                            BoardErr = true;
-                            Console.WriteLine(answer);
-                        }
-
-                        cNet.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
-
-                        stopWatch.Start();
-                        answer = cNet.read();
-                        stopWatch.Stop();
-                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
-                        {
-                            SlowReaction = true;
-                        }
-                        stopWatch.Reset();
-
-                        if (IsNumber(answer))
-                        {
-                            GROUND_SPEED = Double.Parse(answer);
-                            Console.WriteLine("GROUND_SPEED" + GROUND_SPEED);
-                        }
-                        else
-                        {
-                            GROUND_SPEED = Double.NaN;
-                            BoardErr = true;
-                            Console.WriteLine(answer);
-                        }
-                        cNet.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
-
-                        stopWatch.Start();
-                        answer = cNet.read();
-                        stopWatch.Stop();
-                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
-                        {
-                            SlowReaction = true;
-                        }
-                        stopWatch.Reset();
-
-                        if (IsNumber(answer))
-                        {
-                            AIR_SPEED = Double.Parse(answer);
-                            Console.WriteLine("AIR_SPEED" + AIR_SPEED);
-                        }
-                        else
-                        {
-                            AIR_SPEED = Double.NaN;
+                            VerticalSpeed = Double.NaN;
                             BoardErr = true;
                             Console.WriteLine(answer);
                         }
 
-                        cNet.write("get /instrumentation/gps/indicated-altitude-ft\n");
+                        CNet.Write("get /instrumentation/gps/indicated-ground-speed-kt\n");
 
-                        stopWatch.Start();
-                        answer = cNet.read();
-                        stopWatch.Stop();
-                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
+                        StopWatch.Start();
+                        answer = CNet.Read();
+                        StopWatch.Stop();
+                        if (StopWatch.Elapsed.TotalSeconds > 10.0)
                         {
                             SlowReaction = true;
                         }
-                        stopWatch.Reset();
+                        StopWatch.Reset();
 
                         if (IsNumber(answer))
                         {
-                            ALTITUDE = Double.Parse(answer);
-                            Console.WriteLine("ALTITUDE" + ALTITUDE);
+                            GroundSpeed = Double.Parse(answer);
+                            Console.WriteLine("GROUND_SPEED" + GroundSpeed);
                         }
                         else
                         {
-                            ALTITUDE = Double.NaN;
+                            GroundSpeed = Double.NaN;
                             BoardErr = true;
                             Console.WriteLine(answer);
                         }
-                        cNet.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
+                        CNet.Write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
 
-                        stopWatch.Start();
-                        answer = cNet.read();
-                        stopWatch.Stop();
-                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
+                        StopWatch.Start();
+                        answer = CNet.Read();
+                        StopWatch.Stop();
+                        if (StopWatch.Elapsed.TotalSeconds > 10.0)
                         {
                             SlowReaction = true;
                         }
-                        stopWatch.Reset();
+                        StopWatch.Reset();
 
                         if (IsNumber(answer))
                         {
-                            ROLL = Double.Parse(answer);
-                            Console.WriteLine("ROLL" + ROLL);
+                            AirSpeed = Double.Parse(answer);
+                            Console.WriteLine("AIR_SPEED" + AirSpeed);
                         }
                         else
                         {
-                            ROLL = Double.NaN;
+                            AirSpeed = Double.NaN;
                             BoardErr = true;
                             Console.WriteLine(answer);
                         }
-                        cNet.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
 
-                        stopWatch.Start();
-                        answer = cNet.read();
-                        stopWatch.Stop();
-                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
+                        CNet.Write("get /instrumentation/gps/indicated-altitude-ft\n");
+
+                        StopWatch.Start();
+                        answer = CNet.Read();
+                        StopWatch.Stop();
+                        if (StopWatch.Elapsed.TotalSeconds > 10.0)
                         {
                             SlowReaction = true;
                         }
-                        stopWatch.Reset();
+                        StopWatch.Reset();
 
                         if (IsNumber(answer))
                         {
-                            PITCH = Double.Parse(answer);
-                            Console.WriteLine("PITCH" + PITCH);
+                            Altitude = Double.Parse(answer);
+                            Console.WriteLine("ALTITUDE" + Altitude);
                         }
                         else
                         {
-                            PITCH = Double.NaN;
+                            Altitude = Double.NaN;
                             BoardErr = true;
                             Console.WriteLine(answer);
                         }
-                        cNet.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
+                        CNet.Write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
 
-                        stopWatch.Start();
-                        answer = cNet.read();
-                        stopWatch.Stop();
-                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
+                        StopWatch.Start();
+                        answer = CNet.Read();
+                        StopWatch.Stop();
+                        if (StopWatch.Elapsed.TotalSeconds > 10.0)
                         {
                             SlowReaction = true;
                         }
-                        stopWatch.Reset();
+                        StopWatch.Reset();
 
                         if (IsNumber(answer))
                         {
-                            ALTIMETER = Double.Parse(answer);
-                            Console.WriteLine("ALTIMETER" + ALTIMETER);
+                            Roll = Double.Parse(answer);
+                            Console.WriteLine("ROLL" + Roll);
                         }
                         else
                         {
-                            ALTIMETER = Double.NaN;
+                            Roll = Double.NaN;
                             BoardErr = true;
                             Console.WriteLine(answer);
                         }
-                        //location
+                        CNet.Write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
 
-                        cNet.write("get /position/longitude-deg\n");
-
-                        stopWatch.Start();
-                        answer = cNet.read();
-                        stopWatch.Stop();
-                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
+                        StopWatch.Start();
+                        answer = CNet.Read();
+                        StopWatch.Stop();
+                        if (StopWatch.Elapsed.TotalSeconds > 10.0)
                         {
                             SlowReaction = true;
                         }
-                        stopWatch.Reset();
+                        StopWatch.Reset();
 
                         if (IsNumber(answer))
                         {
-                            longitude_deg = Double.Parse(answer);
-                            Console.WriteLine("longitude_deg" + longitude_deg);
+                            Pitch = Double.Parse(answer);
+                            Console.WriteLine("PITCH" + Pitch);
                         }
-                        cNet.write("get /position/latitude-deg\n");
+                        else
+                        {
+                            Pitch = Double.NaN;
+                            BoardErr = true;
+                            Console.WriteLine(answer);
+                        }
+                        CNet.Write("get /instrumentation/altimeter/indicated-altitude-ft\n");
 
-                        stopWatch.Start();
-                        answer = cNet.read();
-                        stopWatch.Stop();
-                        if (stopWatch.Elapsed.TotalSeconds > 10.0)
+                        StopWatch.Start();
+                        answer = CNet.Read();
+                        StopWatch.Stop();
+                        if (StopWatch.Elapsed.TotalSeconds > 10.0)
                         {
                             SlowReaction = true;
                         }
-                        stopWatch.Reset();
+                        StopWatch.Reset();
 
                         if (IsNumber(answer))
                         {
-                            latitude_deg = Double.Parse(answer);
-                            Console.WriteLine("latitude_deg" + latitude_deg);
+                            Altimeter = Double.Parse(answer);
+                            Console.WriteLine("ALTIMETER" + Altimeter);
                         }
-                        //update location
-                        location = new Location(latitude_deg, longitude_deg);
+                        else
+                        {
+                            Altimeter = Double.NaN;
+                            BoardErr = true;
+                            Console.WriteLine(answer);
+                        }
+                        //Location
+
+                        CNet.Write("get /position/longitude-deg\n");
+
+                        StopWatch.Start();
+                        answer = CNet.Read();
+                        StopWatch.Stop();
+                        if (StopWatch.Elapsed.TotalSeconds > 10.0)
+                        {
+                            SlowReaction = true;
+                        }
+                        StopWatch.Reset();
+
+                        if (IsNumber(answer))
+                        {
+                            LongitudeDeg = Double.Parse(answer);
+                            Console.WriteLine("longitude_deg" + LongitudeDeg);
+                        }
+                        CNet.Write("get /position/latitude-deg\n");
+
+                        StopWatch.Start();
+                        answer = CNet.Read();
+                        StopWatch.Stop();
+                        if (StopWatch.Elapsed.TotalSeconds > 10.0)
+                        {
+                            SlowReaction = true;
+                        }
+                        StopWatch.Reset();
+
+                        if (IsNumber(answer))
+                        {
+                            LatitudeDeg = Double.Parse(answer);
+                            Console.WriteLine("latitude_deg" + LatitudeDeg);
+                        }
+                        //update Location
+                        Location = new Location(LatitudeDeg, LongitudeDeg);
 
 
-                        isInitialized = true;
+                        IsInitialized = true;
                         Thread.Sleep(350);
                     }
                     catch(Exception E)
                     {
                         ServerErr = true;
                         Console.WriteLine("server error");
-                        disConnect();
-                        this.cNet.getMutex().ReleaseMutex();
+                        DisConnect();
                     }
 
 
@@ -602,9 +598,9 @@ namespace FlightSimulatorApp
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
-        public bool isConnected()
+        public bool IsConnected()
         {
-            return this.cNet.isConnected();
+            return CNet.IsConnected();
         }
 
         // check if the answer's string is a number(double)
@@ -623,11 +619,11 @@ namespace FlightSimulatorApp
 
             return IsNumber;
         }
-        public bool firstUpdate()
+        public bool FirstUpdate()
         {
-            return isInitialized;
+            return IsInitialized;
         }
-        public void makeConnect()
+        public void MakeConnect()
         {
             Connection = true ;
         }

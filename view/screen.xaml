@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="FlightSimulatorApp.view.screen"
+﻿<UserControl x:Class="FlightSimulatorApp.view.Screen"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"

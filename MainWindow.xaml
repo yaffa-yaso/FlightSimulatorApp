@@ -96,7 +96,7 @@
         </Viewbox>
 
         <Viewbox HorizontalAlignment="Left" Height="628" Margin="-87,-68,0,0" VerticalAlignment="Top" Width="831" Grid.ColumnSpan="2">
-            <view:screen x:Name="screen" Margin="100,100,100,100" HorizontalAlignment="Center" Foreground="{x:Null}" Height="370" Width="564"/>
+            <view:Screen x:Name="screen" Margin="100,100,100,100" HorizontalAlignment="Center" Foreground="{x:Null}" Height="370" Width="564"/>
         </Viewbox>
         <Button Style="{StaticResource server}" Margin="0,0,44,0" VerticalAlignment="Top" Click="Button_Click" Height="33" Background="#FFC0C1C1" Foreground="#FF4A70B1" FontWeight="Bold" FontSize="15"/>
         <Button Content="disconnect" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click_1" Height="33" Background="#FFC0C1C1" Foreground="#FF4A70B1" FontSize="15" FontWeight="Bold" Grid.ColumnSpan="2"/>

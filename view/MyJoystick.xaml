@@ -20,7 +20,7 @@
             </Slider>
             <Slider x:Name="aileron" Value="{Binding VM_AILERON, Mode=OneWayToSource}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="410" Margin="217,550,0,0" RenderTransformOrigin="0.5,0.5" Maximum="1" Minimum="0"/>
             <Label Content="-rudder-" HorizontalAlignment="Left" Margin="342,5,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF5C7CD6" FontSize="36"/>
-            <Label x:Name="rudderVal" Content="0.00" ContentStringFormat="{}{0:#,0.00}" HorizontalAlignment="Left" Margin="370,63,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF4A70B1" FontSize="36" Height="64" Width="91"/>
+            <Label x:Name="RudderVal" Content="0.00" ContentStringFormat="{}{0:#,0.00}" HorizontalAlignment="Left" Margin="370,63,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF4A70B1" FontSize="36" Height="64" Width="91"/>
             <Label Content="-elevator-" HorizontalAlignment="Left" Margin="54,288,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF4A70B1" FontSize="36" RenderTransformOrigin="0.5,0.5">
                 <Label.RenderTransform>
                     <TransformGroup>
@@ -31,7 +31,7 @@
                     </TransformGroup>
                 </Label.RenderTransform>
             </Label>
-            <Label x:Name="elevatorVal" Content="0.00" ContentStringFormat="{}{0:#,0.00}" HorizontalAlignment="Left" Margin="155,287,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF4A70B1" FontSize="36" RenderTransformOrigin="0.5,0.5" Width="90">
+            <Label x:Name="ElevatorVal" Content="0.00" ContentStringFormat="{}{0:#,0.00}" HorizontalAlignment="Left" Margin="155,287,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF4A70B1" FontSize="36" RenderTransformOrigin="0.5,0.5" Width="90">
                 <Label.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>

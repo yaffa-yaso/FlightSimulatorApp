@@ -10,9 +10,9 @@ namespace FlightSimulatorApp
 {
     public class FlightViewModel : INotifyPropertyChanged
     {
-        private FlightModel model;
+        private IFlightModel model;
 
-        public FlightViewModel(FlightModel model)
+        public FlightViewModel(IFlightModel model)
         {
             this.model = model;
             model.PropertyChanged +=
@@ -33,68 +33,68 @@ namespace FlightSimulatorApp
 
         public void movePlain(double rudder, double elevator)
         {
-            model.move(rudder, elevator);
+            model.Move(rudder, elevator);
         }
-        public double VM_HEADING
+        public double VM_Heading
         {
-            get { return model.HEADING; }
+            get { return model.Heading; }
         }
-        public double VM_VERTICAL_SPEED
+        public double VM_VerticalSpeed
         {
-            get { return model.VERTICAL_SPEED; }
+            get { return model.VerticalSpeed; }
         }
-        public double VM_GROUND_SPEED
+        public double VM_GroundSpeed
         {
-            get { return model.GROUND_SPEED; }
+            get { return model.GroundSpeed; }
         }
-        public double VM_AIR_SPEED
+        public double VM_AirSpeed
         {
-            get { return model.AIR_SPEED; }
+            get { return model.AirSpeed; }
         }
-        public double VM_ALTITUDE
+        public double VM_Altitude
         {
-            get { return model.ALTITUDE; }
+            get { return model.Altitude; }
         }
-        public double VM_ROLL
+        public double VM_Roll
         {
-            get { return model.ROLL; }
+            get { return model.Roll; }
         }
-        public double VM_PITCH
+        public double VM_Pitch
         {
-            get { return model.PITCH; }
+            get { return model.Pitch; }
         }
-        public double VM_ALTIMETER
+        public double VM_Altimeter
         {
-            get { return model.ALTIMETER; }
+            get { return model.Altimeter; }
         }
 
-        // location
-        public double VM_latitude_deg
+        // Location
+        public double VM_LatitudeDeg
         {
-            get { return model.latitude_deg; }
+            get { return model.LatitudeDeg; }
         }
-        public double VM_longitude_deg
+        public double VM_LongitudeDeg
         {
-            get { return model.longitude_deg; }
+            get { return model.LongitudeDeg; }
         }
 
-        public double VM_THROTTLE
+        public double VM_Throttle
         {
             set
             {
-                model.changeSpeed(value);
+                model.ChangeSpeed(value);
             }
         }
 
-        public double VM_AILERON
+        public double VM_Aileron
         {
-            set { model.changeAileron(value); }
+            set { model.ChangeAileron(value); }
         }
 
-        //return the location 
-        public Location VM_location
+        //return the Location 
+        public Location VM_Location
         {
-            get { return model.location; }
+            get { return model.Location; }
         }
 
 
@@ -104,9 +104,9 @@ namespace FlightSimulatorApp
 
         }
 
-        public bool VM_outOfBorder
+        public bool VM_OutOfBorder
         {
-            get { return model.outOfBorder; }
+            get { return model.OutOfBorder; }
 
         }
         public bool VM_SlowReaction
@@ -140,22 +140,22 @@ namespace FlightSimulatorApp
         }
 
         // simple getter
-        public FlightModel getModel()
+        public IFlightModel GetModel()
         {
             return model;
         }
 
-        public void connect()
+        public void VM_Connect()
         {
-            this.model.connect();
+            this.model.Connect();
         }
-        public void makeConnect()
+        public void VM_MakeConnect()
         {
-            this.model.makeConnect();
+            this.model.MakeConnect();
         }
-        public void start()
+        public void VM_Start()
         {
-            this.model.start();
+            this.model.Start();
         }
 
     }

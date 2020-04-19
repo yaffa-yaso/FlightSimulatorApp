@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace FlightSimulatorApp.view
 {
     /// <summary>
-    /// Interaction logic for screen.xaml
+    /// Interaction logic for Screen.xaml
     /// </summary>
-    public partial class screen : UserControl
+    public partial class Screen : UserControl
     {
-        public screen()
+        public Screen()
         {
             InitializeComponent();
             

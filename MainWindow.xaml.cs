@@ -42,26 +42,26 @@ namespace FlightSimulatorApp
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (vm.getModel().isConnected() != true)
+            if (vm.GetModel().IsConnected() != true)
             {
                 await Task.Run(() =>
                 {
-                    vm.connect();
+                    vm.VM_Connect();
                 });
                 Thread.Sleep(1000);
-                if (vm.getModel().isConnected() == true)
+                if (vm.GetModel().IsConnected() == true)
                 {
-                    //vm.makeConnect();
-                    vm.start();
+                    //vm.MakeConnect();
+                    vm.VM_Start();
                 }
             }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (vm.getModel().isConnected() == true)
+            if (vm.GetModel().IsConnected() == true)
             {
-                vm.getModel().disConnect();
+                vm.GetModel().DisConnect();
             }
         }
 
