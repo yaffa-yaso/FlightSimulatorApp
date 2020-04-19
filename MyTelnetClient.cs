@@ -12,21 +12,22 @@ namespace FlightSimulatorApp
 {
     class MyTelnetClient : TelNetClient
     {
-        string ip;
-        int port;
-        bool connection = false;
-        TcpClient clientSocket;
-        NetworkStream stream=null;
-        Mutex m=new Mutex(false, "mutex");
-        public  void connect(string ip, int port)
+        string Ip;
+        int Port;
+        bool Connection = false;
+        TcpClient ClientSocket;
+        NetworkStream Stream=null;
+        Mutex Mut = new Mutex(false, "mutex");
+        public  void Connect(string ip, int port)
         {
-            connection = false;
-            clientSocket = new TcpClient();
-            //saving ip and port as a members class
-            this.ip = ip;
-            this.port = port;
-            
-                makeConnection();
+            Connection = false;
+            ClientSocket = new TcpClient();
+            //saving Ip and Port as a members class
+            this.Ip = ip;
+            this.Port = port;
+            Mut = new Mutex(false, "mutex");
+
+                MakeConnection();
 
            
 
@@ -36,34 +37,34 @@ namespace FlightSimulatorApp
         }
 
 
-        public void disconnect()
+        public void Disconnect()
         {
-            connection = false;
-            if (stream!= null)
+            Connection = false;
+            if (Stream!= null)
             {
-                stream.Close();
-                stream = null;
+                Stream.Close();
+                Stream = null;
             }
-            clientSocket.Close();
+            ClientSocket.Close();
 
 
-            //m.Close();
+            //Mut.Close();
 
 
-            //connection = false;
+            //Connection = false;
         }
 
-        public string read()
+        public string Read()
         {
             
             Byte[] buffer = new Byte[256];
-            Int32 bytes = stream.Read(buffer, 0, buffer.Length);
+            Int32 bytes = Stream.Read(buffer, 0, buffer.Length);
             string responseData = System.Text.Encoding.ASCII.GetString(buffer, 0, bytes);
           
             return responseData;
         }
 
-        public void write(string command)
+        public void Write(string command)
         {
             
                
@@ -76,15 +77,16 @@ namespace FlightSimulatorApp
           
         }
         // self functions
-        public void makeConnection()
+        public void MakeConnection()
         {
             try
             {
                 Console.WriteLine("connecting...");
-                clientSocket.Connect(ip, port);
+
+                ClientSocket.Connect(Ip, Port);
                 Console.WriteLine("connected");
-                stream = clientSocket.GetStream();
-                connection = true;
+                Stream = ClientSocket.GetStream();
+                Connection = true;
                 Thread.Sleep(350);
 
 
@@ -93,18 +95,18 @@ namespace FlightSimulatorApp
 
             catch (Exception e)
             {
-                connection = false;
+                Connection = false;
                 Console.WriteLine("Error.." + e.StackTrace);
-                disconnect();
+                Disconnect();
             }
         }
-        public bool isConnected()
+        public bool IsConnected()
         {
-            return connection;
+            return Connection;
         }
         public Mutex getMutex()
         {
-            return this.m;
+            return this.Mut;
         }
     }
 }

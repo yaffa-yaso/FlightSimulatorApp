@@ -68,7 +68,7 @@
     <Compile Include="MyTelnetClient.cs" />
     <Compile Include="TelNetClient.cs" />
     <Compile Include="MyFlightModel.cs" />
-    <Compile Include="FlightModel.cs" />
+    <Compile Include="IFlightModel.cs" />
     <Compile Include="view\board.xaml.cs">
       <DependentUpon>board.xaml</DependentUpon>
     </Compile>

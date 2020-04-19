@@ -54,16 +54,16 @@ namespace FlightSimulatorApp.view
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                rudderVal.Content = Joy.X / 85;
-                elevatorVal.Content = -Joy.Y / 85;
+                RudderVal.Content = Joy.X / 85;
+                ElevatorVal.Content = -Joy.Y / 85;
                 KnobChanged = true;
             }
         }
 
         private void Joy_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            rudderVal.Content = Joy.X;
-            elevatorVal.Content = -Joy.Y;
+            RudderVal.Content = Joy.X;
+            ElevatorVal.Content = -Joy.Y;
             KnobChanged = true;
         }
     }

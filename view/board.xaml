@@ -31,14 +31,14 @@
             <Label Content="roll" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"/>
             <Label Content="pitch" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"/>
             <Label Content="altimeter" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" FontWeight="Bold" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"/>
-            <Label Content="{Binding VM_HEADING, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="0.2,0.1" Grid.Row="0" Grid.Column="2"/>
-            <Label Content="{Binding VM_VERTICAL_SPEED, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="0,1.9" Grid.Row="1" Grid.Column="2"/>
-            <Label Content="{Binding VM_GROUND_SPEED, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="0,1.5" Grid.Row="2" Grid.Column="2"/>
-            <Label Content="{Binding VM_AIR_SPEED, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" Grid.Row="3" Grid.Column="2"/>
-            <Label Content="{Binding VM_ALTITUDE, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="13.9,0.6" Grid.Row="4" Grid.Column="2"/>
-            <Label Content="{Binding VM_ROLL, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" Grid.Row="5" Grid.Column="2"/>
-            <Label Content="{Binding VM_PITCH, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="5.7,0.6" Grid.Row="6" Grid.Column="2"/>
-            <Label Content="{Binding VM_ALTIMETER, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="7.4,0.1" Grid.Row="7" Grid.Column="2"/>
+            <Label Content="{Binding VM_Heading, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="0.2,0.1" Grid.Row="0" Grid.Column="2"/>
+            <Label Content="{Binding VM_VerticalSpeed, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="0,1.9" Grid.Row="1" Grid.Column="2"/>
+            <Label Content="{Binding VM_GroundSpeed, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="0,1.5" Grid.Row="2" Grid.Column="2"/>
+            <Label Content="{Binding VM_AirSpeed, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" Grid.Row="3" Grid.Column="2"/>
+            <Label Content="{Binding VM_Altitude, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="13.9,0.6" Grid.Row="4" Grid.Column="2"/>
+            <Label Content="{Binding VM_Roll, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" Grid.Row="5" Grid.Column="2"/>
+            <Label Content="{Binding VM_Pitch, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="5.7,0.6" Grid.Row="6" Grid.Column="2"/>
+            <Label Content="{Binding VM_Altimeter, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF2F2A93" ContentStringFormat="{}{0:F3}" RenderTransformOrigin="7.4,0.1" Grid.Row="7" Grid.Column="2"/>
         </Grid>
     </Border>
 </UserControl>

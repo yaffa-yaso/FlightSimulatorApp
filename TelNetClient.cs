@@ -10,11 +10,11 @@ namespace FlightSimulatorApp
 {
     interface TelNetClient
     {
-        void connect(string ip, int port);
-        void write(string command);
-        string read();
-        void disconnect();
-        bool isConnected();
+        void Connect(string ip, int port);
+        void Write(string command);
+        string Read();
+        void Disconnect();
+        bool IsConnected();
         Mutex getMutex();
 
 
