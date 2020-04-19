@@ -51,7 +51,7 @@ namespace FlightSimulatorApp
                 Thread.Sleep(1000);
                 if (vm.getModel().isConnected() == true)
                 {
-                    //vm.makeConnect();
+                    vm.makeConnect();
                     vm.start();
                 }
             }
@@ -66,7 +66,7 @@ namespace FlightSimulatorApp
         }
 
 
-        private void myJoystick_MouseMove(object sender, MouseEventArgs e)
+        private  void myJoystick_MouseMove(object sender, MouseEventArgs e)
         {
             if (myJoystick.KnobChanged)
             {

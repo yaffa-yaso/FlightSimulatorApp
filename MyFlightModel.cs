@@ -17,6 +17,10 @@ namespace FlightSimulatorApp
         bool stop;
         bool isInitialized;
         private Stopwatch stopWatch = new Stopwatch();
+        string rudderTest;
+        string throttleTest;
+        string aileronTest;
+        string elevatorTest;
 
         public MyFlightModel(TelNetClient client)
         {
@@ -261,14 +265,14 @@ namespace FlightSimulatorApp
 
         public void move(double rudder, double elevator)
         {
-            if (_Connection)
+            if (Connection)
             {
                 cNet.write("set /controls/flight/rudder " + rudder + "\n");
-                string rudderTest = cNet.read();
+                 rudderTest = cNet.read();
                 cNet.write("get /controls/flight/rudder " + "\n");
                  rudderTest = cNet.read();
                 cNet.write("set /controls/flight/elevator " + elevator + "\n");
-                string elevatorTest = cNet.read();
+                 elevatorTest = cNet.read();
                 cNet.write("get /controls/flight/elevator " + "\n");
                  elevatorTest = cNet.read();
             }
@@ -276,10 +280,10 @@ namespace FlightSimulatorApp
 
         public void changeSpeed(double throttle)
         {
-            if (_Connection)
+            if (Connection)
             {
                 cNet.write("set /controls/engines/current-engine/throttle " + throttle + "\n");
-                string throttleTest = cNet.read();
+                 throttleTest = cNet.read();
                 cNet.write("get /controls/engines/current-engine/throttle " + "\n");
                  throttleTest = cNet.read();
             }
@@ -287,7 +291,7 @@ namespace FlightSimulatorApp
 
         public void changeAileron(double aileron)
         {
-            if (_Connection)
+            if (Connection)
             {
                 cNet.write("set /controls/flight/aileron " + aileron + "\n");
                 string aileronTest = cNet.read();
@@ -302,10 +306,10 @@ namespace FlightSimulatorApp
             SlowReaction = false;
             stop = false;
             cNet.connect(this.Address, this.Port);
-            if (isConnected() != true)
-            {
-                ServerErr = true;
-            }
+            //if (isConnected() != true)
+            //{
+            //    ServerErr = true;
+            //}
         }
         public void disConnect()
         {
